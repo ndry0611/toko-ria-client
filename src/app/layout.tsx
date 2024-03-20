@@ -2,6 +2,7 @@ import "@mantine/core/styles.css";
 import React from "react";
 import { MantineProvider, ColorSchemeScript } from "@mantine/core";
 import { theme } from "../../theme";
+import { TokenProvider } from "../hooks/use-token";
 
 export const metadata = {
   title: "Toko Ria Sigli",
@@ -20,7 +21,9 @@ export default function RootLayout({ children }: { children: any }) {
         />
       </head>
       <body>
-        <MantineProvider theme={theme}>{children}</MantineProvider>
+        <TokenProvider>
+          <MantineProvider theme={theme}>{children}</MantineProvider>
+        </TokenProvider>
       </body>
     </html>
   );
