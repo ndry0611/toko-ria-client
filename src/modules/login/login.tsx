@@ -10,14 +10,35 @@ import {
   Text,
   TextInput,
 } from "@mantine/core";
-import React from "react";
+import React, { useEffect } from "react";
+import { useToken } from "../../hooks/use-token";
 
 function LoginForm() {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [error, setError] = React.useState(false);
 
-  const loginHandler = () => {
-    console.log(username, password);
+  const loginHandler = async () => {
+    //Call API
+    try {
+      const result = await fetch("http://localhost:8080/api/v1/user/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
+      });
+      if (result.ok) {
+        const data = await result.json();
+        console.log(data);
+        setError(false);
+      } else {
+        setError(true);
+      }
+    } catch (error) {
+      console.error(error);
+      setError(true);
+    }
   };
   return (
     <>
@@ -41,7 +62,7 @@ function LoginForm() {
           <Grid.Col span={3} />
           <Grid.Col span={6}>
             <Card withBorder radius={"md"} shadow="md">
-              <Flex direction={"column"} gap={"md"}>
+              <Flex direction={"column"} gap={"sm"}>
                 <TextInput
                   label="Username"
                   required
@@ -56,12 +77,17 @@ function LoginForm() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
+                {error && (
+                  <Text c={"red"} fz={14} fw={500}>
+                    Invalid Username or Password
+                  </Text>
+                )}
                 <Center>
                   <Button
                     size="md"
                     w={120}
-                    onClick={loginHandler}
                     bg={"#FB7800"}
+                    onClick={loginHandler}
                   >
                     Login
                   </Button>
