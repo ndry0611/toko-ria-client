@@ -10,14 +10,15 @@ import {
   Text,
   TextInput,
 } from "@mantine/core";
-import React, { useEffect } from "react";
+import React from "react";
 import { useToken } from "../../hooks/use-token";
 
 function LoginForm() {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const { token, handleToken } = useToken();
   const [error, setError] = React.useState(false);
-
+  console.log(token);
   const loginHandler = async () => {
     //Call API
     try {
@@ -30,7 +31,7 @@ function LoginForm() {
       });
       if (result.ok) {
         const data = await result.json();
-        console.log(data);
+        handleToken(data.token);
         setError(false);
       } else {
         setError(true);
@@ -44,21 +45,20 @@ function LoginForm() {
     <>
       <Flex
         bg={"#FB7800"}
-        align={"center"}
-        direction={"column"}
         justify={"center"}
+        direction={"column"}
         mih={"100vh"}
       >
-        <Text c={"white"} fz={40} fw={700}>
+        <Text c={"white"} fz={40} fw={700} ta={"center"}>
           Welcome To
         </Text>
         <Center>
           <Image src={"/logo.svg"} w={180} alt="logo" />
         </Center>
-        <Text c={"white"} fz={40} fw={700}>
+        <Text c={"white"} fz={40} fw={700} ta={"center"}>
           Login
         </Text>
-        <Grid w="100%">
+        <Grid>
           <Grid.Col span={3} />
           <Grid.Col span={6}>
             <Card withBorder radius={"md"} shadow="md">
