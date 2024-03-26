@@ -1,14 +1,47 @@
-'use client'
+"use client";
 import { useState } from "react";
-import { Group, Code } from "@mantine/core";
-import { Book, SignOut } from "@phosphor-icons/react";
+import {
+  Group,
+  Code,
+  Image,
+  Button,
+  useMantineColorScheme,
+} from "@mantine/core";
+import {
+  Book,
+  BookOpenText,
+  SignOut,
+  Garage,
+  PencilSimpleLine,
+  HandCoins,
+  Handshake,
+  UserList,
+  Car,
+  Storefront,
+  Moon,
+} from "@phosphor-icons/react";
 
 import classes from "./NavbarSimple.module.css";
+import { Sun } from "@phosphor-icons/react/dist/ssr";
 
-const data = [{ link: "", label: "Kategori", icon: Book }];
+const data = [
+  { link: "", label: "Kategori", icon: Book },
+  { link: "", label: "Barang", icon: BookOpenText },
+  { link: "", label: "Pembelian", icon: Handshake },
+  { link: "", label: "Penjualan", icon: HandCoins },
+  { link: "", label: "Penyesuaian Barang", icon: PencilSimpleLine },
+  { link: "", label: "Supplier", icon: Storefront },
+  { link: "", label: "Pelanggan", icon: UserList },
+  { link: "", label: "Mobil", icon: Car },
+  { link: "", label: "Merk", icon: Garage },
+];
 
 export function NavbarSimple() {
-  const [active, setActive] = useState("Billing");
+  const [active, setActive] = useState("");
+  const { colorScheme, setColorScheme } = useMantineColorScheme();
+  const toggleTheme = () => {
+    setColorScheme(colorScheme === "light" ? "dark" : "light");
+  };
 
   const links = data.map((item) => (
     <a
@@ -29,21 +62,30 @@ export function NavbarSimple() {
   return (
     <nav className={classes.navbar}>
       <div className={classes.navbarMain}>
-        <Group className={classes.header} justify="space-between">
-          <Code fw={700}>v3.1.2</Code>
+        <Group className={classes.header} justify="center">
+          <Image alt="logo" src={"/logo.svg"} />
         </Group>
         {links}
       </div>
 
       <div className={classes.footer}>
-        <a
-          href="#"
-          className={classes.link}
-          onClick={(event) => event.preventDefault()}
-        >
-          <SignOut className={classes.linkIcon} />
-          <span>Log out</span>
-        </a>
+        <Group justify="center">
+          <Button
+            bg={colorScheme === "light" ? "black" : "white"}
+            c={colorScheme === "light" ? "white" : "black"}
+            onClick={() => toggleTheme()}
+          >
+            {colorScheme === "light" ? <Moon /> : <Sun />}
+          </Button>
+          <a
+            href="#"
+            className={classes.link}
+            onClick={(event) => event.preventDefault()}
+          >
+            <SignOut className={classes.linkIcon} />
+            <span>Log out</span>
+          </a>
+        </Group>
       </div>
     </nav>
   );
