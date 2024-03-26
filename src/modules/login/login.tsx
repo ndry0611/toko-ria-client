@@ -12,22 +12,20 @@ import {
 } from "@mantine/core";
 import React from "react";
 import { useToken } from "../../hooks/use-token";
+import { callApi } from "../../utils/api";
 
 function LoginForm() {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const { token, handleToken } = useToken();
   const [error, setError] = React.useState(false);
-  console.log(token);
   const loginHandler = async () => {
     //Call API
     try {
-      const result = await fetch("http://localhost:8080/api/v1/user/login", {
+      const result = await callApi({
+        url: "/user/login",
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username, password }),
+        body: { username, password },
       });
       if (result.ok) {
         const data = await result.json();
