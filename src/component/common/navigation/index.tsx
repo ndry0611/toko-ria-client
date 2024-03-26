@@ -19,10 +19,10 @@ import {
   Car,
   Storefront,
   Moon,
+  Sun
 } from "@phosphor-icons/react";
 
 import classes from "./NavbarSimple.module.css";
-import { Sun } from "@phosphor-icons/react/dist/ssr";
 
 const data = [
   { link: "", label: "Kategori", icon: Book },
