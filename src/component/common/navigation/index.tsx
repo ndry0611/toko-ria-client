@@ -1,12 +1,6 @@
 "use client";
 import { useState } from "react";
-import {
-  Group,
-  Code,
-  Image,
-  Button,
-  useMantineColorScheme,
-} from "@mantine/core";
+import { Group, Image } from "@mantine/core";
 import {
   Book,
   BookOpenText,
@@ -18,8 +12,6 @@ import {
   UserList,
   Car,
   Storefront,
-  Moon,
-  Sun,
 } from "@phosphor-icons/react";
 
 import classes from "./NavbarSimple.module.css";
@@ -38,10 +30,6 @@ const data = [
 
 export function NavbarSimple() {
   const [active, setActive] = useState("");
-  const { colorScheme, setColorScheme } = useMantineColorScheme();
-  const toggleTheme = () => {
-    setColorScheme(colorScheme === "light" ? "dark" : "light");
-  };
 
   const links = data.map((item) => (
     <a
@@ -69,23 +57,14 @@ export function NavbarSimple() {
       </div>
 
       <div className={classes.footer}>
-        <Group justify="space-between">
-          <Button
-            bg={colorScheme === "light" ? "black" : "white"}
-            c={colorScheme === "light" ? "white" : "black"}
-            onClick={() => toggleTheme()}
-          >
-            {colorScheme === "light" ? <Moon /> : <Sun />}
-          </Button>
-          <a
-            href="#"
-            className={classes.link}
-            onClick={(event) => event.preventDefault()}
-          >
-            <SignOut className={classes.linkIcon} />
-            <span>Log out</span>
-          </a>
-        </Group>
+        <a
+          href="#"
+          className={classes.link}
+          onClick={(event) => event.preventDefault()}
+        >
+          <SignOut className={classes.linkIcon} />
+          <span>Log out</span>
+        </a>
       </div>
     </nav>
   );
