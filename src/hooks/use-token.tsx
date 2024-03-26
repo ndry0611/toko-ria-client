@@ -9,7 +9,7 @@ export const TokenContext = React.createContext({
 //token storage handler
 export const TOKEN_NAME = "token";
 export function getTokenStorage() {
-  return localStorage.getItem(TOKEN_NAME);
+  return localStorage.getItem(TOKEN_NAME) || undefined;
 }
 export function setTokenStorage(value: string) {
   localStorage.setItem(TOKEN_NAME, value);
