@@ -19,7 +19,7 @@ import {
   Car,
   Storefront,
   Moon,
-  Sun
+  Sun,
 } from "@phosphor-icons/react";
 
 import classes from "./NavbarSimple.module.css";
@@ -69,7 +69,7 @@ export function NavbarSimple() {
       </div>
 
       <div className={classes.footer}>
-        <Group justify="center">
+        <Group justify="space-between">
           <Button
             bg={colorScheme === "light" ? "black" : "white"}
             c={colorScheme === "light" ? "white" : "black"}
