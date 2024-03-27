@@ -1,16 +1,10 @@
 "use client";
 import { Flex, Grid } from "@mantine/core";
 import { useEffect } from "react";
-import { getTokenStorage } from "../../hooks/use-token";
 import React from "react";
 import { callApi } from "../../utils/api";
-
-export interface Category {
-  id: number;
-  name: string;
-  description: string;
-  file_name: string | null;
-}
+import { Category } from "../../modules/category/type";
+import CategoryCard from "../../modules/category/component/card-view";
 
 export default function HomePage() {
   const [catalog, setCatalog] = React.useState<Category[]>([]);
@@ -28,11 +22,11 @@ export default function HomePage() {
   }, []);
   return (
     <Flex w={"100%"} justify="center">
-      <Grid>
+      <Grid m={"xs"}>
         {catalog.map((item) => {
           return (
             <Grid.Col span={4} key={item.id}>
-              {item.name}
+              <CategoryCard {...item} />
             </Grid.Col>
           );
         })}
