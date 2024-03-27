@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Group, Image } from "@mantine/core";
+import { Anchor, Group, Image } from "@mantine/core";
 import {
   Book,
   BookOpenText,
@@ -51,7 +51,9 @@ export function NavbarSimple() {
     <nav className={classes.navbar}>
       <div className={classes.navbarMain}>
         <Group className={classes.header} justify="center">
-          <Image alt="logo" src={"/logo.svg"} />
+          <Anchor href="#">
+            <Image alt="logo" src={"/logo.svg"} />
+          </Anchor>
         </Group>
         {links}
       </div>
