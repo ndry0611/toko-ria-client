@@ -11,7 +11,7 @@ export default function CategoryCard(item: Category) {
             <Image src="https://picsum.photos/250/200" alt="images" />
           ) : (
             <Center>
-              <ImageSquare size={150} />
+              <ImageSquare size={150} color="#FF852D" />
             </Center>
           )}
         </Card.Section>
