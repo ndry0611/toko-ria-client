@@ -26,7 +26,12 @@ export default function HomePage() {
         {catalog.map((item) => {
           return (
             <Grid.Col span={4} key={item.id}>
-              <CategoryCard {...item} />
+              <CategoryCard
+                id={item.id}
+                name={item.name}
+                description={item.description}
+                file_name={item.file_name || null}
+              />
             </Grid.Col>
           );
         })}
