@@ -1,25 +1,36 @@
 "use client";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 export const TokenContext = React.createContext({
   token: "",
   handleToken(value: string) {},
+  handleLogout() {},
 });
 
 //token storage handler
 export const TOKEN_NAME = "token";
+
 export function getTokenStorage() {
   return localStorage.getItem(TOKEN_NAME) || undefined;
 }
+
 export function setTokenStorage(value: string) {
   localStorage.setItem(TOKEN_NAME, value);
 }
 
 export function TokenProvider({ children }: { children: React.ReactNode }) {
   const [token, setToken] = React.useState("");
+  const { push } = useRouter();
+
   const handleToken = (value: string) => {
     setToken(value);
     setTokenStorage(value);
+  };
+
+  const handleLogout = () => {
+    handleToken("");
+    push("/login");
   };
 
   //technique when use localstorage, session and cookies
@@ -34,7 +45,7 @@ export function TokenProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <TokenContext.Provider value={{ token, handleToken }}>
+    <TokenContext.Provider value={{ token, handleToken, handleLogout }}>
       {children}
     </TokenContext.Provider>
   );

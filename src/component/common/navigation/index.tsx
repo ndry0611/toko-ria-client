@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Anchor, Group, Image } from "@mantine/core";
+import { Anchor, Button, Group, Image } from "@mantine/core";
 import {
   Book,
   BookOpenText,
@@ -15,9 +15,10 @@ import {
 } from "@phosphor-icons/react";
 
 import classes from "./NavbarSimple.module.css";
+import { useToken } from "../../../hooks/use-token";
 
 const data = [
-  { link: "", label: "Kategori", icon: Book },
+  { link: "/admin/category", label: "Kategori", icon: Book },
   { link: "", label: "Barang", icon: BookOpenText },
   { link: "", label: "Pembelian", icon: Handshake },
   { link: "", label: "Penjualan", icon: HandCoins },
@@ -30,6 +31,7 @@ const data = [
 
 export function NavbarSimple() {
   const [active, setActive] = useState("");
+  const { handleLogout } = useToken();
 
   const links = data.map((item) => (
     <a
@@ -37,8 +39,7 @@ export function NavbarSimple() {
       data-active={item.label === active || undefined}
       href={item.link}
       key={item.label}
-      onClick={(event) => {
-        event.preventDefault();
+      onClick={() => {
         setActive(item.label);
       }}
     >
@@ -59,14 +60,10 @@ export function NavbarSimple() {
       </div>
 
       <div className={classes.footer}>
-        <a
-          href="#"
-          className={classes.link}
-          onClick={(event) => event.preventDefault()}
-        >
+        <Button className={classes.link} onClick={handleLogout} variant="transparent">
           <SignOut className={classes.linkIcon} />
           <span>Log out</span>
-        </a>
+        </Button>
       </div>
     </nav>
   );

@@ -13,11 +13,13 @@ import {
 import React from "react";
 import { useToken } from "../../hooks/use-token";
 import { callApi } from "../../utils/api";
+import { useRouter } from "next/navigation";
 
 function LoginForm() {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const { token, handleToken } = useToken();
+  const { push } = useRouter();
   const [error, setError] = React.useState(false);
   const loginHandler = async () => {
     //Call API
@@ -30,6 +32,7 @@ function LoginForm() {
       if (result.ok) {
         const data = await result.json();
         handleToken(data.token);
+        push("/admin");
         setError(false);
       } else {
         setError(true);
