@@ -18,7 +18,7 @@ import { useRouter } from "next/router";
 function LoginForm() {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const { token, handleToken } = useToken();
+  const { handleToken } = useToken();
   const { push } = useRouter();
   const [error, setError] = React.useState(false);
   const loginHandler = async () => {
@@ -43,63 +43,51 @@ function LoginForm() {
     }
   };
   return (
-    <>
-      <Flex
-        bg={"#FB7800"}
-        justify={"center"}
-        direction={"column"}
-        mih={"100vh"}
-      >
-        <Text c={"white"} fz={40} fw={700} ta={"center"}>
-          Welcome To
-        </Text>
-        <Center>
-          <Image src={"/logo.svg"} w={180} alt="logo" />
-        </Center>
-        <Text c={"white"} fz={40} fw={700} ta={"center"}>
-          Login
-        </Text>
-        <Grid>
-          <Grid.Col span={3} />
-          <Grid.Col span={6}>
-            <Card withBorder radius={"md"} shadow="md">
-              <Flex direction={"column"} gap={"sm"}>
-                <TextInput
-                  label="Username"
-                  required
-                  placeholder="Username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                />
-                <PasswordInput
-                  label="Password"
-                  required
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-                {error && (
-                  <Text c={"red"} fz={14} fw={500}>
-                    Invalid Username or Password
-                  </Text>
-                )}
-                <Center>
-                  <Button
-                    size="md"
-                    w={120}
-                    bg={"#FB7800"}
-                    onClick={loginHandler}
-                  >
-                    Login
-                  </Button>
-                </Center>
-              </Flex>
-            </Card>
-          </Grid.Col>
-          <Grid.Col span={3} />
-        </Grid>
-      </Flex>
-    </>
+    <Flex bg={"#FB7800"} justify={"center"} direction={"column"} mih={"100vh"}>
+      <Text c={"white"} fz={40} fw={700} ta={"center"}>
+        Welcome To
+      </Text>
+      <Center>
+        <Image src={"/logo.svg"} w={180} alt="logo" />
+      </Center>
+      <Text c={"white"} fz={40} fw={700} ta={"center"}>
+        Login
+      </Text>
+      <Grid>
+        <Grid.Col span={3} />
+        <Grid.Col span={6}>
+          <Card withBorder radius={"md"} shadow="md">
+            <Flex direction={"column"} gap={"sm"}>
+              <TextInput
+                label="Username"
+                required
+                placeholder="Username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+              <PasswordInput
+                label="Password"
+                required
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+              {error && (
+                <Text c={"red"} fz={14} fw={500}>
+                  Invalid Username or Password
+                </Text>
+              )}
+              <Center>
+                <Button size="md" w={120} bg={"#FB7800"} onClick={loginHandler}>
+                  Login
+                </Button>
+              </Center>
+            </Flex>
+          </Card>
+        </Grid.Col>
+        <Grid.Col span={3} />
+      </Grid>
+    </Flex>
   );
 }
 

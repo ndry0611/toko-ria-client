@@ -7,11 +7,9 @@ export default function Document() {
       <title>Toko Ria Sigli</title>
       <Head>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale:1" />
-
-        <style></style>
-        <ColorSchemeScript />
         <link rel="shortcut icon" href="/logo.svg" />
+        <ColorSchemeScript />
+        <style></style>
       </Head>
       <body>
         <Main />
