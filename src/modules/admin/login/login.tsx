@@ -11,9 +11,9 @@ import {
   TextInput,
 } from "@mantine/core";
 import React from "react";
-import { useToken } from "../../hooks/use-token";
-import { callApi } from "../../utils/api";
-import { useRouter } from "next/navigation";
+import { useToken } from "../../../hooks/use-token";
+import { callApi } from "../../../utils/api";
+import { useRouter } from "next/router";
 
 function LoginForm() {
   const [username, setUsername] = React.useState("");
