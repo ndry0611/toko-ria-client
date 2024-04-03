@@ -1,6 +1,6 @@
 import { getTokenStorage } from "../hooks/use-token";
 
-export const API_URL = "http://localhost:8080/api/v1";
+export const API_URL = "https://toko-ria-server-production.up.railway.app/api/v1";
 
 export async function callApi({
   url,
