@@ -6,6 +6,7 @@ import React from "react";
 import Head from "next/head";
 
 import "@mantine/core/styles.css";
+import { TokenProvider } from "../hooks/use-token";
 
 export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: React.ReactElement) => React.ReactNode;
@@ -39,7 +40,9 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
         />
       </Head>
       <MantineProvider>
-        <>{getLayout(<Component {...pageProps} />)}</>
+        <TokenProvider>
+          <>{getLayout(<Component {...pageProps} />)}</>
+        </TokenProvider>
       </MantineProvider>
     </>
   );
