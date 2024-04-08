@@ -1,6 +1,5 @@
-"use client";
 import React from "react";
-import { Anchor, Button, Group, Image } from "@mantine/core";
+import { Anchor, Button, Container, Flex, Group, Image } from "@mantine/core";
 import {
   Book,
   BookOpenText,
@@ -29,7 +28,11 @@ const data = [
   { link: "", label: "Merk", icon: Garage },
 ];
 
-export function NavbarSimple() {
+export default function SideNavigation({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const [active, setActive] = React.useState("");
   const { handleLogout } = useToken();
 
@@ -49,26 +52,31 @@ export function NavbarSimple() {
   ));
 
   return (
-    <nav className={classes.navbar}>
-      <div className={classes.navbarMain}>
-        <Group className={classes.header} justify="center">
-          <Anchor href="#">
-            <Image alt="logo" src={"/logo.svg"} />
-          </Anchor>
-        </Group>
-        {links}
-      </div>
+    <Flex mih={"100dvh"}>
+      <nav className={classes.navbar}>
+        <div className={classes.navbarMain}>
+          <Group className={classes.header} justify="center">
+            <Anchor href="#">
+              <Image alt="logo" src={"/logo.svg"} />
+            </Anchor>
+          </Group>
+          {links}
+        </div>
 
-      <div className={classes.footer}>
-        <Button
-          className={classes.link}
-          onClick={handleLogout}
-          variant="transparent"
-        >
-          <SignOut className={classes.linkIcon} />
-          <span>Log out</span>
-        </Button>
-      </div>
-    </nav>
+        <div className={classes.footer}>
+          <Button
+            className={classes.link}
+            onClick={handleLogout}
+            variant="transparent"
+          >
+            <SignOut className={classes.linkIcon} />
+            <span>Log out</span>
+          </Button>
+        </div>
+      </nav>
+      <Container w={"100%"} style={{ overflow: "auto" }} p={16}>
+        {children}
+      </Container>
+    </Flex>
   );
 }

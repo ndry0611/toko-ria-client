@@ -7,6 +7,7 @@ import Head from "next/head";
 
 import "@mantine/core/styles.css";
 import { TokenProvider } from "../hooks/use-token";
+import Layout from "../modules/admin/component/layout";
 
 export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: React.ReactElement) => React.ReactNode;
@@ -23,7 +24,7 @@ const poppins = Poppins({
 });
 
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
-  const getLayout = Component.getLayout ?? ((page) => page);
+  const getLayout = Component.getLayout ?? ((page) => <Layout>{page}</Layout>);
   React.useEffect(() => {
     if (typeof window !== "undefined") {
       const __next = document.getElementById("__next");
