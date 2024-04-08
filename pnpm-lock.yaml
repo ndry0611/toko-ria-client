@@ -24,8 +24,8 @@ dependencies:
     specifier: 7.7.1
     version: 7.7.1(@mantine/core@7.7.1)
   '@phosphor-icons/react':
-    specifier: ^2.1.4
-    version: 2.1.4(react-dom@18.2.0)(react@18.2.0)
+    specifier: 2.0.8
+    version: 2.0.8(react-dom@18.2.0)(react@18.2.0)
   '@vanilla-extract/css':
     specifier: ^1.14.2
     version: 1.14.2
@@ -1020,8 +1020,8 @@ packages:
       fastq: 1.17.1
     dev: true
 
-  /@phosphor-icons/react@2.1.4(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-EeNwgcg1aeK5vG/JYVTullnZzk5zjftOrjLb1iYetyhn5ImFFREc+xG0FAB/dAY277DGDSF8pNdNbqG1SUKIxQ==}
+  /@phosphor-icons/react@2.0.8(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-VWACI+MkRGpol4htOcVtWKaDCosrcuCg8toJfPS0osgVjxM8i/KoSZSPxQvG5XYPCI8iyJoHKRpSfzOISAXFyg==}
     engines: {node: '>=10'}
     peerDependencies:
       react: '>= 16.8'
