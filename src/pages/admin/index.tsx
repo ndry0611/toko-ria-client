@@ -1,7 +1,3 @@
-import { NavbarSimple } from "../../component/common/side-navigation/side-navigation";
+import HomePageAdmin from "../../modules/admin/category/home";
 
-export default function HomePage() {
-  return (
-    <NavbarSimple />
-  )
-}
+export default HomePageAdmin;

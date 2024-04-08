@@ -1,5 +1,5 @@
-import { Anchor, Card, Center, Container, Image, Text } from "@mantine/core";
-import { Category } from "../type";
+import { Anchor, Card, Center, Image, Text } from "@mantine/core";
+import { Category } from "./type";
 import { ImageSquare } from "@phosphor-icons/react";
 
 export default function CategoryCard(item: Category) {
