@@ -23,7 +23,7 @@ function ActionIconGroup({
   return (
     <Flex direction={"row"} gap={5}>
       {onClickDetail ? (
-        <ActionIcon color="E1E357" onClick={onClickDetail}>
+        <ActionIcon color="#E1E357" onClick={onClickDetail}>
           <Pen size={14} />
         </ActionIcon>
       ) : (
@@ -80,11 +80,13 @@ export default function useTableDataGenerator<T extends object>(
     }
     return row;
   });
+
+  const thead = onGenerateHead?.(head as any) ?? head;
   if (hasAction) {
-    head.push("Action");
+    thead.push("Action");
   }
   return {
-    head: onGenerateHead?.(head as any) ?? head,
+    head: thead,
     body,
     foot: onGenerateFooter?.(data),
   };
