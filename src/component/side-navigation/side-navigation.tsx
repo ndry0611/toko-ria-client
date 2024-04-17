@@ -14,7 +14,7 @@ import {
 } from "@phosphor-icons/react";
 
 import classes from "./NavbarSimple.module.css";
-import { useToken } from "../../../hooks/use-token";
+import { useToken } from "../../hooks/use-token";
 
 const data = [
   { link: "/admin/category", label: "Kategori", icon: Book },

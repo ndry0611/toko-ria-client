@@ -8,7 +8,13 @@ export default function CategoryCard(item: Category) {
       <Card shadow="md" padding={"xs"} radius={"sm"} w={"200px"} h={"250px"}>
         <Card.Section>
           {item.file_name ? (
-            <Image w={200} h={150} fit="fill" src="https://picsum.photos/250/400" alt="images" />
+            <Image
+              w={200}
+              h={150}
+              fit="fill"
+              src={`/categories/${item.file_name}`}
+              alt="images"
+            />
           ) : (
             <Center>
               <ImageSquare size={150} color="FF852D" />

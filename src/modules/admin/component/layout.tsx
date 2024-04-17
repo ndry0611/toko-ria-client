@@ -1,4 +1,4 @@
-import NavbarSimple from "../../../component/common/side-navigation/side-navigation";
+import NavbarSimple from "../../../component/side-navigation/side-navigation";
 import { useRouter } from "next/router";
 
 export default function Layout({
