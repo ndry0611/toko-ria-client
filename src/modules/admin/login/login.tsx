@@ -14,6 +14,7 @@ import React from "react";
 import { useToken } from "../../../hooks/use-token";
 import { callApi } from "../../../utils/api";
 import { useRouter } from "next/router";
+import { NavigationRoutes } from "../../../common/constants/route";
 
 function LoginForm() {
   const [username, setUsername] = React.useState("");
@@ -32,7 +33,7 @@ function LoginForm() {
       if (result.ok) {
         const data = await result.json();
         handleToken(data.token);
-        push("/admin");
+        push(`${NavigationRoutes.home}`);
         setError(false);
       } else {
         setError(true);

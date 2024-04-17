@@ -15,9 +15,10 @@ import {
 
 import classes from "./NavbarSimple.module.css";
 import { useToken } from "../../hooks/use-token";
+import { NavigationRoutes } from "../../common/constants/route";
 
 const data = [
-  { link: "/admin/category", label: "Kategori", icon: Book },
+  { link: `${NavigationRoutes.category}`, label: "Kategori", icon: Book },
   { link: "", label: "Barang", icon: BookOpenText },
   { link: "", label: "Pembelian", icon: Handshake },
   { link: "", label: "Penjualan", icon: HandCoins },

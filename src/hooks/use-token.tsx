@@ -1,6 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import React from "react";
+import { NavigationRoutes } from "../common/constants/route";
 
 export const TokenContext = React.createContext({
   token: "",
@@ -30,7 +31,7 @@ export function TokenProvider({ children }: { children: React.ReactNode }) {
 
   const handleLogout = () => {
     handleToken("");
-    push("/login");
+    push(`${NavigationRoutes.loginAdmin}`);
   };
 
   //technique when use localstorage, session and cookies

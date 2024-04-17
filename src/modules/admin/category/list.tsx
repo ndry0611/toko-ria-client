@@ -4,6 +4,7 @@ import { Category } from "./component/type";
 import useTableDataGenerator from "../../../hooks/use-table-data-generator";
 import { useRouter } from "next/router";
 import TableList from "../component/table-list";
+import { NavigationRoutes } from "../../../common/constants/route";
 
 export default function CategoryList() {
   const [catalog, setCatalog] = React.useState<Category[]>([]);
@@ -23,7 +24,7 @@ export default function CategoryList() {
   const table = useTableDataGenerator({
     data: catalog,
     onClickDetail(item) {
-      push(`/admin/category/${item.id}`);
+      push(`${NavigationRoutes.category}/${item.id}`);
     },
     onRowCustom(item) {
       return [item.name, item.description];
