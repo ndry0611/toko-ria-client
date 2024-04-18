@@ -5,6 +5,8 @@ import useTableDataGenerator from "../../../hooks/use-table-data-generator";
 import { useRouter } from "next/router";
 import TableList from "../component/table-list";
 import { NavigationRoutes } from "../../../common/constants/route";
+import { Flex } from "@mantine/core";
+import TitleText from "../component/title";
 
 export default function CategoryList() {
   const [catalog, setCatalog] = React.useState<Category[]>([]);
@@ -33,6 +35,10 @@ export default function CategoryList() {
       return ["Nama", "Deskripsi"];
     },
   });
-  console.log(table);
-  return <TableList data={table}></TableList>;
+  return (
+    <>
+      <TitleText>Kategori</TitleText>
+      <TableList data={table}></TableList>
+    </>
+  );
 }
