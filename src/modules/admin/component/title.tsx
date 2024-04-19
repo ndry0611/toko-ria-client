@@ -3,7 +3,7 @@ import React from "react";
 
 export default function TitleText({ children }: { children: React.ReactNode }) {
   return (
-    <Text fz={26} fw={500}>
+    <Text fz={26} fw={700}>
       {children}
     </Text>
   );

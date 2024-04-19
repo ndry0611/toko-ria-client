@@ -5,8 +5,9 @@ import useTableDataGenerator from "../../../hooks/use-table-data-generator";
 import { useRouter } from "next/router";
 import TableList from "../component/table-list";
 import { NavigationRoutes } from "../../../common/constants/route";
-import { Flex } from "@mantine/core";
+import { Container, Flex, Space } from "@mantine/core";
 import TitleText from "../component/title";
+import CreateButton from "../component/create-button";
 
 export default function CategoryList() {
   const [catalog, setCatalog] = React.useState<Category[]>([]);
@@ -38,6 +39,11 @@ export default function CategoryList() {
   return (
     <>
       <TitleText>Kategori</TitleText>
+      <Space h={"sm"} />
+      <Flex justify={"right"}>
+        <CreateButton />
+      </Flex>
+      <Space h={"sm"} />
       <TableList data={table}></TableList>
     </>
   );
