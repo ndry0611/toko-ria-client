@@ -1,10 +1,11 @@
-import { Anchor, Card, Center, Image, Text } from "@mantine/core";
+import { Card, Center, Image, Text } from "@mantine/core";
 import { Category } from "./type";
 import { ImageSquare } from "@phosphor-icons/react";
+import Link from "next/link";
 
 export default function CategoryCard(item: Category) {
   return (
-    <Anchor underline="never">
+    <Link href={"#"}>
       <Card shadow="md" padding={"xs"} radius={"sm"} w={"200px"} h={"250px"}>
         <Card.Section>
           {item.file_name ? (
@@ -28,6 +29,6 @@ export default function CategoryCard(item: Category) {
           <Text size="xs">{item.description}</Text>
         </Center>
       </Card>
-    </Anchor>
+    </Link>
   );
 }

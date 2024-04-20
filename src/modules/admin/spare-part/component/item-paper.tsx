@@ -14,17 +14,17 @@ export default function ItemPaper() {
           <Text fz={20} fw={400}>
             Title
           </Text>
-          <Text fz={12}>Lorem Ipsum</Text>
-          <Text fz={12}>Lorem Ipsum</Text>
-          <Text fz={12}>Lorem Ipsum</Text>
-          <Text fz={12}>Lorem Ipsum</Text>
+          <Text fz={12}>Part Number: {}</Text>
+          <Text fz={12}>Merk: {}</Text>
+          <Text fz={12}>Mobil: {"carBrand"} {"car"} {"type"}</Text>
+          <Text fz={12}>: {"sell_method"}</Text>
         </Grid.Col>
         <Grid.Col span={3}>
           <Text fz={20} fw={400} ta={"right"}>
-            Rp. 50.000
+            {"price"}
           </Text>
           <Text fz={14} ta={"right"}>
-            stok: 10
+            {"stok"}
           </Text>
         </Grid.Col>
       </Grid>

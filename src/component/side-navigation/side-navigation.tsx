@@ -1,5 +1,5 @@
 import React from "react";
-import { Anchor, Button, Container, Flex, Group, Image } from "@mantine/core";
+import { Button, Container, Flex, Group, Image } from "@mantine/core";
 import {
   Book,
   BookOpenText,
@@ -16,6 +16,7 @@ import {
 import classes from "./NavbarSimple.module.css";
 import { useToken } from "../../hooks/use-token";
 import { NavigationRoutes } from "../../common/constants/route";
+import Link from "next/link";
 
 const data = [
   { link: `${NavigationRoutes.category}`, label: "Kategori", icon: Book },
@@ -57,9 +58,9 @@ export default function SideNavigation({
       <nav className={classes.navbar}>
         <div className={classes.navbarMain}>
           <Group className={classes.header} justify="center">
-            <Anchor href="#">
+            <Link href="#">
               <Image alt="logo" src={"/logo.svg"} />
-            </Anchor>
+            </Link>
           </Group>
           {links}
         </div>
