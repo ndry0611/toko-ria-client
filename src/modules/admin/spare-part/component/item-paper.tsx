@@ -1,7 +1,7 @@
 import { Paper, Grid, Center, Text } from "@mantine/core";
 import { ImageSquare } from "@phosphor-icons/react";
 
-export default function ItemPaper() {
+export default function ItemPaper(item: SparePartType) {
   return (
     <Paper radius={"md"} shadow="lg">
       <Grid m={"sm"}>
