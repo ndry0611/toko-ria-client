@@ -1,11 +1,11 @@
 import React from "react";
 import { Flex, Grid, Text } from "@mantine/core";
 import CategoryCard from "./component/card-view";
-import { Category } from "./component/type";
+import { CategoryType } from "./component/type";
 import { callApi } from "../../../utils/api";
 
 export default function HomePageAdmin() {
-  const [catalog, setCatalog] = React.useState<Category[]>([]);
+  const [catalog, setCatalog] = React.useState<CategoryType[]>([]);
   React.useEffect(() => {
     try {
       const getCatalog = async () => {

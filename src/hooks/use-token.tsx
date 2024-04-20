@@ -1,7 +1,8 @@
 "use client";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useCallback } from "react";
 import { NavigationRoutes } from "../common/constants/route";
+import { tokenDecode } from "../utils/jwt";
 
 export const TokenContext = React.createContext({
   token: "",
@@ -29,10 +30,16 @@ export function TokenProvider({ children }: { children: React.ReactNode }) {
     setTokenStorage(value);
   };
 
-  const handleLogout = () => {
+  const handleLogout = useCallback(() => {
+    const userCred = tokenDecode(token);
+    if (userCred.id_role === 1) {
+      push(`${NavigationRoutes.loginAdmin}`);
+    } else if (userCred.id_role === 2) {
+      push(`${NavigationRoutes.login}`);
+    }
     handleToken("");
-    push(`${NavigationRoutes.loginAdmin}`);
-  };
+    
+  },[push, token]);
 
   //technique when use localstorage, session and cookies
   React.useEffect(() => {
@@ -43,7 +50,19 @@ export function TokenProvider({ children }: { children: React.ReactNode }) {
 
     //unmount
     return () => {};
-  }, []);
+  }, [handleLogout, token]);
+
+  React.useEffect(() => {
+    if (token) {
+      const userCred = tokenDecode(token);
+      const expiredDate = new Date(userCred.exp * 1000);
+      if (new Date().getTime() > expiredDate.getTime()) {
+        handleLogout();
+      }
+    } else {
+      handleLogout();
+    }
+  }, [handleLogout, token])
 
   return (
     <TokenContext.Provider value={{ token, handleToken, handleLogout }}>

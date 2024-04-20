@@ -20,7 +20,7 @@ import Link from "next/link";
 
 const data = [
   { link: `${NavigationRoutes.category}`, label: "Kategori", icon: Book },
-  { link: "", label: "Barang", icon: BookOpenText },
+  { link: `${NavigationRoutes.sparePart}`, label: "Barang", icon: BookOpenText },
   { link: "", label: "Pembelian", icon: Handshake },
   { link: "", label: "Penjualan", icon: HandCoins },
   { link: "", label: "Penyesuaian Barang", icon: PencilSimpleLine },
@@ -58,7 +58,7 @@ export default function SideNavigation({
       <nav className={classes.navbar}>
         <div className={classes.navbarMain}>
           <Group className={classes.header} justify="center">
-            <Link href="#">
+            <Link href="/admin">
               <Image alt="logo" src={"/logo.svg"} />
             </Link>
           </Group>
