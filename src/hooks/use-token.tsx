@@ -23,6 +23,7 @@ export function setTokenStorage(value: string) {
 
 export function TokenProvider({ children }: { children: React.ReactNode }) {
   const [token, setToken] = React.useState("");
+  const [isSync, setIsSync] = React.useState(false);
   const { push } = useRouter();
 
   const handleToken = (value: string) => {
@@ -41,22 +42,24 @@ export function TokenProvider({ children }: { children: React.ReactNode }) {
 
     const tokenStorage = getTokenStorage();
     setToken(tokenStorage || "");
+    setIsSync(true);
 
     //unmount
     return () => {};
   }, []);
 
-  // React.useEffect(() => {
-  //   if (token) {
-  //     const userCred = tokenDecode(token);
-  //     const expiredDate = new Date(userCred.exp * 1000);
-  //     if (new Date().getTime() > expiredDate.getTime()) {
-  //       handleLogout();
-  //     }
-  //   } else {
-  //     handleLogout();
-  //   }
-  // }, [handleLogout, token])
+  React.useEffect(() => {
+    if(!isSync) return;
+    if (token) {
+      const userCred = tokenDecode(token);
+      const expiredDate = new Date(userCred.exp * 1000);
+      if (new Date().getTime() > expiredDate.getTime()) {
+        handleLogout();
+      }
+    } else {
+      handleLogout();
+    }
+  }, [handleLogout, isSync, token]);
 
   return (
     <TokenContext.Provider value={{ token, handleToken, handleLogout }}>
