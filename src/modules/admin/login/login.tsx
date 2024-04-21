@@ -21,28 +21,21 @@ function LoginForm() {
   const [password, setPassword] = React.useState("");
   const { handleToken } = useToken();
   const { push } = useRouter();
-  const [error, setError] = React.useState(false);
+
   const loginHandler = async () => {
-    //Call API
     try {
       const result = await callApi({
         url: "/user/login",
         method: "POST",
-        body: { username, password },
+        data: { username, password },
       });
-      if (result.ok) {
-        const data = await result.json();
-        handleToken(data.token);
-        push(`${NavigationRoutes.home}`);
-        setError(false);
-      } else {
-        setError(true);
-      }
-    } catch (error) {
-      console.error(error);
-      setError(true);
+      handleToken(result.token);
+      push(`${NavigationRoutes.home}`);
+    } catch (error: any) {
+      console.log(error);
     }
   };
+
   return (
     <Flex bg={"#FB7800"} justify={"center"} direction={"column"} mih={"100vh"}>
       <Text c={"white"} fz={40} fw={700} ta={"center"}>
@@ -73,11 +66,6 @@ function LoginForm() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              {error && (
-                <Text c={"red"} fz={14} fw={500}>
-                  Invalid Username or Password
-                </Text>
-              )}
               <Center>
                 <Button size="md" w={120} bg={"#FB7800"} onClick={loginHandler}>
                   Login
