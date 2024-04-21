@@ -2,10 +2,13 @@ import { Card, Center, Image, Text } from "@mantine/core";
 import { CategoryType } from "./type";
 import { ImageSquare } from "@phosphor-icons/react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export default function CategoryCard(item: CategoryType) {
+  const { pathname } = useRouter();
+
   return (
-    <Link href={"#"} style={{ textDecoration: "none" }}>
+    <Link href={pathname + `/${item.id}`} style={{ textDecoration: "none" }}>
       <Card shadow="md" padding={"xs"} radius={"sm"} w={"200px"} h={"250px"}>
         <Card.Section>
           {item.file_name ? (

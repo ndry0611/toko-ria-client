@@ -1,31 +1,20 @@
 import React from "react";
-import { callApi } from "../../../utils/api";
-import { Category } from "./component/type";
 import useTableDataGenerator from "../../../hooks/use-table-data-generator";
 import { useRouter } from "next/router";
 import TableList from "../component/table-list";
 import { NavigationRoutes } from "../../../common/constants/route";
-import { Container, Flex, Space } from "@mantine/core";
+import { Flex, Space } from "@mantine/core";
 import TitleText from "../component/title";
 import CreateButton from "../component/create-button";
+import { useGetCategories } from "../../../api-hooks/category-api";
 
 export default function CategoryList() {
-  const [catalog, setCatalog] = React.useState<Category[]>([]);
   const { push } = useRouter();
-  React.useEffect(() => {
-    try {
-      const getCatalog = async () => {
-        const result = await callApi({ url: "/category" });
-        const data = await result.json();
-        setCatalog(data);
-      };
-      getCatalog();
-    } catch (error) {
-      //Sent user/admin to 500 page (?)
-    }
-  }, []);
+  const query = useGetCategories();
+  const { data = [] } = query;
+
   const table = useTableDataGenerator({
-    data: catalog,
+    data,
     onClickDetail(item) {
       push(`${NavigationRoutes.category}/${item.id}`);
     },
