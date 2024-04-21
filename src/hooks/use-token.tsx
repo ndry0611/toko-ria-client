@@ -44,19 +44,19 @@ export function TokenProvider({ children }: { children: React.ReactNode }) {
 
     //unmount
     return () => {};
-  }, [handleLogout, token]);
+  }, []);
 
-  React.useEffect(() => {
-    if (token) {
-      const userCred = tokenDecode(token);
-      const expiredDate = new Date(userCred.exp * 1000);
-      if (new Date().getTime() > expiredDate.getTime()) {
-        handleLogout();
-      }
-    } else {
-      handleLogout();
-    }
-  }, [handleLogout, token])
+  // React.useEffect(() => {
+  //   if (token) {
+  //     const userCred = tokenDecode(token);
+  //     const expiredDate = new Date(userCred.exp * 1000);
+  //     if (new Date().getTime() > expiredDate.getTime()) {
+  //       handleLogout();
+  //     }
+  //   } else {
+  //     handleLogout();
+  //   }
+  // }, [handleLogout, token])
 
   return (
     <TokenContext.Provider value={{ token, handleToken, handleLogout }}>
