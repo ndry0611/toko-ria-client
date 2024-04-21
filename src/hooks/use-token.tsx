@@ -31,15 +31,9 @@ export function TokenProvider({ children }: { children: React.ReactNode }) {
   };
 
   const handleLogout = useCallback(() => {
-    const userCred = tokenDecode(token);
-    if (userCred.id_role === 1) {
-      push(`${NavigationRoutes.loginAdmin}`);
-    } else if (userCred.id_role === 2) {
-      push(`${NavigationRoutes.login}`);
-    }
     handleToken("");
-    
-  },[push, token]);
+    push(`${NavigationRoutes.loginAdmin}`);
+  }, [push]);
 
   //technique when use localstorage, session and cookies
   React.useEffect(() => {
