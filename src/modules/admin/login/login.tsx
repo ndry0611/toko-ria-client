@@ -20,7 +20,7 @@ function LoginForm() {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const { handleToken } = useToken();
-  const { push } = useRouter();
+  const { replace } = useRouter();
 
   const loginHandler = async () => {
     try {
@@ -30,7 +30,7 @@ function LoginForm() {
         data: { username, password },
       });
       handleToken(result.token);
-      push(`${NavigationRoutes.home}`);
+      replace(`${NavigationRoutes.home}`);
     } catch (error: any) {
       console.log(error);
     }

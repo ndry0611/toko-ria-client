@@ -24,7 +24,7 @@ export function setTokenStorage(value: string) {
 export function TokenProvider({ children }: { children: React.ReactNode }) {
   const [token, setToken] = React.useState("");
   const [isSync, setIsSync] = React.useState(false);
-  const { push } = useRouter();
+  const { replace } = useRouter();
 
   const handleToken = (value: string) => {
     setToken(value);
@@ -33,8 +33,8 @@ export function TokenProvider({ children }: { children: React.ReactNode }) {
 
   const handleLogout = useCallback(() => {
     handleToken("");
-    push(`${NavigationRoutes.loginAdmin}`);
-  }, [push]);
+    replace(`${NavigationRoutes.loginAdmin}`);
+  }, [replace]);
 
   //technique when use localstorage, session and cookies
   React.useEffect(() => {
