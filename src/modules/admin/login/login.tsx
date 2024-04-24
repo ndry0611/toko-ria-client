@@ -15,6 +15,7 @@ import { useToken } from "../../../hooks/use-token";
 import { callApi } from "../../../utils/api";
 import { useRouter } from "next/router";
 import { NavigationRoutes } from "../../../common/constants/route";
+import notification from "../../../component/notifications";
 
 function LoginForm() {
   const [username, setUsername] = React.useState("");
@@ -31,8 +32,12 @@ function LoginForm() {
       });
       handleToken(result.token);
       replace(`${NavigationRoutes.home}`);
-    } catch (error: any) {
-      console.log(error);
+    } catch (e: any) {
+      e.message &&
+      notification.error({
+        title: e.error,
+        message: e.message,
+      });
     }
   };
 

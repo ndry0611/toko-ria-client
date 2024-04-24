@@ -2,13 +2,16 @@ import type { AppProps } from "next/app";
 import { NextPage } from "next";
 import { MantineProvider } from "@mantine/core";
 import { Poppins } from "next/font/google";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { Notifications } from "@mantine/notifications";
+import { ModalsProvider } from "@mantine/modals";
 import React from "react";
 import Head from "next/head";
-
-import "@mantine/core/styles.css";
 import { TokenProvider } from "../hooks/use-token";
 import Layout from "../modules/admin/component/layout";
-import { QueryClient, QueryClientProvider } from "react-query";
+
+import "@mantine/core/styles.css";
+import "@mantine/notifications/styles.css";
 
 export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: React.ReactElement) => React.ReactNode;
@@ -54,9 +57,12 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
       </Head>
       <QueryClientProvider client={queryClient}>
         <MantineProvider>
-          <TokenProvider>
-            <>{getLayout(<Component {...pageProps} />)}</>
-          </TokenProvider>
+          <ModalsProvider modalProps={{ centered: true }}>
+            <Notifications limit={5} position="top-center" />
+            <TokenProvider>
+              <>{getLayout(<Component {...pageProps} />)}</>
+            </TokenProvider>
+          </ModalsProvider>
         </MantineProvider>
       </QueryClientProvider>
     </>
