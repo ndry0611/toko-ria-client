@@ -1,33 +1,48 @@
-import { Paper, Grid, Center, Text } from "@mantine/core";
+import { Card, Grid, Center, Text } from "@mantine/core";
 import { ImageSquare } from "@phosphor-icons/react";
+import { GetSparePartModel } from "./type";
+import { stringToMoney } from "../../../../utils/string";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
-export default function ItemPaper(item: SparePartType) {
+export default function ItemPaper(item: GetSparePartModel) {
+  const { pathname } = useRouter();
   return (
-    <Paper radius={"md"} shadow="lg">
-      <Grid m={"sm"}>
-        <Grid.Col span={3}>
-          <Center>
-            <ImageSquare size={120} color="FF852D" />
-          </Center>
-        </Grid.Col>
-        <Grid.Col span={6}>
-          <Text fz={20} fw={400}>
-            Title
-          </Text>
-          <Text fz={12}>Part Number: {}</Text>
-          <Text fz={12}>Merk: {}</Text>
-          <Text fz={12}>Mobil: {"carBrand"} {"car"} {"type"}</Text>
-          <Text fz={12}>: {"sell_method"}</Text>
-        </Grid.Col>
-        <Grid.Col span={3}>
-          <Text fz={20} fw={400} ta={"right"}>
-            {"price"}
-          </Text>
-          <Text fz={14} ta={"right"}>
-            {"stok"}
-          </Text>
-        </Grid.Col>
-      </Grid>
-    </Paper>
+    <Link href={pathname + `/${item.id}`} style={{ textDecoration: "none" }}>
+      <Card radius={"md"} shadow="lg" p={0}>
+        <Grid m={"sm"}>
+          <Grid.Col span={2}>
+            <Center>
+              <ImageSquare size={90} color="FF852D" />
+            </Center>
+          </Grid.Col>
+          <Grid.Col span={7}>
+            <Text fz={20} fw={700}>
+              {item.name}
+            </Text>
+            <Text fz={12}>Part Number: {item.part_no}</Text>
+            <Text fz={12}>Merk: {item.SparePartBrand?.name}</Text>
+            {item.Car ? (
+              <Text fz={12}>
+                Mobil: {item.Car.CarBrand.name} {item.Car.name} {item.Car.type}
+              </Text>
+            ) : (
+              <span />
+            )}
+            <Text fz={12}>
+              Satuan: {item.sell_method === 1 ? "/set" : "/pcs"}
+            </Text>
+          </Grid.Col>
+          <Grid.Col span={3}>
+            <Text fz={20} fw={700} ta={"right"}>
+              {item.sale_price ? stringToMoney(item.sale_price) : "-"}
+            </Text>
+            <Text fz={14} ta={"right"}>
+              Stok: {item.stock}
+            </Text>
+          </Grid.Col>
+        </Grid>
+      </Card>
+    </Link>
   );
 }
