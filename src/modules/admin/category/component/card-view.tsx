@@ -1,10 +1,10 @@
 import { Card, Center, Image, Text } from "@mantine/core";
-import { CategoryType } from "./type";
+import { CategoryModel } from "./type";
 import { ImageSquare } from "@phosphor-icons/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-export default function CategoryCard(item: CategoryType) {
+export default function CategoryCard(item: CategoryModel) {
   const { pathname } = useRouter();
 
   return (

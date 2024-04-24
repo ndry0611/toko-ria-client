@@ -1,8 +1,6 @@
 import React from "react";
 import { Flex, Grid, Text } from "@mantine/core";
 import CategoryCard from "./component/card-view";
-import { CategoryType } from "./component/type";
-import { callApi } from "../../../utils/api";
 import { useGetCategories } from "../../../api-hooks/category-api";
 
 export default function HomePageAdmin() {
