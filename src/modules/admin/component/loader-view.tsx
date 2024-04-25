@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Container, Loader, Text } from "@mantine/core";
+import { Box, Center, Container, Flex, Loader, Text } from "@mantine/core";
 import notification from "../../../component/notifications";
 import { UseQueryResult } from "@tanstack/react-query";
 import { X } from "@phosphor-icons/react";
@@ -21,23 +21,26 @@ export default function LoaderView<T>(props: {
 
   if (isFetching) {
     return (
-      <Container style={{ display:"flex", justifyContent:"center" }}>
+      <Container style={{ display: "flex", justifyContent: "center" }}>
         <Loader size={48} mb={24} color={color.mainTheme} />
       </Container>
     );
   }
-
   if (error?.message)
     return (
-      <Container>
-        <X size={48} color={color.sentimentNegative} />
-        <Text fw={600} fz={24}>
-          Error
-        </Text>
-        <Text ta="center" fw={400} fz={16}>
-          {error.message}
-        </Text>
-      </Container>
+      <Center>
+        <Flex direction={"column"} justify={"center"}>
+          <Center>
+            <X size={48} color={color.sentimentNegative} />
+            <Text fw={600} fz={24}>
+              Error
+            </Text>
+          </Center>
+          <Text fw={400} fz={16}>
+            {error.message}
+          </Text>
+        </Flex>
+      </Center>
     );
 
   if (data === undefined) return data;
