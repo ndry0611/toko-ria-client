@@ -7,6 +7,7 @@ import { Flex, Space } from "@mantine/core";
 import TitleText from "../component/title";
 import CreateButton from "../component/create-button";
 import { useGetCategories } from "../../../api-hooks/category-api";
+import LoaderView from "../component/loader-view";
 
 export default function CategoryList() {
   const { push } = useRouter();
@@ -33,7 +34,9 @@ export default function CategoryList() {
         <CreateButton />
       </Flex>
       <Space h={"sm"} />
-      <TableList data={table}></TableList>
+      <LoaderView query={query}>
+        {(data) => <TableList data={table}></TableList>}
+      </LoaderView>
     </>
   );
 }

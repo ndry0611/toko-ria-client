@@ -39,7 +39,7 @@ export default function SideNavigation({
   const { handleLogout } = useToken();
 
   const links = data.map((item) => (
-    <a
+    <Link
       className={classes.link}
       data-active={item.label === active || undefined}
       href={item.link}
@@ -50,7 +50,7 @@ export default function SideNavigation({
     >
       <item.icon className={classes.linkIcon} />
       <span>{item.label}</span>
-    </a>
+    </Link>
   ));
 
   return (

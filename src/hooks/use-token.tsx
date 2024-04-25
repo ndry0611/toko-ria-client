@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import React, { useCallback } from "react";
 import { NavigationRoutes } from "../common/constants/route";
 import { tokenDecode } from "../utils/jwt";
+import notification from "../component/notifications";
 
 export const TokenContext = React.createContext({
   token: "",
@@ -54,6 +55,10 @@ export function TokenProvider({ children }: { children: React.ReactNode }) {
       const userCred = tokenDecode(token);
       const expiredDate = new Date(userCred.exp * 1000);
       if (new Date().getTime() > expiredDate.getTime()) {
+        notification.error({
+          title: "Logout",
+          message: "Token expired"
+        })
         handleLogout();
       }
     } else {

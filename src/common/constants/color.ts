@@ -1,4 +1,5 @@
 export const color = {
+  mainTheme: "#FF852D",
   mainBlack: "#000000",
   mainWhite: "#FFFFFF",
   mainBlue: "#2797FF",

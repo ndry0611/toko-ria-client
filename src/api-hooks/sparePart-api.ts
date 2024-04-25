@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { callApi } from "../utils/api";
 import { GetSparePartModel } from "../modules/admin/spare-part/component/type";
 
