@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { getTokenStorage } from "../hooks/use-token";
 
-export const API_URL = process.env.API_URL
+export const API_URL = "https://toko-ria-server-production.up.railway.app/api/v1"
 
 const client = axios.create({
   baseURL: API_URL,
