@@ -1,4 +1,4 @@
-import { UseQueryResult, useQuery } from "@tanstack/react-query";
+import { UseQueryResult, useMutation, useQuery } from "@tanstack/react-query";
 import { callApi } from "../utils/api";
 import { CategoryModel } from "../modules/admin/category/component/type";
 
@@ -11,4 +11,15 @@ export function useGetCategories() : UseQueryResult<CategoryModel[]> {
         method: "GET",
       }),
   });
+}
+
+export function useDeleteCategory() {
+  return useMutation({
+    mutationFn: async(id: string) => {
+      await callApi({
+        url: "/category/" + id,
+        method: "DELETE"
+      })
+    }
+  })
 }

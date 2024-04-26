@@ -3,21 +3,58 @@ import useTableDataGenerator from "../../../hooks/use-table-data-generator";
 import { useRouter } from "next/router";
 import TableList from "../component/table-list";
 import { NavigationRoutes } from "../../../common/constants/route";
-import { Flex, Space } from "@mantine/core";
+import { Center, Flex, Space, Text } from "@mantine/core";
 import TitleText from "../component/title";
 import CreateButton from "../component/create-button";
-import { useGetCategories } from "../../../api-hooks/category-api";
+import {
+  useDeleteCategory,
+  useGetCategories,
+} from "../../../api-hooks/category-api";
 import LoaderView from "../component/loader-view";
+import { modals } from "@mantine/modals";
+import notification from "../../../component/notifications";
 
 export default function CategoryList() {
   const { push } = useRouter();
   const query = useGetCategories();
   const { data = [] } = query;
+  const { mutateAsync } = useDeleteCategory();
 
   const table = useTableDataGenerator({
     data,
     onClickDetail(item) {
       push(`${NavigationRoutes.category}/${item.id}`);
+    },
+    onClickDelete(item) {
+      modals.openConfirmModal({
+        title: "Hapus Kategori",
+        children: (
+          <Center>
+            <Text>
+              Apakah Anda yakin untuk menghapus{" "}
+              <Text span fw={600}>
+                {item.name}
+              </Text>{" "}
+              ?
+            </Text>
+          </Center>
+        ),
+        labels: {
+          confirm: "Hapus",
+          cancel: "Tidak",
+        },
+        confirmProps: { color: "red" },
+        onConfirm: async () => {
+          try {
+            await mutateAsync(item.id.toString());
+          } catch (e: any) {
+            notification.error({
+              title: e?.error,
+              message: e?.message,
+            });
+          }
+        },
+      });
     },
     onRowCustom(item) {
       return [item.name, item.description];
@@ -26,6 +63,7 @@ export default function CategoryList() {
       return ["Nama", "Deskripsi"];
     },
   });
+
   return (
     <>
       <TitleText>Kategori</TitleText>
