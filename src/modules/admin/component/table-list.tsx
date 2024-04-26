@@ -1,4 +1,5 @@
 import { Table, TableProps } from "@mantine/core";
+import { color } from "../../../common/constants/color";
 
 export default function TableList(props: TableProps) {
   return (
@@ -7,7 +8,7 @@ export default function TableList(props: TableProps) {
         {...props}
         styles={{
           thead: {
-            backgroundColor: "#FF852D",
+            backgroundColor: color.mainTheme,
             color: "white",
           },
           th: {

@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Container, Flex, Group, Image } from "@mantine/core";
+import { Button, Container, Flex, Group, Image, Text} from "@mantine/core";
 import {
   Book,
   BookOpenText,
@@ -20,7 +20,11 @@ import Link from "next/link";
 
 const data = [
   { link: `${NavigationRoutes.category}`, label: "Kategori", icon: Book },
-  { link: `${NavigationRoutes.sparePart}`, label: "Barang", icon: BookOpenText },
+  {
+    link: `${NavigationRoutes.sparePart}`,
+    label: "Barang",
+    icon: BookOpenText,
+  },
   { link: "", label: "Pembelian", icon: Handshake },
   { link: "", label: "Penjualan", icon: HandCoins },
   { link: "", label: "Penyesuaian Barang", icon: PencilSimpleLine },
@@ -70,9 +74,9 @@ export default function SideNavigation({
             className={classes.link}
             onClick={handleLogout}
             variant="transparent"
+            leftSection={<SignOut className={classes.linkIcon} />}
           >
-            <SignOut className={classes.linkIcon} />
-            <span>Log out</span>
+            <span className={classes.logoutText}>Log out</span>
           </Button>
         </div>
       </nav>
