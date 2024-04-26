@@ -1,6 +1,7 @@
 import { Flex, TableData, ActionIcon } from "@mantine/core";
 import { Pen, Trash } from "@phosphor-icons/react";
 import { format } from "date-fns";
+import { color } from "../common/constants/color";
 
 interface UseTableDataGeneratorProps<T> {
   data: T[];
@@ -23,7 +24,7 @@ function ActionIconGroup({
   return (
     <Flex direction={"row"} gap={5}>
       {onClickDetail ? (
-        <ActionIcon color="#E1E357" onClick={onClickDetail}>
+        <ActionIcon color={color.mustardYellow} onClick={onClickDetail}>
           <Pen size={14} />
         </ActionIcon>
       ) : (

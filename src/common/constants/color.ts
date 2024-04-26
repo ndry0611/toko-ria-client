@@ -4,6 +4,7 @@ export const color = {
   mainWhite: "#FFFFFF",
   mainBlue: "#2797FF",
   mainGreen: "#00B82A",
+  mainRed: "#D0312D",
 
   sentimentPositive: '#28A745',
   sentimentWarning: '#EDC843',
@@ -12,6 +13,8 @@ export const color = {
 
   information1: "#C6E8FF",
   information2: "#0098FF",
+
+  mustardYellow: "#ffdb58",
 
   statusPositive1: "#D3FCD3",
   statusPositive2: "#A8FAB0",
