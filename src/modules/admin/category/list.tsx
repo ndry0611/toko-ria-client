@@ -47,6 +47,10 @@ export default function CategoryList() {
         onConfirm: async () => {
           try {
             await mutateAsync(item.id.toString());
+            notification.success({
+              title: "Success",
+              message: "Berhasil menghapus kategori"
+            });
           } catch (e: any) {
             notification.error({
               title: e?.error,
