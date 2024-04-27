@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex, Grid, Text } from "@mantine/core";
+import { Flex, SimpleGrid } from "@mantine/core";
 import CategoryCard from "./component/card-view";
 import { useGetCategories } from "../../../api-hooks/category-api";
 import LoaderView from "../component/loader-view";
@@ -11,20 +11,19 @@ export default function HomePageAdmin() {
     <LoaderView query={query}>
       {(data) => (
         <Flex w={"100%"} justify="center">
-          <Grid m={"xs"}>
+          <SimpleGrid cols={data.length >= 3 ? 3 : data.length} spacing={"lg"}>
             {data.map((item) => {
               return (
-                <Grid.Col span={4} key={item.id}>
-                  <CategoryCard
-                    id={item.id}
-                    name={item.name}
-                    description={item.description}
-                    file_name={item.file_name || null}
-                  />
-                </Grid.Col>
+                <CategoryCard
+                  key={item.id}
+                  id={item.id}
+                  name={item.name}
+                  description={item.description}
+                  file_name={item.file_name || null}
+                />
               );
             })}
-          </Grid>
+          </SimpleGrid>
         </Flex>
       )}
     </LoaderView>

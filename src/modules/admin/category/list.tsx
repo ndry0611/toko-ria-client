@@ -13,6 +13,7 @@ import {
 import LoaderView from "../component/loader-view";
 import { modals } from "@mantine/modals";
 import notification from "../../../component/notifications";
+import { queryClient } from "../../../pages/_app";
 
 export default function CategoryList() {
   const { push } = useRouter();
@@ -47,9 +48,10 @@ export default function CategoryList() {
         onConfirm: async () => {
           try {
             await mutateAsync(item.id.toString());
+            queryClient.refetchQueries({ queryKey: ["get-categories"], exact: true });
             notification.success({
               title: "Success",
-              message: "Berhasil menghapus kategori"
+              message: "Berhasil menghapus kategori",
             });
           } catch (e: any) {
             notification.error({
