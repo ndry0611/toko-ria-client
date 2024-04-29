@@ -14,7 +14,8 @@ export const color = {
   information1: "#C6E8FF",
   information2: "#0098FF",
 
-  mustardYellow: "#ffdb58",
+  mustardYellow: "#FEDC56",
+  tuscanyYellow: "#FCD12A",
 
   statusPositive1: "#D3FCD3",
   statusPositive2: "#A8FAB0",
