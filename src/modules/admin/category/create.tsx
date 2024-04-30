@@ -20,7 +20,7 @@ export default function CategoryCreate() {
         });
       } catch (e: any) {
         notification.error({
-          title: "Simpan Kategori Gagal",
+          title: "Simpan Gagal",
           message: `${e?.message}`,
         });
       }

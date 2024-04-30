@@ -16,6 +16,17 @@ export function useGetCategories(): UseQueryResult<CategoryModel[]> {
   });
 }
 
+export function useGetCategory(id: string) {
+  return useQuery({
+    queryKey: ["get-categories", id],
+    queryFn: async () =>
+      await callApi<CategoryModel>({
+        url: "/category/" + id,
+        method: "GET",
+      }),
+  });
+}
+
 export function useDeleteCategory() {
   return useMutation({
     mutationFn: async (id: string) => {
@@ -29,11 +40,23 @@ export function useDeleteCategory() {
 
 export function useCreateCategory() {
   return useMutation({
-    mutationFn: async (body: CategoryFormType) => {
+    mutationFn: async (request: CategoryFormType) => {
       await callApi({
         url: "/category",
         method: "POST",
-        data: body,
+        data: request,
+      });
+    },
+  });
+}
+
+export function useUpdateCategory() {
+  return useMutation({
+    mutationFn: async (request: { id: string; body: CategoryFormType }) => {
+      await callApi({
+        url: "/category/" + request.id,
+        method: "PUT",
+        data: request.body,
       });
     },
   });
