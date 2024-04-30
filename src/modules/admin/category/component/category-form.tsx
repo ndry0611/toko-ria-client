@@ -5,21 +5,36 @@ import BackButton from "../../component/back-button";
 import { Flex, Space } from "@mantine/core";
 import Input from "../../../../component/input";
 import { color } from "../../../../common/constants/color";
+import { CategoryModel, CategoryFormSchema } from "./type";
+import { yupResolver } from "@hookform/resolvers/yup";
 
-export default function CategoryForm() {
-  const methods = useForm();
+interface CategoryFormProps {
+  category?: CategoryModel;
+  onSubmit: (values: CategoryModel) => Promise<void>;
+}
+
+export default function CategoryForm(props: CategoryFormProps) {
+  const { category, onSubmit } = props;
+  const methods = useForm({
+    resolver: yupResolver(CategoryFormSchema()),
+  });
 
   return (
-    <Form methods={methods} onSubmit={() => {}} defaultEditable>
+    <Form methods={methods} onSubmit={onSubmit} defaultEditable={!category}>
       <TitleText>Create Category</TitleText>
       <Space h={"sm"} />
       <BackButton />
       <Space h={"sm"} />
-      <Flex direction={"column"} gap={20} style={{margin: "20px 0px"}}>
+      <Flex direction={"column"} gap={20} style={{ margin: "20px 0px" }}>
         <Input type="text" name="name" label="Nama Kategori" required />
-        <Input type="text" name="deskripsi" label="Deskripsi Kategori" required />
+        <Input
+          type="text"
+          name="description"
+          label="Deskripsi Kategori"
+          required
+        />
       </Flex>
-      <Input type="submit" color={color.statusPositive5}/>
+      <Input type="submit" color={color.statusPositive5} />
     </Form>
   );
 }
