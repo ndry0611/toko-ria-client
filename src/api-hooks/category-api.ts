@@ -30,7 +30,7 @@ export function useGetCategory(id: string) {
 export function useDeleteCategory() {
   return useMutation({
     mutationFn: async (id: string) => {
-      await callApi({
+      return await callApi({
         url: "/category/" + id,
         method: "DELETE",
       });
@@ -41,7 +41,7 @@ export function useDeleteCategory() {
 export function useCreateCategory() {
   return useMutation({
     mutationFn: async (request: CategoryFormType) => {
-      await callApi({
+      return await callApi({
         url: "/category",
         method: "POST",
         data: request,
@@ -53,7 +53,7 @@ export function useCreateCategory() {
 export function useUpdateCategory() {
   return useMutation({
     mutationFn: async (request: { id: string; body: CategoryFormType }) => {
-      await callApi({
+     return await callApi({
         url: "/category/" + request.id,
         method: "PUT",
         data: request.body,
