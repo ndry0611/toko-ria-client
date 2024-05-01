@@ -11,19 +11,25 @@ import React from "react";
 
 interface CategoryFormProps {
   category?: CategoryModel;
-  onSubmit: (values: CategoryModel) => Promise<void>;
+  onSubmit: (values: CategoryFormType) => Promise<void>;
 }
 
 export default function CategoryForm(props: CategoryFormProps) {
   const { category, onSubmit } = props;
+  const defaultValues: CategoryFormType = {
+    description: category?.description ?? "",
+    name: category?.name ?? "",
+    data: category
+  };
 
   const methods = useForm({
     resolver: yupResolver(CategoryFormSchema()),
+    defaultValues
   });
 
   return (
-    <Form methods={methods} onSubmit={onSubmit} defaultEditable={!category}>
-      <TitleText>{category? "Edit" : "Create"} Category</TitleText>
+    <Form methods={methods} onSubmit={onSubmit}>
+      <TitleText>{category ? "Edit" : "Create"} Category</TitleText>
       <Space h={"sm"} />
       <BackButton />
       <Space h={"sm"} />

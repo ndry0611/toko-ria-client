@@ -1,6 +1,6 @@
 import React from "react";
 import CategoryForm from "./component/category-form";
-import { CategoryModel } from "./component/type";
+import { CategoryFormType, CategoryModel } from "./component/type";
 import notification from "../../../component/notifications";
 import { useCreateCategory } from "../../../api-hooks/category-api";
 import { queryClient } from "../../../pages/_app";
@@ -11,21 +11,21 @@ export default function CategoryCreate() {
   const { mutateAsync } = useCreateCategory();
   const { push } = useRouter();
   const onSubmit = React.useCallback(
-    async (values: CategoryModel) => {
+    async (values: CategoryFormType) => {
       try {
         await mutateAsync(values);
         notification.success({
           title: "Simpan Berhasil",
           message: "Simpan Kategori Berhasil",
         });
+        queryClient.invalidateQueries();
+        push(`${NavigationRoutes.category}`);
       } catch (e: any) {
         notification.error({
           title: "Simpan Gagal",
           message: `${e?.message}`,
         });
       }
-      queryClient.invalidateQueries();
-      push(`${NavigationRoutes.category}`);
     },
     [mutateAsync, push]
   );

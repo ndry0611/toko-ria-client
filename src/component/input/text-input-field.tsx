@@ -17,16 +17,17 @@ export default function TextInputField(props: TextInputFieldProps) {
   const _disabled = disabled || readOnly || formState.disabled;
   const error = fieldState.error?.message;
 
+
   return (
     <TextInput
-      {...field}
       {...rest}
+      {...field}
       disabled={_disabled}
       error={error}
-      inputWrapperOrder={['label', 'input', 'description', 'error']}
+      inputWrapperOrder={["label", "input", "description", "error"]}
       onChange={(element) => {
         field.onChange(element.target.value);
-        onAfterChange?.(element.target.value)
+        onAfterChange?.(element.target.value);
       }}
     />
   );
