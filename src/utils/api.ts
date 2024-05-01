@@ -1,11 +1,16 @@
 import axios, { AxiosResponse } from "axios";
 import { getTokenStorage } from "../hooks/use-token";
 
+
+
 /* Production */
-// export const API_URL = "https://toko-ria-server-production.up.railway.app/api/v1"
+// export const BASE_URL = "https://toko-ria-server-production.up.railway.app"
 
 /* Dev */
-export const API_URL = "http://localhost:8080/api/v1"
+export const BASE_URL = "http://localhost:8080"
+
+export const API_URL = BASE_URL + "/api/v1"
+export const PUBLIC_URL = BASE_URL + "/public"
 
 const client = axios.create({
   baseURL: API_URL,
