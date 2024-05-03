@@ -1,11 +1,15 @@
 import axios, { AxiosResponse } from "axios";
 import { getTokenStorage } from "../hooks/use-token";
+import { FileWithPath } from "@mantine/dropzone";
 
 /* Production */
-// export const API_URL = "https://toko-ria-server-production.up.railway.app/api/v1"
+// export const BASE_URL = "https://toko-ria-server-production.up.railway.app"
 
 /* Dev */
-export const API_URL = "http://localhost:8080/api/v1"
+export const BASE_URL = "http://localhost:8080";
+
+export const API_URL = BASE_URL + "/api/v1";
+export const PUBLIC_URL = BASE_URL + "/public";
 
 const client = axios.create({
   baseURL: API_URL,
@@ -44,18 +48,21 @@ export async function callApi<T = any>({
 export async function uploadFile<T = any>({
   id,
   model,
+  files
 }: {
   id: string;
   model: "users" | "categories" | "spare_parts";
+  files: FileWithPath[]
 }) {
   const token = getTokenStorage();
   return client({
-    url: ["/file/upload" + model + id].join("/"),
+    url: [API_URL, "file/upload", model, id].join("/"),
     method: "POST",
     headers: {
       "Content-Type": "multipart/form-data",
       Authorization: token ? `Bearer ${token}` : undefined,
     },
+    data: files
   })
     .then((value: AxiosResponse<T>) => value.data)
     .catch((error) => Promise.reject(error.response.data));

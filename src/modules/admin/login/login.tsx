@@ -15,7 +15,7 @@ import { useToken } from "../../../hooks/use-token";
 import { callApi } from "../../../utils/api";
 import { useRouter } from "next/router";
 import { NavigationRoutes } from "../../../common/constants/route";
-import notification from "../../../component/notifications";
+import notification from "../../../component/notification";
 
 function LoginForm() {
   const [username, setUsername] = React.useState("");

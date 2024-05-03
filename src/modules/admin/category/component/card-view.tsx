@@ -3,6 +3,7 @@ import { CategoryModel } from "./type";
 import { ImageSquare } from "@phosphor-icons/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { PUBLIC_URL } from "../../../../utils/api";
 
 export default function CategoryCard(item: CategoryModel) {
   const { pathname } = useRouter();
@@ -12,13 +13,15 @@ export default function CategoryCard(item: CategoryModel) {
       <Card shadow="md" padding={"xs"} radius={"sm"} w={"200px"} h={"250px"}>
         <Card.Section>
           {item.file_name ? (
-            <Image
-              w={200}
-              h={150}
-              fit="fill"
-              src={`/categories/${item.file_name}`}
-              alt="images"
-            />
+            <Center>
+              <Image
+                w={200}
+                h={150}
+                fit="fill"
+                src={`${PUBLIC_URL}/uploads/categories/${item.file_name}`}
+                alt="images"
+              />
+            </Center>
           ) : (
             <Center>
               <ImageSquare size={150} color="FF852D" />

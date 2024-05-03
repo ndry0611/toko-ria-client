@@ -6,6 +6,16 @@ const withVanillaExtract = createVanillaExtractPlugin();
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        pathname: '**',
+        port: '8080',
+      },
+    ],
+  },
 };
 
 export default withVanillaExtract(nextConfig);

@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Center, Container, Flex, Loader, Text } from "@mantine/core";
-import notification from "../../../component/notifications";
+import notification from "../../../component/notification";
 import { UseQueryResult } from "@tanstack/react-query";
 import { X } from "@phosphor-icons/react";
 import { color } from "../../../common/constants/color";

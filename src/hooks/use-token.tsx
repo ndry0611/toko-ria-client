@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import React, { useCallback } from "react";
 import { NavigationRoutes } from "../common/constants/route";
 import { tokenDecode } from "../utils/jwt";
-import notification from "../component/notifications";
+import notification from "../component/notification";
 
 export const TokenContext = React.createContext({
   token: "",

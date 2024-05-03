@@ -12,7 +12,7 @@ import {
 } from "../../../api-hooks/category-api";
 import LoaderView from "../component/loader-view";
 import { modals } from "@mantine/modals";
-import notification from "../../../component/notifications";
+import notification from "../../../component/notification";
 import { queryClient } from "../../../pages/_app";
 
 export default function CategoryList() {
