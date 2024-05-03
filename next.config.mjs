@@ -11,9 +11,15 @@ const nextConfig = {
       {
         protocol: 'http',
         hostname: 'localhost',
-        pathname: '**',
+        pathname: '/public/uploads/**',
         port: '8080',
       },
+      {
+        protocol: 'https',
+        hostname: 'toko-ria-server-production.up.railway.app',
+        pathname: '/public/uploads/**',
+        port: '**',
+      }
     ],
   },
 };
