@@ -10,8 +10,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import React from "react";
 import PhotoInput from "../../../../component/photo-input";
 import { FileWithPath } from "@mantine/dropzone";
-import { PUBLIC_URL } from "../../../../utils/api";
 import FormActionComponent from "../../component/form-action-component";
+import { PublicImageRoutes } from "../../../../common/constants/route";
 
 interface CategoryFormProps {
   category?: CategoryModel;
@@ -40,7 +40,7 @@ export default function CategoryForm(props: CategoryFormProps) {
     [files, props]
   );
 
-  const defaultImage = category?.file_name ? `${PUBLIC_URL}/uploads/categories/${category.file_name}` : undefined
+  const defaultImage = category?.file_name ? `${PublicImageRoutes.categories}${category.file_name}` : undefined
 
   return (
       <Form methods={methods} onSubmit={onSubmit} defaultEditable={!category}>

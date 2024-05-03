@@ -25,6 +25,7 @@ export default function SparePartList() {
                   stock={item.stock}
                   is_available={item.is_available}
                   sale_price={item.sale_price}
+                  file_name={item.file_name}
                 />
               );
             })

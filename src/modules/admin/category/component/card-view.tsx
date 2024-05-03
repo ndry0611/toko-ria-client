@@ -4,6 +4,7 @@ import { ImageSquare } from "@phosphor-icons/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { PUBLIC_URL } from "../../../../utils/api";
+import { PublicImageRoutes } from "../../../../common/constants/route";
 
 export default function CategoryCard(item: CategoryModel) {
   const { pathname } = useRouter();
@@ -18,7 +19,7 @@ export default function CategoryCard(item: CategoryModel) {
                 w={200}
                 h={150}
                 fit="fill"
-                src={`${PUBLIC_URL}/uploads/categories/${item.file_name}`}
+                src={`${PublicImageRoutes.categories}${item.file_name}`}
                 alt="images"
               />
             </Center>

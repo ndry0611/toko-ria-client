@@ -4,17 +4,28 @@ import { GetSparePartModel } from "./type";
 import { stringToMoney } from "../../../../utils/string";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { PhotoPreview } from "../../../../component/photo-input";
+import { color } from "../../../../common/constants/color";
+import { PublicImageRoutes } from "../../../../common/constants/route";
 
 export default function ItemPaper(item: GetSparePartModel) {
   const { pathname } = useRouter();
+  const itemImage = item.file_name ? (
+    <PhotoPreview
+      imageUrl={`${PublicImageRoutes.spareParts}${item.file_name}`}
+    />
+  ) : (
+    <ImageSquare
+      size={90}
+      style={{ backgroundColor: color.mainTheme, borderRadius: 4 }}
+    />
+  );
   return (
     <Link href={pathname + `/${item.id}`} style={{ textDecoration: "none" }}>
       <Card radius={"md"} shadow="lg" p={0}>
         <Grid m={"sm"}>
           <Grid.Col span={2}>
-            <Center>
-              <ImageSquare size={90} color="FF852D" />
-            </Center>
+            <Center>{itemImage}</Center>
           </Grid.Col>
           <Grid.Col span={7}>
             <Text fz={20} fw={700}>

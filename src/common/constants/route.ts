@@ -1,3 +1,5 @@
+import { PUBLIC_URL } from "../../utils/api";
+
 export enum NavigationRoutes {
   //Admin Website
   loginAdmin = "/admin/login",
@@ -13,4 +15,10 @@ export enum NavigationRoutes {
 
   //User
   login = "/login"
+}
+
+export enum PublicImageRoutes {
+  categories = PUBLIC_URL + "/uploads/categories/",
+  users = PUBLIC_URL + "/uploads/users/",
+  spareParts = PUBLIC_URL + "/uploads/spare_parts"
 }

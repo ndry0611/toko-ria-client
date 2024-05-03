@@ -7,7 +7,7 @@ export function useGetSpareParts() {
     queryKey: ["get-spare-parts"],
     queryFn: async () => await callApi<GetSparePartModel[]>({
       url: "/spare-part",
-      method: "GET"
+      method: "GET",
     }),
   });
 }
