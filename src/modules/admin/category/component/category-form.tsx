@@ -8,41 +8,57 @@ import { color } from "../../../../common/constants/color";
 import { CategoryModel, CategoryFormSchema, CategoryFormType } from "./type";
 import { yupResolver } from "@hookform/resolvers/yup";
 import React from "react";
+import PhotoInput from "../../../../component/photo-input";
+import { FileWithPath } from "@mantine/dropzone";
+import { PUBLIC_URL } from "../../../../utils/api";
+import FormActionComponent from "../../component/form-action-component";
 
 interface CategoryFormProps {
   category?: CategoryModel;
-  onSubmit: (values: CategoryFormType) => Promise<void>;
+  onSubmit: (values: CategoryFormType, files: FileWithPath[]) => Promise<void>;
 }
 
 export default function CategoryForm(props: CategoryFormProps) {
-  const { category, onSubmit } = props;
+  const { category } = props;
+  const [files, setFiles] = React.useState<FileWithPath[]>([]);
+
   const defaultValues: CategoryFormType = {
     description: category?.description ?? "",
     name: category?.name ?? "",
-    data: category
+    data: category,
   };
 
   const methods = useForm({
     resolver: yupResolver(CategoryFormSchema()),
-    defaultValues
+    defaultValues,
   });
 
+  const onSubmit = React.useCallback(
+    async (values: CategoryFormType) => {
+      await props.onSubmit(values, files);
+    },
+    [files, props]
+  );
+
+  const defaultImage = category?.file_name ? `${PUBLIC_URL}/uploads/categories/${category.file_name}` : undefined
+
   return (
-    <Form methods={methods} onSubmit={onSubmit}>
-      <TitleText>{category ? "Edit" : "Create"} Category</TitleText>
-      <Space h={"sm"} />
-      <BackButton />
-      <Space h={"sm"} />
-      <Flex direction={"column"} gap={20} style={{ margin: "20px 0px" }}>
-        <Input type="text" name="name" label="Nama Kategori" required />
-        <Input
-          type="text"
-          name="description"
-          label="Deskripsi Kategori"
-          required
-        />
-      </Flex>
-      <Input type="submit" color={color.statusPositive5} />
-    </Form>
+      <Form methods={methods} onSubmit={onSubmit} defaultEditable={!category}>
+        <TitleText>{category ? "Edit" : "Create"} Category</TitleText>
+        <Space h={"sm"} />
+        <BackButton />
+        <Space h={"sm"} />
+        <PhotoInput label="Gambar" onDrop={setFiles} files={files} defaultImage={defaultImage}/>
+        <Flex direction={"column"} gap={20} style={{ margin: "20px 0px" }} maw={"500px"}>
+          <Input type="text" name="name" label="Nama Kategori" required />
+          <Input
+            type="text"
+            name="description"
+            label="Deskripsi Kategori"
+            required
+          />
+        </Flex>
+        <FormActionComponent />
+      </Form>
   );
 }

@@ -12,6 +12,7 @@ import { queryClient } from "../../../pages/_app";
 import { NavigationRoutes } from "../../../common/constants/route";
 import notification from "../../../component/notification";
 import { FileWithPath } from "@mantine/dropzone";
+import { uploadFile } from "../../../utils/api";
 
 export default function CategoryDetail() {
   const { query, push } = useRouter();
@@ -23,13 +24,13 @@ export default function CategoryDetail() {
   const onSubmit = React.useCallback(async (values: CategoryFormType,files:FileWithPath[]) => {
     try {
       await mutateAsync({ id, body: values });
+      if(files.length){
+        await uploadFile({id, model: "categories", files})
+      }
       notification.success({
         title: "Simpan Berhasil",
         message: "Berhasil mengupdate kategori",
       });
-      if(files.length){
-        //do something
-      }
       queryClient.refetchQueries();
       push(`${NavigationRoutes.category}`);
     } catch (e: any) {
