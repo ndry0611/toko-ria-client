@@ -12,6 +12,7 @@ import Layout from "../modules/admin/component/layout";
 
 import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
+import '@mantine/dropzone/styles.css';
 
 export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: React.ReactElement) => React.ReactNode;
