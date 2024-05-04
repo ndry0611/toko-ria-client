@@ -4,7 +4,6 @@ import TitleText from "../../component/title";
 import BackButton from "../../component/back-button";
 import { Flex, Space } from "@mantine/core";
 import Input from "../../../../component/input";
-import { color } from "../../../../common/constants/color";
 import { CategoryModel, CategoryFormSchema, CategoryFormType } from "./type";
 import { yupResolver } from "@hookform/resolvers/yup";
 import React from "react";
@@ -44,7 +43,7 @@ export default function CategoryForm(props: CategoryFormProps) {
 
   return (
       <Form methods={methods} onSubmit={onSubmit} defaultEditable={!category}>
-        <TitleText>{category ? "Edit" : "Create"} Category</TitleText>
+        <TitleText>{category ? "Edit" : "Tambah"} Category</TitleText>
         <Space h={"sm"} />
         <BackButton />
         <Space h={"sm"} />
