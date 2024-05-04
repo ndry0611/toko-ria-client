@@ -3,6 +3,7 @@ import { useGetSpareParts } from "../../../api-hooks/sparePart-api";
 import ItemPaper from "./component/item-paper";
 import TitleText from "../component/title";
 import LoaderView from "../component/loader-view";
+import CreateButton from "../component/create-button";
 
 export default function SparePartList() {
   const query = useGetSpareParts();
@@ -11,6 +12,9 @@ export default function SparePartList() {
     <>
       <TitleText>Barang</TitleText>
       <Space h={"sm"} />
+      <Flex justify={"right"}>
+        <CreateButton />
+      </Flex>
       <Flex direction={"column"} gap={15}>
         <LoaderView query={query}>
           {(data) =>

@@ -1,3 +1,5 @@
+import * as Yup from 'yup';
+
 export interface SparePartModel {
   id: number;
   id_spare_part_brand?: number;
@@ -40,3 +42,23 @@ interface SPCar {
 interface SPCBrand {
   name: string;
 }
+
+export const SparePartFormSchema = () => 
+  Yup.object({
+    id_category: Yup.number().required(),
+    id_spare_part_brand: Yup.number().required(),
+    id_car: Yup.number().optional(),
+    id_supplier: Yup.number().optional(),
+    name: Yup.string().required(),
+    part_no: Yup.string().required(),
+    genuine: Yup.boolean().required(),
+    stock: Yup.number().default(0),
+    capital_price: Yup.number().required(),
+    sell_method: Yup.number().oneOf([0,1]).required(),
+    is_available: Yup.boolean().required(),
+    sale_price: Yup.number().required(),
+    description: Yup.string().required(),
+    supply_date: Yup.string().required(),
+  });
+
+export type SparePartFormType = Yup.InferType<ReturnType<typeof SparePartFormSchema>> & {data?: SparePartModel};
