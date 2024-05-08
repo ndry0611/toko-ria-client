@@ -1,11 +1,11 @@
-import { Select, SelectProps } from "@mantine/core";
+import { ComboboxItem, Select, SelectProps } from "@mantine/core";
 import { useFormState } from "../form";
 import { useController } from "react-hook-form";
 
 export interface SelectInputFieldProps extends SelectProps {
   type:"select",
   name: string,
-  onAfterChange?: (value: string | null) => void;
+  onAfterChange?: (value: ComboboxItem) => void;
 }
 
 export default function SelectInputField(props: SelectInputFieldProps) {
@@ -33,9 +33,9 @@ export default function SelectInputField(props: SelectInputFieldProps) {
     disabled={_disabled}
     error={error}
     inputWrapperOrder={["label", "input", "description", "error"]}
-    onChange={(element) => {
+    onChange={(element,option) => {
       field.onChange(element);
-      onAfterChange?.(element)
+      onAfterChange?.(option)
     }}
     />
   )
