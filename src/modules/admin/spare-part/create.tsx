@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useCreateSparePart } from "../../../api-hooks/sparePart-api";
+import { useCreateSparePart } from "../../../api-hooks/spare-part-api";
 import { SparePartFormType } from "./component/type";
 import { FileWithPath } from "@mantine/dropzone";
 import SparePartForm from "./component/spare-part-form";

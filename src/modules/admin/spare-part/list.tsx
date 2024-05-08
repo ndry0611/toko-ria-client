@@ -1,5 +1,5 @@
 import { Flex, SimpleGrid, Space } from "@mantine/core";
-import { useGetSpareParts } from "../../../api-hooks/sparePart-api";
+import { useGetSpareParts } from "../../../api-hooks/spare-part-api";
 import ItemPaper from "./component/item-paper";
 import TitleText from "../component/title";
 import LoaderView from "../component/loader-view";

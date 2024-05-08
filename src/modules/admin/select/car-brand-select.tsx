@@ -2,7 +2,7 @@ import { ComboboxItem } from "@mantine/core";
 import {
   CarBrandModel,
   useGetCarBrands,
-} from "../../../api-hooks/carBrand-api";
+} from "../../../api-hooks/car-brand-api";
 import Input from "../../../component/input";
 import { SelectInputFieldProps } from "../../../component/input/select-input-field";
 

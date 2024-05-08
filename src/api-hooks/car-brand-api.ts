@@ -10,7 +10,7 @@ export interface CarBrandModel {
   updated_at?: string;
 }
 
-export function useGetCarBrand() {
+export function useGetCarBrands() {
   return useQuery({
     queryKey: ["get-car-brands"],
     queryFn: async () =>

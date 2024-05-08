@@ -1,5 +1,5 @@
 import { ComboboxItem } from "@mantine/core";
-import { useGetSpareParts } from "../../../api-hooks/sparePart-api";
+import { useGetSpareParts } from "../../../api-hooks/spare-part-api";
 import Input from "../../../component/input";
 import { SelectInputFieldProps } from "../../../component/input/select-input-field";
 import { SparePartModel, SparePartsFilter } from "../spare-part/component/type";
