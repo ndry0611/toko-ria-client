@@ -1,10 +1,10 @@
 import { ComboboxItem } from "@mantine/core";
 import {
-  SparePartBrandModel,
   useGetSparePartBrands,
 } from "../../../api-hooks/spare-part-brand-api";
 import Input from "../../../component/input";
 import { SelectInputFieldProps } from "../../../component/input/select-input-field";
+import { SparePartBrandModel } from "../spare-part-brand/component/type";
 
 type SparePartBrandOption = ComboboxItem & { item: SparePartBrandModel };
 

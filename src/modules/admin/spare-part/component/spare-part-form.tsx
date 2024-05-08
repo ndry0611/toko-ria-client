@@ -10,7 +10,7 @@ import { useForm } from "react-hook-form";
 import { PublicImageRoutes } from "../../../../common/constants/route";
 import Form from "../../../../component/form";
 import TitleText from "../../component/title";
-import { Button, Flex, SimpleGrid, Space } from "@mantine/core";
+import { Flex, SimpleGrid, Space } from "@mantine/core";
 import BackButton from "../../component/back-button";
 import PhotoInput from "../../../../component/photo-input";
 import Input from "../../../../component/input";
@@ -38,7 +38,7 @@ export default function SparePartForm(props: SparePartFormProps) {
     genuine: sparePart?.genuine ?? "true",
     stock: sparePart?.stock ?? 0,
     capital_price: sparePart?.capital_price ?? 0,
-    sell_method: sparePart?.sell_method ?? 1,
+    sell_method: sparePart?.sell_method ?? "1",
     is_available: sparePart?.is_available ?? false,
     sale_price: sparePart?.sale_price ?? 0,
     description: sparePart?.description ?? "",
@@ -97,6 +97,7 @@ export default function SparePartForm(props: SparePartFormProps) {
             name="id_spare_part_brand"
           />
           <CarSelect label="Mobil" name="id_car" />
+          <Input type="number" label="Stok" name="stock" />
           <Input type="number" label="Harga Jual" name="sale_price" />
           <Flex direction={"row"}>
             <Input
@@ -106,6 +107,15 @@ export default function SparePartForm(props: SparePartFormProps) {
               data={[
                 { value: "true", label: "Asli" },
                 { value: "false", label: "Replika" },
+              ]}
+            />
+            <Input
+              type="radio"
+              label="Metode Jual"
+              name="sell_method"
+              data={[
+                { value: "0", label: "/pcs" },
+                { value: "1", label: "/set" },
               ]}
             />
           </Flex>

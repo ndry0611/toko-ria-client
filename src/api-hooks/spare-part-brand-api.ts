@@ -1,14 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { callApi } from "../utils/api";
-
-// Will moved to spare-part-brand/component/type.ts
-export interface SparePartBrandModel {
-  id: number;
-  name: string;
-  manufacture: string;
-  created_at?: string;
-  updated_at?: string;
-}
+import { SparePartBrandModel } from "../modules/admin/spare-part-brand/component/type";
 
 export function useGetSparePartBrands() {
   return useQuery({

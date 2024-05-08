@@ -1,14 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { callApi } from "../utils/api";
-
-// Will moved to car-brand/component/type.ts
-export interface CarBrandModel {
-  id: number;
-  name: string;
-  manufacture: string;
-  created_at?: string;
-  updated_at?: string;
-}
+import { CarBrandModel } from "../modules/admin/car-brand/component/type";
 
 export function useGetCarBrands() {
   return useQuery({

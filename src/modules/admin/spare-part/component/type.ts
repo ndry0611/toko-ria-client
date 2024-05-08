@@ -11,7 +11,7 @@ export interface SparePartModel {
   genuine?: string;
   stock: number;
   capital_price?: number;
-  sell_method?: number;
+  sell_method?: string;
   is_available: boolean;
   sale_price?: number;
   description?: string;
@@ -77,8 +77,8 @@ export const SparePartFormSchema = () =>
     genuine: Yup.mixed().default(""),
     stock: Yup.number().default(0),
     capital_price: Yup.number().required(),
-    sell_method: Yup.number().oneOf([0, 1]).required(),
-    is_available: Yup.boolean().required(),
+    sell_method: Yup.string().oneOf(["0", "1"]),
+    is_available: Yup.boolean(),
     sale_price: Yup.number().required(),
     description: Yup.string().required(),
     supply_date: Yup.string().required(),
