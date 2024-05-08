@@ -1,4 +1,4 @@
-import * as Yup from 'yup';
+import * as Yup from "yup";
 
 export interface SparePartModel {
   id: number;
@@ -8,7 +8,7 @@ export interface SparePartModel {
   id_supplier?: number;
   name: string;
   part_no: string;
-  genuine?: boolean;
+  genuine?: string;
   stock: number;
   capital_price?: number;
   sell_method?: number;
@@ -22,10 +22,10 @@ export interface SparePartModel {
 }
 
 export interface SparePartsFilter {
-  id_category?: string,
-  id_car_brand?:string,
-  id_car?:string
-  name?: string
+  id_category?: string;
+  id_car_brand?: string;
+  id_car?: string;
+  name?: string;
 }
 
 export interface GetSparePartModel extends SparePartModel {
@@ -43,14 +43,14 @@ interface SPCar {
   CarBrand: SPCBrand;
   name: string;
   production_year: string;
-  type: string
+  type: string;
 }
 
 interface SPCBrand {
   name: string;
 }
 
-export const SparePartFormSchema = () => 
+export const SparePartFormSchema = () =>
   Yup.object({
     id_category: Yup.number().required(),
     id_spare_part_brand: Yup.number().required(),
@@ -58,14 +58,32 @@ export const SparePartFormSchema = () =>
     id_supplier: Yup.number().optional(),
     name: Yup.string().required(),
     part_no: Yup.string().required(),
-    genuine: Yup.boolean().required(),
+    // genuine: Yup.mixed()
+    //   .test("is-boolean-or-string", "Must be boolean or string", (value) => {
+    //     if (typeof value === "boolean") return true;
+    //     if (typeof value === "string") {
+    //       return (
+    //         value.toLowerCase() === "true" || value.toLowerCase() === "false"
+    //       );
+    //     }
+    //     return false;
+    //   })
+    //   .transform((value, originalValue) => {
+    //     if (typeof originalValue === "string") {
+    //       return originalValue.toLowerCase() === "true";
+    //     }
+    //     return value;
+    //   }),
+    genuine: Yup.mixed().default(""),
     stock: Yup.number().default(0),
     capital_price: Yup.number().required(),
-    sell_method: Yup.number().oneOf([0,1]).required(),
+    sell_method: Yup.number().oneOf([0, 1]).required(),
     is_available: Yup.boolean().required(),
     sale_price: Yup.number().required(),
     description: Yup.string().required(),
     supply_date: Yup.string().required(),
   });
 
-export type SparePartFormType = Yup.InferType<ReturnType<typeof SparePartFormSchema>> & {data?: SparePartModel};
+export type SparePartFormType = Yup.InferType<
+  ReturnType<typeof SparePartFormSchema>
+> & { data?: GetSparePartModel };
