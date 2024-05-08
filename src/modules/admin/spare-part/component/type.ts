@@ -21,6 +21,13 @@ export interface SparePartModel {
   updated_at?: string;
 }
 
+export interface SparePartsFilter {
+  id_category?: string,
+  id_car_brand?:string,
+  id_car?:string
+  name?: string
+}
+
 export interface GetSparePartModel extends SparePartModel {
   SparePartBrand: SPBrand | null;
   Car?: SPCar | null;

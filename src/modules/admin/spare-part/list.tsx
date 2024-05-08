@@ -5,48 +5,56 @@ import TitleText from "../component/title";
 import LoaderView from "../component/loader-view";
 import CreateButton from "../component/create-button";
 import FindButton from "../component/find-button";
-import { useForm, useFormContext, useWatch } from "react-hook-form";
+import { useForm, useWatch } from "react-hook-form";
 import Form from "../../../component/form";
-import { useGetCategories } from "../../../api-hooks/category-api";
 import Input from "../../../component/input";
-import { useGetCarBrand } from "../../../api-hooks/carBrand-api";
+import React from "react";
+import CarSelect from "../select/car-select";
+import CategorySelect from "../select/category-select";
+import { SparePartsFilter } from "./component/type";
+import CarBrandSelect from "../select/car-brand-select";
+import { useRouter } from "next/router";
 
 export default function SparePartList() {
-  const methods = useForm();
-  const { getValues } = methods;
+  const {query} = useRouter()
+  const [sparepartFilter, setSparepartFilter] = React.useState<SparePartsFilter>({
+    id_category: query.id_category as string
+  });
+  const methods = useForm({
+    defaultValues: sparepartFilter
+  });
 
-  const queryCategory = useGetCategories();
-  const { data: categoryData = [] } = queryCategory;
-  const categories = categoryData.map((obj) => ({
-    value: obj.id.toString(),
-    label: obj.name,
-  }));
+  const [id_car_brand] = useWatch({
+    control: methods.control,
+    name: ["id_car_brand"],
+  });
 
-  const queryCarBrand = useGetCarBrand();
-  const {data: carBrandData = []} = queryCarBrand;
-  const carBrands = carBrandData.map((obj) => ({
-    value: obj.id.toString(),
-    label: obj.name
-  }));
-
-  const params = {
-    id_category: getValues("id_category"),
-    id_car_brand: getValues("id_car_brand")
-  };
-
-  const querySparePart = useGetSpareParts(params);
+  const querySparePart = useGetSpareParts(sparepartFilter);
   const { data: sparePartData = [] } = querySparePart;
   return (
     <>
       <TitleText>Barang</TitleText>
       <Space h={"sm"} />
-      <Form methods={methods} onSubmit={() => {}}>
+      <Form
+        methods={methods}
+        onSubmit={(values) => {
+          setSparepartFilter(values);
+        }}
+      >
         <SimpleGrid cols={3}>
-          <Input type="select" name="id_category" label="Kategori" data={categories} />
-          <Input type="select" name="id_car_brand" label="Merk Mobil" data={carBrands} />
+          <CategorySelect name="id_category" label="Kategori" />
+          <CarBrandSelect name="id_car_brand" label="Merk Mobil" />
+          <CarSelect
+            filtering={{
+              id_car_brand,
+            }}
+            name="id_car"
+            label="Nama Mobil"
+          />
+          <Input type='text' name="name" label="Name" />
         </SimpleGrid>
-        <Flex justify={"right"} gap={15} m={5}>
-          <FindButton qKey={["get-spare-parts"]} />
+        <Flex justify={"right"} gap={15} m={"5px 0px"}>
+          <FindButton />
           <CreateButton />
         </Flex>
       </Form>
