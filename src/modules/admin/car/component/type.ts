@@ -1,3 +1,5 @@
+import * as Yup from "yup";
+
 export interface CarModel {
   id: number;
   id_car_brand: number;
@@ -8,13 +10,13 @@ export interface CarModel {
   updated_at?: string;
 }
 
-export interface GetCarModel extends CarModel{
-  CarBrand: CBModel
+export interface GetCarModel extends CarModel {
+  CarBrand: CBModel;
 }
 
 interface CBModel {
-  name: string
-  manufacture: string
+  name: string;
+  manufacture: string;
 }
 
 export interface CarsFilter {
@@ -22,3 +24,15 @@ export interface CarsFilter {
   name?: string;
   production_year?: string;
 }
+
+export const CarFormSchema = () =>
+  Yup.object({
+    id_car_brand: Yup.string().required(),
+    name: Yup.string().required(),
+    production_year: Yup.string().required(),
+    type: Yup.string().optional(),
+  });
+
+export type CarFormType = Yup.InferType<ReturnType<typeof CarFormSchema>> & {
+  data?: GetCarModel;
+};

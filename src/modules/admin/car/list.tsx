@@ -55,7 +55,6 @@ export default function CarList() {
             await mutateAsync(item.id.toString());
             queryClient.refetchQueries({
               queryKey: ["get-cars"],
-              exact: true,
             });
             notification.success({
               title: "Success",
