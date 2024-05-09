@@ -17,6 +17,17 @@ export function useGetSpareParts(params?: any) {
   });
 }
 
+export function useGetSparePart(id: string) {
+  return useQuery({
+    queryKey: ["get-spare-part", id],
+    queryFn: async () =>
+      await callApi<GetSparePartModel>({
+        url: "/spare-part/" + id,
+        method: "GET",
+      }),
+  });
+}
+
 export function useCreateSparePart() {
   return useMutation({
     mutationFn: async (request: SparePartFormType) => {
@@ -28,3 +39,16 @@ export function useCreateSparePart() {
     },
   });
 }
+
+export function useUpdateSparePart() {
+  return useMutation({
+    mutationFn: async (request:  {id: string; body: SparePartFormType }) => {
+      return await callApi({
+        url: "/spare-part" + request.id,
+        method: "PUT",
+        data: request.body,
+      });
+    },
+  });
+}
+
