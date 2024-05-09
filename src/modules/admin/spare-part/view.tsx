@@ -7,15 +7,13 @@ import {
 import LoaderView from "../component/loader-view";
 import SparePartForm from "./component/spare-part-form";
 import React from "react";
-import { SparePartFormType, SparePartModel } from "./component/type";
+import { SparePartFormType } from "./component/type";
 
 import { queryClient } from "../../../pages/_app";
 import { NavigationRoutes } from "../../../common/constants/route";
 import notification from "../../../component/notification";
 import { FileWithPath } from "@mantine/dropzone";
 import { uploadFile } from "../../../utils/api";
-import { modals } from "@mantine/modals";
-import { Text, Center } from "@mantine/core";
 
 export default function SparePartDetail() {
   const { query, push } = useRouter();

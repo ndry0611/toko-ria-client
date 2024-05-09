@@ -8,7 +8,10 @@ import {
 import React from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { PublicImageRoutes } from "../../../../common/constants/route";
+import {
+  NavigationRoutes,
+  PublicImageRoutes,
+} from "../../../../common/constants/route";
 import Form from "../../../../component/form";
 import TitleText from "../../component/title";
 import { Text, Center, Flex, SimpleGrid, Space } from "@mantine/core";
@@ -23,6 +26,7 @@ import { useDeleteSparePart } from "../../../../api-hooks/spare-part-api";
 import { modals } from "@mantine/modals";
 import { queryClient } from "../../../../pages/_app";
 import notification from "../../../../component/notification";
+import { useRouter } from "next/router";
 
 interface SparePartFormProps {
   sparePart?: GetSparePartModel;
@@ -31,13 +35,14 @@ interface SparePartFormProps {
 
 export function useDeleteSparePartHook() {
   const { mutateAsync } = useDeleteSparePart();
+  const { push } = useRouter();
   const onDelete = (item: SparePartModel) => {
     modals.openConfirmModal({
       title: "Hapus Barang",
       children: (
         <Center>
           <Text>
-            Barang {" "}
+            Barang{" "}
             <Text span fw={600}>
               {item.name}
             </Text>{" "}
@@ -57,6 +62,7 @@ export function useDeleteSparePartHook() {
             queryKey: ["get-spare-parts"],
             exact: true,
           });
+          push(`${NavigationRoutes.sparePart}`);
           notification.success({
             title: "Success",
             message: "Berhasil menghapus barang",
@@ -87,7 +93,7 @@ export default function SparePartForm(props: SparePartFormProps) {
     genuine: sparePart?.genuine?.toString() ?? "true",
     stock: sparePart?.stock ?? 0,
     capital_price: sparePart?.capital_price ?? 0,
-    sell_method: sparePart?.sell_method?.toString() ?? "1",
+    sell_method: sparePart?.sell_method?.toString() ?? "0",
     is_available: sparePart?.is_available ?? false,
     sale_price: sparePart?.sale_price ?? 0,
     description: sparePart?.description ?? "",
@@ -121,7 +127,7 @@ export default function SparePartForm(props: SparePartFormProps) {
       <Space h={"sm"} />
       <BackButton />
       <Space h={"sm"} />
-      <SimpleGrid cols={3}>
+      <SimpleGrid cols={2}>
         <Flex
           direction={"column"}
           gap={10}
@@ -153,7 +159,7 @@ export default function SparePartForm(props: SparePartFormProps) {
           <CarSelect label="Mobil" name="id_car" />
           <Input type="number" label="Stok" name="stock" />
           <Input type="number" label="Harga Jual" name="sale_price" />
-          <Flex direction={"row"}>
+          <Flex direction={"row"} gap={48}>
             <Input
               type="radio"
               label="Tipe"
@@ -175,7 +181,9 @@ export default function SparePartForm(props: SparePartFormProps) {
           </Flex>
         </Flex>
       </SimpleGrid>
-      <FormActionComponent onClickDelete={sparePart ? () => onClickDelete(sparePart) : undefined} />
+      <FormActionComponent
+        onClickDelete={sparePart ? () => onClickDelete(sparePart) : undefined}
+      />
     </Form>
   );
 }
