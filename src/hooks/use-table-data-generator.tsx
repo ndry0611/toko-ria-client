@@ -25,7 +25,7 @@ function ActionIconGroup({
   return (
     <Flex direction={"row"} gap={5}>
       {onClickDetail ? (
-        <ActionIcon color={color.mustardYellow} onClick={onClickDetail}>
+        <ActionIcon variant="outline" onClick={onClickDetail}>
           <Pen size={14} />
         </ActionIcon>
       ) : (

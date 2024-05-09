@@ -51,14 +51,14 @@ export default function SparePartList() {
             name="id_car"
             label="Nama Mobil"
           />
-          <Input type='text' name="name" label="Name" />
+          <Input type='text' name="name" label="Nama Barang" />
         </SimpleGrid>
-        <Flex justify={"right"} gap={15} m={"5px 0px"}>
+        <Flex justify={"right"} gap={16} m={"5px 0px"}>
           <FindButton />
           <CreateButton />
         </Flex>
       </Form>
-      <Flex direction={"column"} gap={15}>
+      <Flex direction={"column"} gap={16} mt={16}>
         <LoaderView query={querySparePart}>
           {(sparePartData) =>
             sparePartData.map((item) => {

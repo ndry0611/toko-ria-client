@@ -17,6 +17,7 @@ import classes from "./NavbarSimple.module.css";
 import { useToken } from "../../hooks/use-token";
 import { NavigationRoutes } from "../../common/constants/route";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const data = [
   { link: `${NavigationRoutes.category}`, label: "Kategori", icon: Book },
@@ -27,7 +28,11 @@ const data = [
   },
   { link: "", label: "Pembelian", icon: Handshake },
   { link: "", label: "Penjualan", icon: HandCoins },
-  { link: `${NavigationRoutes.stockAdjustment}`, label: "Penyesuaian Barang", icon: PencilSimpleLine },
+  {
+    link: `${NavigationRoutes.stockAdjustment}`,
+    label: "Penyesuaian Barang",
+    icon: PencilSimpleLine,
+  },
   { link: "", label: "Supplier", icon: Storefront },
   { link: "", label: "Pelanggan", icon: UserList },
   { link: `${NavigationRoutes.car}`, label: "Mobil", icon: Car },
@@ -39,18 +44,15 @@ export default function SideNavigation({
 }: {
   children: React.ReactNode;
 }) {
-  const [active, setActive] = React.useState("");
+  const { pathname } = useRouter();
   const { handleLogout } = useToken();
 
   const links = data.map((item) => (
     <Link
       className={classes.link}
-      data-active={item.label === active || undefined}
+      data-active={item.link === pathname || undefined}
       href={item.link}
-      key={item.label}
-      onClick={() => {
-        setActive(item.label);
-      }}
+      key={item.link}
     >
       <item.icon className={classes.linkIcon} />
       <span>{item.label}</span>
@@ -80,7 +82,13 @@ export default function SideNavigation({
           </Button>
         </div>
       </nav>
-      <Container w={"100%"} style={{ overflow: "auto" }} p={16}>
+      <Container
+        mah="100vh"
+        miw="calc(100vw - 300px)"
+        maw="calc(100vw - 300px)"
+        style={{ overflow: "auto", position: "relative" }}
+        p={16}
+      >
         {children}
       </Container>
     </Flex>

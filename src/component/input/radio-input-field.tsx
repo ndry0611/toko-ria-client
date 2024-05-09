@@ -33,7 +33,6 @@ export default function RadioInputField(props: RadioInputFieldProps) {
           return (
             <Radio
               key={idx as any}
-              color={color.mainTheme}
               {...radio}
             />
           );

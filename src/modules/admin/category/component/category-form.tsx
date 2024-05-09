@@ -43,7 +43,7 @@ export default function CategoryForm(props: CategoryFormProps) {
 
   return (
       <Form methods={methods} onSubmit={onSubmit} defaultEditable={!category}>
-        <TitleText>{category ? "Edit" : "Tambah"} Category</TitleText>
+        <TitleText>{category ? "Edit" : "Tambah"} Kategori</TitleText>
         <Space h={"sm"} />
         <BackButton />
         <Space h={"sm"} />

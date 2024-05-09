@@ -22,7 +22,7 @@ export default function ItemPaper(item: GetSparePartModel) {
   );
   return (
     <Link href={pathname + `/${item.id}`} style={{ textDecoration: "none" }}>
-      <Card radius={"md"} shadow="lg" p={0}>
+      <Card radius={"md"} withBorder p={0}>
         <Grid m={"sm"}>
           <Grid.Col span={2}>
             <Center>{itemImage}</Center>
@@ -41,7 +41,7 @@ export default function ItemPaper(item: GetSparePartModel) {
               <span />
             )}
             <Text fz={12}>
-              Satuan: {item.sell_method === 1 ? "/set" : "/pcs"}
+              Satuan: {item.sell_method === "1" ? "/set" : "/pcs"}
             </Text>
           </Grid.Col>
           <Grid.Col span={3}>

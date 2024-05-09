@@ -31,6 +31,8 @@ export default function SelectInputField(props: SelectInputFieldProps) {
     {...rest}
     {...field}
     disabled={_disabled}
+    searchable
+    clearable
     error={error}
     inputWrapperOrder={["label", "input", "description", "error"]}
     onChange={(element,option) => {
