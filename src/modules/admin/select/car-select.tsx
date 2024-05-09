@@ -1,10 +1,10 @@
-import { ComboboxData, ComboboxItem } from "@mantine/core";
+import { ComboboxItem } from "@mantine/core";
 import { useGetCars } from "../../../api-hooks/car-api";
 import Input from "../../../component/input";
 import { SelectInputFieldProps } from "../../../component/input/select-input-field";
-import { CarModel, CarsFilter } from "../car/component/type";
+import { GetCarModel, CarsFilter } from "../car/component/type";
 
-type CarOption = ComboboxItem & { item: CarModel };
+type CarOption = ComboboxItem & { item: GetCarModel };
 
 interface CarSelectProps
   extends Omit<SelectInputFieldProps, "data" | "type" | "onAfterChange"> {
@@ -12,7 +12,7 @@ interface CarSelectProps
   onAfterChange?: (value: CarOption) => void;
 }
 
-export function carTransfomer(value: CarModel): CarOption {
+export function carTransfomer(value: GetCarModel): CarOption {
   return {
     value: value.id.toString(),
     label: value.name,

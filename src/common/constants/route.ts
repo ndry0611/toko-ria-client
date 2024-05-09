@@ -13,6 +13,9 @@ export enum NavigationRoutes {
   //SpareParts
   sparePart = "/admin/spare-part",
 
+  //Cars
+  car = "/admin/car"
+
   //User
   login = "/login"
 }

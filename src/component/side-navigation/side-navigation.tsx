@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Container, Flex, Group, Image, Text} from "@mantine/core";
+import { Button, Container, Flex, Group, Image, Text } from "@mantine/core";
 import {
   Book,
   BookOpenText,
@@ -30,7 +30,7 @@ const data = [
   { link: "", label: "Penyesuaian Barang", icon: PencilSimpleLine },
   { link: "", label: "Supplier", icon: Storefront },
   { link: "", label: "Pelanggan", icon: UserList },
-  { link: "", label: "Mobil", icon: Car },
+  { link: `${NavigationRoutes.car}`, label: "Mobil", icon: Car },
   { link: "", label: "Merk", icon: Garage },
 ];
 

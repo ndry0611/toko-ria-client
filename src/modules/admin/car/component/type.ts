@@ -8,6 +8,15 @@ export interface CarModel {
   updated_at?: string;
 }
 
+export interface GetCarModel extends CarModel{
+  CarBrand: CBModel
+}
+
+interface CBModel {
+  name: string
+  manufacture: string
+}
+
 export interface CarsFilter {
   id_car_brand?: string;
   name?: string;
