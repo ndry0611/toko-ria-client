@@ -1,7 +1,8 @@
 import { Flex, TableData, ActionIcon } from "@mantine/core";
 import { Pen, Trash } from "@phosphor-icons/react";
-import { format } from "date-fns";
+import { format, parseISO } from "date-fns";
 import { color } from "../common/constants/color";
+import { formatDate } from "../utils/string";
 
 interface UseTableDataGeneratorProps<T> {
   data: T[];
@@ -60,8 +61,12 @@ export default function useTableDataGenerator<T extends object>(
       onRowCustom?.(item) ??
       head.map((key) => {
         const result = item[key];
-        if (result instanceof Date) {
-          return format(result, "dd MM yyyy");
+        if (typeof result === "string") {
+          const parsedDate = parseISO(result);
+          if (!isNaN(parsedDate.getTime())) {
+            return formatDate(parsedDate.toISOString());
+          }
+          return result;
         }
         return result;
       });
