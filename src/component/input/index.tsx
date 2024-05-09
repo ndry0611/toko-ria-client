@@ -2,6 +2,7 @@ import ButtonSubmitField, {
   ButtonSubmitFieldProps,
 } from "./button-sumbit-field";
 import CheckBoxField, { CheckBoxInputFieldProps } from "./check-box-input-field";
+import DateInputField, { DateInputFieldProps } from "./date-input-field";
 import NumberInputField, { NumberInputFieldProps } from "./number-input-field";
 import RadioInputField, { RadioInputFieldProps } from "./radio-input-field";
 import SelectInputField, { SelectInputFieldProps } from "./select-input-field";
@@ -15,6 +16,7 @@ export type InputProps =
   | RadioInputFieldProps
   | TextAreaInputFieldProps
   | CheckBoxInputFieldProps
+  |DateInputFieldProps
   | ButtonSubmitFieldProps;
 
 export default function Input(props: InputProps) {
@@ -31,6 +33,8 @@ export default function Input(props: InputProps) {
       return <TextAreaInputField {...props} />;
     case "radio":
       return <RadioInputField {...props} />;
+      case 'date':
+        return <DateInputField {...props} />
     case "text":
     case "email":
     default:
