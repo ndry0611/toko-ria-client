@@ -1,6 +1,7 @@
 import { Group, Radio, RadioGroupProps, RadioProps } from "@mantine/core";
 import { useFormState } from "../form";
 import { useController } from "react-hook-form";
+import { color } from "../../common/constants/color";
 
 export interface RadioInputFieldProps
   extends Omit<RadioGroupProps, "children"> {
@@ -32,6 +33,7 @@ export default function RadioInputField(props: RadioInputFieldProps) {
           return (
             <Radio
               key={idx as any}
+              color={color.mainTheme}
               {...radio}
             />
           );
