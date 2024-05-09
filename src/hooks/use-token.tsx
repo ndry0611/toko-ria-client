@@ -49,21 +49,30 @@ export function TokenProvider({ children }: { children: React.ReactNode }) {
     return () => {};
   }, []);
 
-  React.useEffect(() => {
-    if(!isSync) return;
-    if (token) {
+  React.useEffect(() => { 
+    if (!isSync) return;
+    if (!token) {
+      handleLogout();
+      return;
+    }
+    //
+    const interval = setInterval(() => {
+      if (!token) return;
       const userCred = tokenDecode(token);
       const expiredDate = new Date(userCred.exp * 1000);
       if (new Date().getTime() > expiredDate.getTime()) {
         notification.error({
           title: "Logout",
-          message: "Token expired"
-        })
+          message: "Token expired",
+        });
         handleLogout();
       }
-    } else {
-      handleLogout();
-    }
+    }, 1000);
+
+    // cleanup
+    return () => {
+      clearInterval(interval);
+    };
   }, [handleLogout, isSync, token]);
 
   return (
