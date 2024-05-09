@@ -1,10 +1,10 @@
 import { useFormContext } from "react-hook-form";
 import { useFormState } from "../../../component/form";
 import { Button, Flex } from "@mantine/core";
-import { color } from "../../../common/constants/color";
+import { FloppyDisk, Pen, Trash } from "@phosphor-icons/react";
 
 interface FormActionComponentProps {
-  onClickDelete?: () => {};
+  onClickDelete?: () => void;
 }
 
 export default function FormActionComponent({
@@ -17,30 +17,30 @@ export default function FormActionComponent({
   const submitButton = !disabled && (
     <Button
       type="submit"
-      color={"green"}
       loading={formState.isSubmitting}
+      leftSection={<FloppyDisk size={18} weight="bold" />}
     >
       Simpan
     </Button>
   );
 
   const editButton = disabled && isEdit && (
-    <Button color={color.tuscanyYellow} onClick={() => setDisabled(false)}>
+    <Button variant="outline" leftSection={<Pen size={18} weight="bold"/>} onClick={() => setDisabled(false)}>
       Edit
     </Button>
   );
 
   const deleteButton = disabled && onClickDelete && (
-    <Button color="red" onClick={onClickDelete}>
+    <Button color="red" leftSection={<Trash size={18} weight="bold"/>} onClick={onClickDelete}>
       Hapus
     </Button>
   );
-  
+
   return (
     <Flex direction={"row"} gap={16}>
       {editButton}
       {submitButton}
       {deleteButton}
     </Flex>
-  )
+  );
 }

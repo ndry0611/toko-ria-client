@@ -1,7 +1,9 @@
 .navbar {
   background-color: #FF852D;
   min-height: 100vh;
-  width: rem(300px);
+  max-height: 100vh;
+  overflow: auto;
+  width: 300px;
   padding: var(--mantine-spacing-md);
   display: flex;
   flex-direction: column;

@@ -18,7 +18,7 @@ export function useGetCategories(): UseQueryResult<CategoryModel[]> {
 
 export function useGetCategory(id: string) {
   return useQuery({
-    queryKey: ["get-categories", id],
+    queryKey: ["get-category", id],
     queryFn: async () =>
       await callApi<CategoryModel>({
         url: "/category/" + id,

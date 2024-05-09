@@ -6,6 +6,7 @@ export default function TableList(props: TableProps) {
     <Table.ScrollContainer minWidth={1000}>
       <Table
         {...props}
+        highlightOnHover
         styles={{
           thead: {
             backgroundColor: color.mainTheme,

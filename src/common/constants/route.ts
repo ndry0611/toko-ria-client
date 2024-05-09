@@ -13,6 +13,12 @@ export enum NavigationRoutes {
   //SpareParts
   sparePart = "/admin/spare-part",
 
+  //Cars
+  car = "/admin/car",
+  
+  //Stock Adjustment
+  stockAdjustment = "/admin/stock-adjustment",
+
   //User
   login = "/login"
 }
@@ -20,5 +26,5 @@ export enum NavigationRoutes {
 export enum PublicImageRoutes {
   categories = PUBLIC_URL + "/uploads/categories/",
   users = PUBLIC_URL + "/uploads/users/",
-  spareParts = PUBLIC_URL + "/uploads/spare_parts"
+  spareParts = PUBLIC_URL + "/uploads/spare_parts/"
 }

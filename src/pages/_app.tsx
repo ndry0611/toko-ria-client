@@ -9,10 +9,12 @@ import React from "react";
 import Head from "next/head";
 import { TokenProvider } from "../hooks/use-token";
 import Layout from "../modules/admin/component/layout";
+import { theme } from "../../theme";
 
 import "@mantine/core/styles.css";
+import "@mantine/dates/styles.css";
 import "@mantine/notifications/styles.css";
-import '@mantine/dropzone/styles.css';
+import "@mantine/dropzone/styles.css";
 
 export type NextPageWithLayout<P = object, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: React.ReactElement) => React.ReactNode;
@@ -57,7 +59,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
         />
       </Head>
       <QueryClientProvider client={queryClient}>
-        <MantineProvider>
+        <MantineProvider theme={theme}>
           <ModalsProvider modalProps={{ centered: true }}>
             <Notifications limit={5} position="top-center" />
             <TokenProvider>

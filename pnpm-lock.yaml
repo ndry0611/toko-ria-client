@@ -13,7 +13,7 @@ dependencies:
     version: 7.8.1(@mantine/hooks@7.8.1)(@types/react@18.2.36)(react-dom@18.2.0)(react@18.2.0)
   '@mantine/dates':
     specifier: ^7.8.1
-    version: 7.8.1(@mantine/core@7.8.1)(@mantine/hooks@7.8.1)(dayjs@1.11.10)(react-dom@18.2.0)(react@18.2.0)
+    version: 7.8.1(@mantine/core@7.8.1)(@mantine/hooks@7.8.1)(dayjs@1.11.11)(react-dom@18.2.0)(react@18.2.0)
   '@mantine/dropzone':
     specifier: ^7.8.1
     version: 7.8.1(@mantine/core@7.8.1)(@mantine/hooks@7.8.1)(react-dom@18.2.0)(react@18.2.0)
@@ -45,8 +45,8 @@ dependencies:
     specifier: ^3.6.0
     version: 3.6.0
   dayjs:
-    specifier: ^1.11.10
-    version: 1.11.10
+    specifier: ^1.11.11
+    version: 1.11.11
   jwt-decode:
     specifier: ^4.0.0
     version: 4.0.0
@@ -879,7 +879,7 @@ packages:
       - '@types/react'
     dev: false
 
-  /@mantine/dates@7.8.1(@mantine/core@7.8.1)(@mantine/hooks@7.8.1)(dayjs@1.11.10)(react-dom@18.2.0)(react@18.2.0):
+  /@mantine/dates@7.8.1(@mantine/core@7.8.1)(@mantine/hooks@7.8.1)(dayjs@1.11.11)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-G2SvnVnnxKh1sbLYalUj4wq3rw/N0hU2qJU6CXMV03Dl7+p7iiGxgXkSip5G2uONToA4hSEZouQ4/4Jxv0ILEQ==}
     peerDependencies:
       '@mantine/core': 7.8.1
@@ -891,7 +891,7 @@ packages:
       '@mantine/core': 7.8.1(@mantine/hooks@7.8.1)(@types/react@18.2.36)(react-dom@18.2.0)(react@18.2.0)
       '@mantine/hooks': 7.8.1(react@18.2.0)
       clsx: 2.1.0
-      dayjs: 1.11.10
+      dayjs: 1.11.11
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
@@ -1946,8 +1946,8 @@ packages:
     resolution: {integrity: sha512-fRHTG8g/Gif+kSh50gaGEdToemgfj74aRX3swtiouboip5JDLAyDE9F11nHMIcvOaXeOC6D7SpNhi7uFyB7Uww==}
     dev: false
 
-  /dayjs@1.11.10:
-    resolution: {integrity: sha512-vjAczensTgRcqDERK0SR2XMwsF/tSvnvlv6VcF2GIhg6Sx4yOIt/irsr1RDJsKiIyBzJDpCoXiWWq28MqH2cnQ==}
+  /dayjs@1.11.11:
+    resolution: {integrity: sha512-okzr3f11N6WuqYtZSvm+F776mB41wRZMhKP+hc34YdW+KmtYYK9iqvHSwo2k9FEH3fhGXvOPV6yz2IcSrfRUDg==}
     dev: false
 
   /debug@3.2.7:

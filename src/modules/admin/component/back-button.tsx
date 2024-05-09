@@ -10,7 +10,7 @@ export default function BackButton() {
       onClick={() => back()}
       justify="center"
       leftSection={<CaretLeft size={16} weight={"bold"} />}
-      color={color.tuscanyYellow}
+      variant="transparent"
     >
       <Text fw={500}>Kembali</Text>
     </Button>
