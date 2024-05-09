@@ -13,13 +13,11 @@ export enum NavigationRoutes {
   //SpareParts
   sparePart = "/admin/spare-part",
 
-<<<<<<< Updated upstream
   //Cars
-  car = "/admin/car"
-=======
+  car = "/admin/car",
+  
   //Stock Adjustment
   stockAdjustment = "/admin/stock-adjustment",
->>>>>>> Stashed changes
 
   //User
   login = "/login"
