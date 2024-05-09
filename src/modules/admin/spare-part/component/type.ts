@@ -52,10 +52,10 @@ interface SPCBrand {
 
 export const SparePartFormSchema = () =>
   Yup.object({
-    id_category: Yup.number().required(),
-    id_spare_part_brand: Yup.number().required(),
-    id_car: Yup.number().optional(),
-    id_supplier: Yup.number().optional(),
+    id_category: Yup.string().required(),
+    id_spare_part_brand: Yup.string().required(),
+    id_car: Yup.string().optional(),
+    id_supplier: Yup.string().optional(),
     name: Yup.string().required(),
     part_no: Yup.string().required(),
     genuine: Yup.mixed().test(

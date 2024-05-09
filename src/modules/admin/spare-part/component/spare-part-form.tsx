@@ -84,10 +84,10 @@ export default function SparePartForm(props: SparePartFormProps) {
   const [files, setFiles] = React.useState<FileWithPath[]>([]);
 
   const defaultValues: SparePartFormType = {
-    id_category: sparePart?.id_category ?? 0,
-    id_spare_part_brand: sparePart?.id_spare_part_brand ?? 0,
-    id_car: sparePart?.id_car ?? undefined,
-    id_supplier: sparePart?.id_supplier ?? undefined,
+    id_category: sparePart?.id_category?.toString() ?? "",
+    id_spare_part_brand: sparePart?.id_spare_part_brand?.toString() ?? "",
+    id_car: sparePart?.id_car?.toString() ?? "",
+    id_supplier: sparePart?.id_supplier?.toString() ?? "",
     name: sparePart?.name ?? "",
     part_no: sparePart?.part_no ?? "",
     genuine: sparePart?.genuine?.toString() ?? "true",
