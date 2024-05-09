@@ -1,3 +1,5 @@
+import * as Yup from "yup";
+
 export interface StockAdjustmentModel {
   id: number;
   code: string;
@@ -29,3 +31,16 @@ interface SPModel {
 interface SPBModel {
   name: string;
 }
+
+export const StockAdjustmentSchema = () =>
+  Yup.object({
+    id_spare_part: Yup.string().required(),
+    code: Yup.string().required(),
+    old_quantity: Yup.number().required(),
+    new_quantity: Yup.number().required(),
+    description: Yup.string().required(),
+  });
+
+export type StockAdjustmentFormType = Yup.InferType<
+  ReturnType<typeof StockAdjustmentSchema>
+> & { data?: GetStockAdjustmentModel };

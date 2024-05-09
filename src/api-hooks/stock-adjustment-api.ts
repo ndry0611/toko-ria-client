@@ -1,6 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { callApi } from "../utils/api";
-import { GetStockAdjustmentModel, StockAdjustmentFilter } from "../modules/admin/stock-adjustment/component/type";
+import { GetStockAdjustmentModel, StockAdjustmentFilter, StockAdjustmentFormType } from "../modules/admin/stock-adjustment/component/type";
 
 export function useGetStockAdjustments(params?: StockAdjustmentFilter) {
   return useQuery({
@@ -11,5 +11,17 @@ export function useGetStockAdjustments(params?: StockAdjustmentFilter) {
         method: "GET",
         params,
       }),
+  });
+}
+
+export function useCreateStockAdjustment() {
+  return useMutation({
+    mutationFn: async (request: StockAdjustmentFormType) => {
+      return await callApi({
+        url: "/stock-adjustment",
+        method: "POST",
+        data: request,
+      });
+    },
   });
 }
