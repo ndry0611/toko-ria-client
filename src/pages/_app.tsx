@@ -11,6 +11,7 @@ import { TokenProvider } from "../hooks/use-token";
 import Layout from "../modules/admin/component/layout";
 
 import "@mantine/core/styles.css";
+import "@mantine/dates/styles.css";
 import "@mantine/notifications/styles.css";
 import '@mantine/dropzone/styles.css';
 
