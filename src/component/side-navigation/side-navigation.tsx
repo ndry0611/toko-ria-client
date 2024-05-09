@@ -27,7 +27,7 @@ const data = [
   },
   { link: "", label: "Pembelian", icon: Handshake },
   { link: "", label: "Penjualan", icon: HandCoins },
-  { link: "", label: "Penyesuaian Barang", icon: PencilSimpleLine },
+  { link: `${NavigationRoutes.stockAdjustment}`, label: "Penyesuaian Barang", icon: PencilSimpleLine },
   { link: "", label: "Supplier", icon: Storefront },
   { link: "", label: "Pelanggan", icon: UserList },
   { link: `${NavigationRoutes.car}`, label: "Mobil", icon: Car },
