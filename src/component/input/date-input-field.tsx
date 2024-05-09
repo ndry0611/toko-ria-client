@@ -4,6 +4,7 @@ import { useController } from "react-hook-form";
 import { useFormState } from "../form";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
+import { CalendarBlank } from "@phosphor-icons/react";
 dayjs.locale("id");
 dayjs.extend(customParseFormat);
 
@@ -38,6 +39,8 @@ export default function DateInputField(props: DateInputFieldProps) {
       disabled={_disabled}
       error={error}
       valueFormat={valueFormat}
+      clearable
+      leftSection={<CalendarBlank />}
       inputWrapperOrder={["label", "input", "description", "error"]}
       dateParser={dateParser}
       onChange={(val) => {
