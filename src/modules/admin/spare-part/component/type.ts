@@ -58,30 +58,26 @@ export const SparePartFormSchema = () =>
     id_supplier: Yup.number().optional(),
     name: Yup.string().required(),
     part_no: Yup.string().required(),
-    // genuine: Yup.mixed()
-    //   .test("is-boolean-or-string", "Must be boolean or string", (value) => {
-    //     if (typeof value === "boolean") return true;
-    //     if (typeof value === "string") {
-    //       return (
-    //         value.toLowerCase() === "true" || value.toLowerCase() === "false"
-    //       );
-    //     }
-    //     return false;
-    //   })
-    //   .transform((value, originalValue) => {
-    //     if (typeof originalValue === "string") {
-    //       return originalValue.toLowerCase() === "true";
-    //     }
-    //     return value;
-    //   }),
-    genuine: Yup.mixed().default(""),
+    genuine: Yup.mixed().test(
+      "is-boolean-or-string",
+      "Must be boolean or string",
+      (value) => {
+        if (typeof value === "boolean") return true;
+        if (typeof value === "string") {
+          return (
+            value.toLowerCase() === "true" || value.toLowerCase() === "false"
+          );
+        }
+        return false;
+      }
+    ),
     stock: Yup.number().default(0),
     capital_price: Yup.number().required(),
     sell_method: Yup.string().oneOf(["0", "1"]),
     is_available: Yup.boolean(),
     sale_price: Yup.number().required(),
     description: Yup.string().required(),
-    supply_date: Yup.string().required(),
+    supply_date: Yup.date().required(),
   });
 
 export type SparePartFormType = Yup.InferType<

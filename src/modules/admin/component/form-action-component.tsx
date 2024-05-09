@@ -4,7 +4,7 @@ import { Button, Flex } from "@mantine/core";
 import { color } from "../../../common/constants/color";
 
 interface FormActionComponentProps {
-  onClickDelete?: () => {};
+  onClickDelete?: () => void;
 }
 
 export default function FormActionComponent({

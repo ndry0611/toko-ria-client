@@ -44,7 +44,7 @@ export function useUpdateSparePart() {
   return useMutation({
     mutationFn: async (request:  {id: string; body: SparePartFormType }) => {
       return await callApi({
-        url: "/spare-part" + request.id,
+        url: "/spare-part/" + request.id,
         method: "PUT",
         data: request.body,
       });
@@ -52,3 +52,13 @@ export function useUpdateSparePart() {
   });
 }
 
+export function useDeleteSparePart() {
+  return useMutation({
+    mutationFn: async (id: string) => {
+      return await callApi({
+        url: "/spare-part/" + id,
+        method: "DELETE",
+      });
+    },
+  });
+}

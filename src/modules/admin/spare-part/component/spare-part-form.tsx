@@ -3,6 +3,7 @@ import {
   SparePartFormType,
   GetSparePartModel,
   SparePartFormSchema,
+  SparePartModel,
 } from "./type";
 import React from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -10,7 +11,7 @@ import { useForm } from "react-hook-form";
 import { PublicImageRoutes } from "../../../../common/constants/route";
 import Form from "../../../../component/form";
 import TitleText from "../../component/title";
-import { Flex, SimpleGrid, Space } from "@mantine/core";
+import { Text, Center, Flex, SimpleGrid, Space } from "@mantine/core";
 import BackButton from "../../component/back-button";
 import PhotoInput from "../../../../component/photo-input";
 import Input from "../../../../component/input";
@@ -18,10 +19,58 @@ import FormActionComponent from "../../component/form-action-component";
 import CategorySelect from "../../select/category-select";
 import CarSelect from "../../select/car-select";
 import SparePartBrandSelect from "../../select/spare-part-brand-select";
+import { useDeleteSparePart } from "../../../../api-hooks/spare-part-api";
+import { modals } from "@mantine/modals";
+import { queryClient } from "../../../../pages/_app";
+import notification from "../../../../component/notification";
 
 interface SparePartFormProps {
   sparePart?: GetSparePartModel;
   onSubmit: (values: SparePartFormType, files: FileWithPath[]) => Promise<void>;
+}
+
+export function useDeleteSparePartHook() {
+  const { mutateAsync } = useDeleteSparePart();
+  const onDelete = (item: SparePartModel) => {
+    modals.openConfirmModal({
+      title: "Hapus Barang",
+      children: (
+        <Center>
+          <Text>
+            Barang {" "}
+            <Text span fw={600}>
+              {item.name}
+            </Text>{" "}
+            akan dihapus. Yakin ingin menghapus barang ini?
+          </Text>
+        </Center>
+      ),
+      labels: {
+        confirm: "Hapus",
+        cancel: "Tidak",
+      },
+      confirmProps: { color: "red" },
+      onConfirm: async () => {
+        try {
+          await mutateAsync(item.id.toString());
+          queryClient.refetchQueries({
+            queryKey: ["get-spare-parts"],
+            exact: true,
+          });
+          notification.success({
+            title: "Success",
+            message: "Berhasil menghapus barang",
+          });
+        } catch (e: any) {
+          notification.error({
+            title: e?.error,
+            message: e?.message,
+          });
+        }
+      },
+    });
+  };
+  return onDelete;
 }
 
 export default function SparePartForm(props: SparePartFormProps) {
@@ -35,14 +84,16 @@ export default function SparePartForm(props: SparePartFormProps) {
     id_supplier: sparePart?.id_supplier ?? undefined,
     name: sparePart?.name ?? "",
     part_no: sparePart?.part_no ?? "",
-    genuine: sparePart?.genuine ?? "true",
+    genuine: sparePart?.genuine?.toString() ?? "true",
     stock: sparePart?.stock ?? 0,
     capital_price: sparePart?.capital_price ?? 0,
-    sell_method: sparePart?.sell_method ?? "1",
+    sell_method: sparePart?.sell_method?.toString() ?? "1",
     is_available: sparePart?.is_available ?? false,
     sale_price: sparePart?.sale_price ?? 0,
     description: sparePart?.description ?? "",
-    supply_date: sparePart?.supply_date ?? "",
+    supply_date: sparePart?.supply_date
+      ? new Date(sparePart?.supply_date)
+      : new Date(),
     data: sparePart,
   };
 
@@ -61,6 +112,8 @@ export default function SparePartForm(props: SparePartFormProps) {
   const defaultImage = sparePart?.file_name
     ? `${PublicImageRoutes.spareParts}${sparePart.file_name}`
     : undefined;
+
+  const onClickDelete = useDeleteSparePartHook();
 
   return (
     <Form methods={methods} onSubmit={onSubmit} defaultEditable={!sparePart}>
@@ -91,6 +144,7 @@ export default function SparePartForm(props: SparePartFormProps) {
           style={{ margin: "20px 10px 20px 0px" }}
         >
           <Input type="text" label="Nama Barang" name="name" />
+          <Input type="date" label="Tanggal Supply" name="supply_date" />
           <Input type="text-area" label="Deskripsi Barang" name="description" />
           <SparePartBrandSelect
             label="Merk Barang"
@@ -121,7 +175,7 @@ export default function SparePartForm(props: SparePartFormProps) {
           </Flex>
         </Flex>
       </SimpleGrid>
-      <FormActionComponent />
+      <FormActionComponent onClickDelete={sparePart ? () => onClickDelete(sparePart) : undefined} />
     </Form>
   );
 }
