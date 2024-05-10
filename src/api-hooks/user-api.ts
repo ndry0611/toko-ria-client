@@ -1,5 +1,8 @@
-import { useQuery } from "@tanstack/react-query";
-import { GetUserModel, UserFilter } from "../modules/admin/user/component/type";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import {
+  GetUserModel,
+  UserFilter,
+} from "../modules/admin/user/component/user-type";
 import { callApi } from "../utils/api";
 
 export function useGetUsers(params?: UserFilter) {
@@ -10,6 +13,17 @@ export function useGetUsers(params?: UserFilter) {
         url: "/user",
         method: "GET",
         params,
-      })
-  })
+      }),
+  });
+}
+
+export function useDeleteUser() {
+  return useMutation({
+    mutationFn: async (id: string) => {
+      return await callApi({
+        url: "/user/" + id,
+        method: "DELETE",
+      });
+    },
+  });
 }
