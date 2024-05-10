@@ -34,7 +34,7 @@ const data = [
     icon: PencilSimpleLine,
   },
   { link: "", label: "Supplier", icon: Storefront },
-  { link: "", label: "Pelanggan", icon: UserList },
+  { link: `${NavigationRoutes.user}`, label: "Pelanggan", icon: UserList },
   { link: `${NavigationRoutes.car}`, label: "Mobil", icon: Car },
   { link: "", label: "Merk", icon: Garage },
 ];

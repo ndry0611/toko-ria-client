@@ -20,6 +20,7 @@ export enum NavigationRoutes {
   stockAdjustment = "/admin/stock-adjustment",
 
   //User
+  user = "/admin/user",
   login = "/login"
 }
 
