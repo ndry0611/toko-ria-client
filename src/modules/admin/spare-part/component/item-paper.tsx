@@ -41,7 +41,7 @@ export default function ItemPaper(item: GetSparePartModel) {
               <span />
             )}
             <Text fz={12}>
-              Satuan: {item.sell_method === "1" ? "/set" : "/pcs"}
+              Satuan: /{item.sell_method}
             </Text>
           </Grid.Col>
           <Grid.Col span={3}>

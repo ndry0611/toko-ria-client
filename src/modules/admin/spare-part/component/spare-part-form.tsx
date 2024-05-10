@@ -90,10 +90,10 @@ export default function SparePartForm(props: SparePartFormProps) {
     id_supplier: sparePart?.id_supplier?.toString() ?? "",
     name: sparePart?.name ?? "",
     part_no: sparePart?.part_no ?? "",
-    genuine: sparePart?.genuine?.toString() ?? "true",
+    genuine: sparePart?.genuine ?? "asli",
     stock: sparePart?.stock ?? 0,
     capital_price: sparePart?.capital_price ?? 0,
-    sell_method: sparePart?.sell_method?.toString() ?? "0",
+    sell_method: sparePart?.sell_method?? "pcs",
     is_available: sparePart?.is_available ?? false,
     sale_price: sparePart?.sale_price ?? 0,
     description: sparePart?.description ?? "",
@@ -165,8 +165,8 @@ export default function SparePartForm(props: SparePartFormProps) {
               label="Tipe"
               name="genuine"
               data={[
-                { value: "true", label: "Asli" },
-                { value: "false", label: "Replika" },
+                { value: "asli", label: "Asli" },
+                { value: "replika", label: "Replika" },
               ]}
             />
             <Input
@@ -174,8 +174,8 @@ export default function SparePartForm(props: SparePartFormProps) {
               label="Metode Jual"
               name="sell_method"
               data={[
-                { value: "0", label: "/pcs" },
-                { value: "1", label: "/set" },
+                { value: "pcs", label: "/pcs" },
+                { value: "set", label: "/set" },
               ]}
             />
           </Flex>

@@ -58,22 +58,10 @@ export const SparePartFormSchema = () =>
     id_supplier: Yup.string().optional(),
     name: Yup.string().required(),
     part_no: Yup.string().required(),
-    genuine: Yup.mixed().test(
-      "is-boolean-or-string",
-      "Must be boolean or string",
-      (value) => {
-        if (typeof value === "boolean") return true;
-        if (typeof value === "string") {
-          return (
-            value.toLowerCase() === "true" || value.toLowerCase() === "false"
-          );
-        }
-        return false;
-      }
-    ),
+    genuine: Yup.string().oneOf(["asli", "replika"]),
     stock: Yup.number().default(0),
     capital_price: Yup.number().required(),
-    sell_method: Yup.string().oneOf(["0", "1"]),
+    sell_method: Yup.string().oneOf(["pcs", "set"]),
     is_available: Yup.boolean(),
     sale_price: Yup.number().required(),
     description: Yup.string().required(),
