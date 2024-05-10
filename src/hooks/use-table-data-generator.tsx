@@ -1,13 +1,14 @@
 import { Flex, TableData, ActionIcon } from "@mantine/core";
-import { Pen, Trash } from "@phosphor-icons/react";
-import { format, parseISO } from "date-fns";
-import { color } from "../common/constants/color";
+import { Check, Pen, Trash, X } from "@phosphor-icons/react";
+import { parseISO } from "date-fns";
 import { formatDate } from "../utils/string";
 
 interface UseTableDataGeneratorProps<T> {
   data: T[];
   onClickDelete?: (item: T) => void;
   onClickDetail?: (item: T) => void;
+  onClickApprove?: (item: T) => void;
+  onClickDeny?: (item: T) => void;
   onRowCustom?: (item: T) => any[];
   onGenerateFooter?: (item: T[]) => any[];
   onGenerateHead?: (item: keyof T[]) => any[];
@@ -16,11 +17,15 @@ interface UseTableDataGeneratorProps<T> {
 interface ActionIconGroupProps {
   onClickDetail?: () => void;
   onClickDelete?: () => void;
+  onClickApprove?: () => void;
+  onClickDeny?: () => void;
 }
 
 function ActionIconGroup({
   onClickDetail,
   onClickDelete,
+  onClickApprove,
+  onClickDeny,
 }: ActionIconGroupProps) {
   return (
     <Flex direction={"row"} gap={5}>
@@ -38,6 +43,20 @@ function ActionIconGroup({
       ) : (
         <span />
       )}
+      {onClickApprove ? (
+        <ActionIcon onClick={onClickApprove}>
+          <Check size={14} />
+        </ActionIcon>
+      ) : (
+        <span />
+      )}
+      {onClickDeny ? (
+        <ActionIcon variant="outline" onClick={onClickDeny}>
+          <X size={14} />
+        </ActionIcon>
+      ) : (
+        <span />
+      )}
     </Flex>
   );
 }
@@ -49,6 +68,8 @@ export default function useTableDataGenerator<T extends object>(
     data = [],
     onClickDetail,
     onClickDelete,
+    onClickApprove,
+    onClickDeny,
     onRowCustom,
     onGenerateFooter,
     onGenerateHead,
@@ -79,6 +100,12 @@ export default function useTableDataGenerator<T extends object>(
             }
             onClickDelete={
               onClickDelete ? () => onClickDelete(item) : undefined
+            }
+            onClickApprove={
+              onClickApprove ? () => onClickApprove(item) : undefined
+            }
+            onClickDeny={
+              onClickDeny ? () => onClickDeny(item) : undefined
             }
           />
         ) as any
