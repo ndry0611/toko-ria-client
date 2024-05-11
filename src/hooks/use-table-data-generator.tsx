@@ -18,14 +18,12 @@ interface ActionIconGroupProps {
   onClickDetail?: () => void;
   onClickDelete?: () => void;
   onClickApprove?: () => void;
-  onClickDeny?: () => void;
 }
 
 function ActionIconGroup({
   onClickDetail,
   onClickDelete,
   onClickApprove,
-  onClickDeny,
 }: ActionIconGroupProps) {
   return (
     <Flex direction={"row"} gap={5}>
@@ -50,13 +48,6 @@ function ActionIconGroup({
       ) : (
         <span />
       )}
-      {onClickDeny ? (
-        <ActionIcon variant="outline" onClick={onClickDeny}>
-          <X size={14} />
-        </ActionIcon>
-      ) : (
-        <span />
-      )}
     </Flex>
   );
 }
@@ -69,12 +60,11 @@ export default function useTableDataGenerator<T extends object>(
     onClickDetail,
     onClickDelete,
     onClickApprove,
-    onClickDeny,
     onRowCustom,
     onGenerateFooter,
     onGenerateHead,
   } = props;
-  const hasAction = !!props.onClickDelete || !!props.onClickDetail;
+  const hasAction = !!props.onClickDelete || !!props.onClickDetail || !!props.onClickApprove;
   const row = data?.[0] ?? {};
   const head = Object.keys(row).map((key) => key);
   const body = data.map((item: any) => {
@@ -103,9 +93,6 @@ export default function useTableDataGenerator<T extends object>(
             }
             onClickApprove={
               onClickApprove ? () => onClickApprove(item) : undefined
-            }
-            onClickDeny={
-              onClickDeny ? () => onClickDeny(item) : undefined
             }
           />
         ) as any
