@@ -17,7 +17,7 @@ export interface GetUserModel extends Omit<UserModel, "password"> {}
 
 export interface UserFilter {
   name?: string;
-  id_role?: number;
+  id_role?: string;
   status?: boolean;
 }
 
@@ -31,7 +31,7 @@ export const UpdateUserFormSchema = () =>
 
 export const CreateUserFormSchema = () =>
   Yup.object({
-    id_role: Yup.number().optional(),
+    id_role: Yup.string().optional(),
     name: Yup.string().required(),
     username: Yup.string().required(),
     password: Yup.string().required(),

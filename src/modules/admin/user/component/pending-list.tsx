@@ -18,7 +18,7 @@ export default function PendingList(props: PendingListProps) {
   let { filter } = props;
   filter = {
     ...filter,
-    id_role: 2,
+    id_role: "2",
     status: false,
   };
   const query = useGetUsers(filter);

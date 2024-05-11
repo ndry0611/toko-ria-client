@@ -1,0 +1,69 @@
+import { useForm } from "react-hook-form";
+import { CreateUserFormSchema, CreateUserFormType } from "./user-type";
+import { yupResolver } from "@hookform/resolvers/yup";
+import Form from "../../../../component/form";
+import TitleText from "../../component/title";
+import { Flex, SimpleGrid, Space } from "@mantine/core";
+import BackButton from "../../component/back-button";
+import Input from "../../../../component/input";
+import FormActionComponent from "../../component/form-action-component";
+
+interface UserFormProps {
+  onSubmit: (values: CreateUserFormType) => Promise<void>;
+}
+export default function UserForm(props: UserFormProps) {
+  const { onSubmit } = props;
+
+  const defaultValues: CreateUserFormType = {
+    username: "",
+    password: "",
+    name: "",
+    phone: "",
+    address: "",
+    id_role: "1",
+  };
+  const methods = useForm({
+    resolver: yupResolver(CreateUserFormSchema()),
+    defaultValues,
+  });
+  return (
+    <Form methods={methods} onSubmit={onSubmit}>
+      <TitleText>Tambah Pelanggan</TitleText>
+      <Space h={"sm"} />
+      <BackButton />
+      <Space h={"sm"} />
+      <SimpleGrid cols={2}>
+        <Flex
+          direction={"column"}
+          gap={20}
+          style={{ margin: "20px 0px" }}
+          maw={"500px"}
+        >
+          <Input type="text" name="username" label="Username" />
+          <Input type="text" name="name" label="Nama Pelanggan" />
+
+          <Input type="text" name="address" label="Alamat Pelanggan" />
+        </Flex>
+        <Flex
+          direction={"column"}
+          gap={20}
+          style={{ margin: "20px 0px" }}
+          maw={"500px"}
+        >
+          <Input type="password" name="password" label="Password" />
+          <Input type="text" name="phone" label="Nomor Telepon" />
+          <Input
+            type="radio"
+            name="id_role"
+            label="Posisi"
+            data={[
+              { value: "1", label: "Admin" },
+              { value: "2", label: "Customer" },
+            ]}
+          />
+        </Flex>
+      </SimpleGrid>
+      <FormActionComponent />
+    </Form>
+  );
+}

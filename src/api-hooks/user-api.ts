@@ -1,5 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import {
+  CreateUserFormType,
   GetUserModel,
   UpdateUserFormType,
   UserFilter,
@@ -15,6 +16,18 @@ export function useGetUsers(params?: UserFilter) {
         method: "GET",
         params,
       }),
+  });
+}
+
+export function useCreateUser() {
+  return useMutation({
+    mutationFn: async (request: CreateUserFormType) => {
+      return await callApi({
+        url: "/user",
+        method: "POST",
+        data: request,
+      });
+    },
   });
 }
 

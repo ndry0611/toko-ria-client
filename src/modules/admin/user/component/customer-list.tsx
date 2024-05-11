@@ -16,7 +16,7 @@ export default function CustomerList(props: CustomerListProps) {
   let { filter } = props;
   filter = {
     ...filter,
-    id_role: 2,
+    id_role: "2",
     status: true
   }
   const query = useGetUsers(filter);
