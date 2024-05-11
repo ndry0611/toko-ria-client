@@ -1,8 +1,6 @@
 import { useRouter } from "next/router";
 import {
-  useCreateCar,
   useGetCar,
-  useGetCars,
   useUpdateCar,
 } from "../../../api-hooks/car-api";
 import CarForm from "./component/car-form";

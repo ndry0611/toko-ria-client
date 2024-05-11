@@ -34,16 +34,16 @@ function ActionIconGroup({
       ) : (
         <span />
       )}
-      {onClickDelete ? (
-        <ActionIcon color="red" onClick={onClickDelete}>
-          <Trash size={14} />
+      {onClickApprove ? (
+        <ActionIcon onClick={onClickApprove}>
+          <Check size={14} weight="bold"/>
         </ActionIcon>
       ) : (
         <span />
       )}
-      {onClickApprove ? (
-        <ActionIcon onClick={onClickApprove}>
-          <Check size={14} />
+      {onClickDelete ? (
+        <ActionIcon color="red" onClick={onClickDelete}>
+          <Trash size={14} />
         </ActionIcon>
       ) : (
         <span />
@@ -58,13 +58,14 @@ export default function useTableDataGenerator<T extends object>(
   const {
     data = [],
     onClickDetail,
-    onClickDelete,
     onClickApprove,
+    onClickDelete,
     onRowCustom,
     onGenerateFooter,
     onGenerateHead,
   } = props;
-  const hasAction = !!props.onClickDelete || !!props.onClickDetail || !!props.onClickApprove;
+  const hasAction =
+    !!props.onClickDelete || !!props.onClickDetail || !!props.onClickApprove;
   const row = data?.[0] ?? {};
   const head = Object.keys(row).map((key) => key);
   const body = data.map((item: any) => {
@@ -88,11 +89,11 @@ export default function useTableDataGenerator<T extends object>(
             onClickDetail={
               onClickDetail ? () => onClickDetail(item) : undefined
             }
-            onClickDelete={
-              onClickDelete ? () => onClickDelete(item) : undefined
-            }
             onClickApprove={
               onClickApprove ? () => onClickApprove(item) : undefined
+            }
+            onClickDelete={
+              onClickDelete ? () => onClickDelete(item) : undefined
             }
           />
         ) as any

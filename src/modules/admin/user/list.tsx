@@ -10,6 +10,7 @@ import FindButton from "../component/find-button";
 import CreateButton from "../component/create-button";
 import CustomerList from "./component/customer-list";
 import ComplaintList from "./component/complaint-list";
+import PendingList from "./component/pending-list";
 
 export default function UserList() {
   const [userFilter, setUserFilter] = React.useState<UserFilter>({});
@@ -21,7 +22,11 @@ export default function UserList() {
   ];
 
   const methods = useForm({ defaultValues: userFilter });
-
+  const changeTab = (value: string | null) => {
+    setActiveTab(value);
+    methods.reset({ name: "" });
+    setUserFilter({})
+  };
   return (
     <>
       <TitleText>Pelanggan</TitleText>
@@ -40,14 +45,12 @@ export default function UserList() {
           </Flex>
         </SimpleGrid>
         <Space h={"sm"} />
-        <Tabs
-          data={tabList}
-          value={activeTab}
-          onChange={setActiveTab}
-          mb={16}
-        />
-        {activeTab === "terdaftar" && <CustomerList />}
-        {activeTab === "keluhan" && <ComplaintList />}
+        <Tabs data={tabList} value={activeTab} onChange={changeTab} mb={16} />
+        {activeTab === "terdaftar" && <CustomerList filter={userFilter} />}
+        {activeTab === "pending" && <PendingList filter={userFilter} />}
+        {activeTab === "keluhan" && (
+          <ComplaintList filter={{ name: userFilter.name ?? "" }} />
+        )}
       </Form>
     </>
   );

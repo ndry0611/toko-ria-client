@@ -8,8 +8,18 @@ import { queryClient } from "../../../../pages/_app";
 import notification from "../../../../component/notification";
 import TableList from "../../component/table-list";
 
-export default function CustomerList() {
-  const query = useGetUsers();
+interface CustomerListProps {
+  filter?: UserFilter;
+}
+
+export default function CustomerList(props: CustomerListProps) {
+  let { filter } = props;
+  filter = {
+    ...filter,
+    id_role: 2,
+    status: true
+  }
+  const query = useGetUsers(filter);
   const { mutateAsync } = useDeleteUser();
   const { data = [] } = query;
   const table = useTableDataGenerator({
@@ -37,11 +47,11 @@ export default function CustomerList() {
           try {
             await mutateAsync(item.id.toString());
             queryClient.refetchQueries({
-              queryKey: ["get-cars"],
+              queryKey: ["get-users", filter],
             });
             notification.success({
               title: "Success",
-              message: "Berhasil menghapus mobil",
+              message: "Berhasil menghapus User",
             });
           } catch (e: any) {
             notification.error({

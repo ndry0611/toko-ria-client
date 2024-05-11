@@ -3,9 +3,15 @@ import useTableDataGenerator from "../../../../hooks/use-table-data-generator";
 import { formatDate } from "../../../../utils/string";
 import LoaderView from "../../component/loader-view";
 import TableList from "../../component/table-list";
+import { ComplaintFilter } from "./complaint-type";
 
-export default function ComplaintList() {
-  const query = useGetComplaints();
+interface ComplaintListProps {
+  filter?: ComplaintFilter;
+}
+
+export default function ComplaintList(props: ComplaintListProps) {
+  const { filter } = props;
+  const query = useGetComplaints(filter);
   const { data = [] } = query;
   const table = useTableDataGenerator({
     data,
@@ -18,8 +24,8 @@ export default function ComplaintList() {
       ];
     },
     onGenerateHead(item) {
-      return ["Nama Pelanggan", "Nomor Telepon", "Keluhan", "Tanggal"]
-    }
+      return ["Nama Pelanggan", "Nomor Telepon", "Keluhan", "Tanggal"];
+    },
   });
   return (
     <LoaderView query={query}>
