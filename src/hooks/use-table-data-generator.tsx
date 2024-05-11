@@ -1,13 +1,14 @@
 import { Flex, TableData, ActionIcon } from "@mantine/core";
-import { Pen, Trash } from "@phosphor-icons/react";
-import { format, parseISO } from "date-fns";
-import { color } from "../common/constants/color";
+import { Check, Pen, Trash, X } from "@phosphor-icons/react";
+import { parseISO } from "date-fns";
 import { formatDate } from "../utils/string";
 
 interface UseTableDataGeneratorProps<T> {
   data: T[];
   onClickDelete?: (item: T) => void;
   onClickDetail?: (item: T) => void;
+  onClickApprove?: (item: T) => void;
+  onClickDeny?: (item: T) => void;
   onRowCustom?: (item: T) => any[];
   onGenerateFooter?: (item: T[]) => any[];
   onGenerateHead?: (item: keyof T[]) => any[];
@@ -16,17 +17,26 @@ interface UseTableDataGeneratorProps<T> {
 interface ActionIconGroupProps {
   onClickDetail?: () => void;
   onClickDelete?: () => void;
+  onClickApprove?: () => void;
 }
 
 function ActionIconGroup({
   onClickDetail,
   onClickDelete,
+  onClickApprove,
 }: ActionIconGroupProps) {
   return (
     <Flex direction={"row"} gap={5}>
       {onClickDetail ? (
         <ActionIcon variant="outline" onClick={onClickDetail}>
           <Pen size={14} />
+        </ActionIcon>
+      ) : (
+        <span />
+      )}
+      {onClickApprove ? (
+        <ActionIcon onClick={onClickApprove}>
+          <Check size={14} weight="bold"/>
         </ActionIcon>
       ) : (
         <span />
@@ -48,12 +58,14 @@ export default function useTableDataGenerator<T extends object>(
   const {
     data = [],
     onClickDetail,
+    onClickApprove,
     onClickDelete,
     onRowCustom,
     onGenerateFooter,
     onGenerateHead,
   } = props;
-  const hasAction = !!props.onClickDelete || !!props.onClickDetail;
+  const hasAction =
+    !!props.onClickDelete || !!props.onClickDetail || !!props.onClickApprove;
   const row = data?.[0] ?? {};
   const head = Object.keys(row).map((key) => key);
   const body = data.map((item: any) => {
@@ -76,6 +88,9 @@ export default function useTableDataGenerator<T extends object>(
           <ActionIconGroup
             onClickDetail={
               onClickDetail ? () => onClickDetail(item) : undefined
+            }
+            onClickApprove={
+              onClickApprove ? () => onClickApprove(item) : undefined
             }
             onClickDelete={
               onClickDelete ? () => onClickDelete(item) : undefined
