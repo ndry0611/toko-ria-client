@@ -3,9 +3,14 @@ import { Plus } from "@phosphor-icons/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-export default function CreateButton() {
+
+export interface CreateButtonProps {
+  route?:string
+}
+
+export default function CreateButton(props:CreateButtonProps) {
   const { pathname } = useRouter();
-  const route = pathname + "/create";
+  const route = props?.route ?? pathname + "/create";
   return (
     <Link href={route}>
       <Button justify="center" leftSection={<Plus size={16} weight={"bold"} />}>

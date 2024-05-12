@@ -1,10 +1,8 @@
 import { ComboboxItem } from "@mantine/core";
-import {
-  useGetSparePartBrands,
-} from "../../../api-hooks/spare-part-brand-api";
+import { useGetSparePartBrands } from "../../../api-hooks/spare-part-brand-api";
 import Input from "../../../component/input";
 import { SelectInputFieldProps } from "../../../component/input/select-input-field";
-import { SparePartBrandModel } from "../spare-part-brand/component/type";
+import { SparePartBrandModel } from "../brand/component/spare-part-brand/spare-part-brand-type";
 
 type SparePartBrandOption = ComboboxItem & { item: SparePartBrandModel };
 
@@ -13,7 +11,9 @@ interface SparePartBrandSelectProps
   onAfterChange?: (value: SparePartBrandOption) => void;
 }
 
-export function sparePartBrandTransfomer(value: SparePartBrandModel): SparePartBrandOption {
+export function sparePartBrandTransfomer(
+  value: SparePartBrandModel
+): SparePartBrandOption {
   return {
     value: value.id.toString(),
     label: value.name,

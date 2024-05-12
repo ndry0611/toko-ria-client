@@ -36,7 +36,7 @@ const data = [
   { link: "", label: "Supplier", icon: Storefront },
   { link: `${NavigationRoutes.user}`, label: "Pelanggan", icon: UserList },
   { link: `${NavigationRoutes.car}`, label: "Mobil", icon: Car },
-  { link: "", label: "Merk", icon: Garage },
+  { link: `${NavigationRoutes.brand}`, label: "Merk", icon: Garage },
 ];
 
 export default function SideNavigation({

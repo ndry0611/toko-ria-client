@@ -1,10 +1,8 @@
 import { ComboboxItem } from "@mantine/core";
-import {
-  useGetCarBrands,
-} from "../../../api-hooks/car-brand-api";
+import { useGetCarBrands } from "../../../api-hooks/car-brand-api";
 import Input from "../../../component/input";
 import { SelectInputFieldProps } from "../../../component/input/select-input-field";
-import { CarBrandModel } from "../car-brand/component/type";
+import { CarBrandModel } from "../brand/component/car-brand/car-brand-type";
 
 type CarBrandOption = ComboboxItem & { item: CarBrandModel };
 
