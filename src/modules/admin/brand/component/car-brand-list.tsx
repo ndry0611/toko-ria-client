@@ -1,15 +1,21 @@
 import { modals } from "@mantine/modals";
-import { useDeleteCarBrand, useGetCarBrands } from "../../../../api-hooks/car-brand-api";
+import {
+  useDeleteCarBrand,
+  useGetCarBrands,
+} from "../../../../api-hooks/car-brand-api";
 import useTableDataGenerator from "../../../../hooks/use-table-data-generator";
 import LoaderView from "../../component/loader-view";
 import TableList from "../../component/table-list";
-import { Center, Text } from "@mantine/core";
+import { Center, Space, Text } from "@mantine/core";
 import { queryClient } from "../../../../pages/_app";
 import notification from "../../../../component/notification";
+import CreateButton from "../../component/create-button";
+import { useRouter } from "next/router";
 
 export default function CarBrandList() {
+  const { pathname } = useRouter();
   const query = useGetCarBrands();
-  const {mutateAsync: deleteCarBrand} = useDeleteCarBrand();
+  const { mutateAsync: deleteCarBrand } = useDeleteCarBrand();
   const { data = [] } = query;
   const table = useTableDataGenerator({
     data,
@@ -31,14 +37,14 @@ export default function CarBrandList() {
           confirm: "Hapus",
           cancel: "Tidak",
         },
-        confirmProps: {color: "red"},
+        confirmProps: { color: "red" },
         onConfirm: async () => {
           try {
             await deleteCarBrand(item.id.toString());
-            queryClient.refetchQueries({queryKey: ["get-car-brands"]});
+            queryClient.refetchQueries({ queryKey: ["get-car-brands"] });
             notification.success({
               title: "Success",
-              message: "Berhasil menghapus Merk Mobil"
+              message: "Berhasil menghapus Merk Mobil",
             });
           } catch (e: any) {
             notification.error({
@@ -46,8 +52,8 @@ export default function CarBrandList() {
               message: e?.message,
             });
           }
-        }
-      })
+        },
+      });
     },
     onRowCustom(item) {
       return [item.name, item.manufacture];
@@ -57,8 +63,12 @@ export default function CarBrandList() {
     },
   });
   return (
-    <LoaderView query={query}>
-      {(data) => <TableList data={table} />}
-    </LoaderView>
+    <>
+      <CreateButton route={`${pathname}/car/create`} />
+      <Space h={"sm"} />
+      <LoaderView query={query}>
+        {(data) => <TableList data={table} />}
+      </LoaderView>
+    </>
   );
 }
