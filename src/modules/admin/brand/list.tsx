@@ -3,7 +3,7 @@ import React from "react";
 import TitleText from "../component/title";
 import Form from "../../../component/form";
 import Tabs from "../../../component/tabs";
-import CarBrandList from "./component/car-brand-list";
+import CarBrandList from "./component/car-brand/car-brand-list";
 
 export default function BrandList() {
   const [activeTab, setActiveTab] = React.useState<string | null>("mobil");
