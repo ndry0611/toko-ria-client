@@ -15,6 +15,9 @@ export enum NavigationRoutes {
 
   //Cars
   car = "/admin/car",
+
+  //Brand
+  brand = "/admin/brand",
   
   //Stock Adjustment
   stockAdjustment = "/admin/stock-adjustment",
@@ -22,6 +25,7 @@ export enum NavigationRoutes {
   //User
   user = "/admin/user",
   login = "/login"
+
 }
 
 export enum PublicImageRoutes {

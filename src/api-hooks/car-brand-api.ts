@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { callApi } from "../utils/api";
-import { CarBrandModel } from "../modules/admin/car-brand/component/type";
+import { CarBrandModel } from "../modules/admin/brand/component/car-brand-type";
 
 export function useGetCarBrands() {
   return useQuery({

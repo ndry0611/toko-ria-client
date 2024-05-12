@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { callApi } from "../utils/api";
-import { SparePartBrandModel } from "../modules/admin/spare-part-brand/component/type";
+import { SparePartBrandModel } from "../modules/admin/brand/component/spare-part-brand-type";
 
 export function useGetSparePartBrands() {
   return useQuery({
