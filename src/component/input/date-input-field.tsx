@@ -38,7 +38,7 @@ export default function DateInputField(props: DateInputFieldProps) {
       {...field}
       error={error}
       valueFormat={valueFormat}
-      clearable
+      clearable={!_disabled ? true : false}
       disabled={_disabled}
       leftSection={<CalendarBlank />}
       inputWrapperOrder={["label", "input", "description", "error"]}
