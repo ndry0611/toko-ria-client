@@ -31,7 +31,7 @@ export default function SparePartDetail() {
         }
         notification.success({
           title: "Simpan Berhasil",
-          message: "Berhasil mengupdate spare part",
+          message: "Berhasil mengupdate barang",
         });
         queryClient.refetchQueries();
         push(`${NavigationRoutes.sparePart}`);

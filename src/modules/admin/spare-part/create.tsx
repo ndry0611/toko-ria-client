@@ -15,8 +15,7 @@ export default function SparePartCreate() {
   const onSubmit = React.useCallback(
     async (values: SparePartFormType, files: FileWithPath[]) => {
       try {
-        const genuine = values.genuine === 'true'
-        const sparePart = await mutateAsync({...values, genuine});
+        const sparePart = await mutateAsync(values);
         if (files.length) {
           await uploadFile({ id: sparePart.id, model: "spare_parts", files });
         }

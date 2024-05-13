@@ -93,7 +93,7 @@ export default function SparePartForm(props: SparePartFormProps) {
     genuine: sparePart?.genuine ?? "asli",
     stock: sparePart?.stock ?? 0,
     capital_price: sparePart?.capital_price ?? 0,
-    sell_method: sparePart?.sell_method?? "pcs",
+    sell_method: sparePart?.sell_method ?? "pcs",
     is_available: sparePart?.is_available ?? false,
     sale_price: sparePart?.sale_price ?? 0,
     description: sparePart?.description ?? "",
@@ -123,7 +123,7 @@ export default function SparePartForm(props: SparePartFormProps) {
 
   return (
     <Form methods={methods} onSubmit={onSubmit} defaultEditable={!sparePart}>
-      <TitleText>{sparePart ? "Edit" : "Tambah"} Spare Part</TitleText>
+      <TitleText>{sparePart ? "Edit" : "Tambah"} Barang</TitleText>
       <Space h={"sm"} />
       <BackButton />
       <Space h={"sm"} />
