@@ -18,6 +18,16 @@ export function useGetSuppliers(params?: SupplierFilter) {
   });
 }
 
+export function useGetSupplier(id: string) {
+  return useQuery({
+    queryKey: ["get-suppliers", id],
+    queryFn: async() => await callApi<SupplierModel>({
+      url: "/supplier/" + id,
+      method: "GET"
+    }),
+  })
+}
+
 export function useCreateSupplier() {
   return useMutation({
     mutationFn: async (request: SupplierFormType) => {
