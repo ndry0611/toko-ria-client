@@ -33,7 +33,7 @@ const data = [
     label: "Penyesuaian Barang",
     icon: PencilSimpleLine,
   },
-  { link: "", label: "Supplier", icon: Storefront },
+  { link: `${NavigationRoutes.supplier}`, label: "Supplier", icon: Storefront },
   { link: `${NavigationRoutes.user}`, label: "Pelanggan", icon: UserList },
   { link: `${NavigationRoutes.car}`, label: "Mobil", icon: Car },
   { link: `${NavigationRoutes.brand}`, label: "Merk", icon: Garage },
