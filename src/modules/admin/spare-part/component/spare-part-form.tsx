@@ -27,6 +27,7 @@ import { modals } from "@mantine/modals";
 import { queryClient } from "../../../../pages/_app";
 import notification from "../../../../component/notification";
 import { useRouter } from "next/router";
+import SupplierSelect from "../../select/supplier-select";
 
 interface SparePartFormProps {
   sparePart?: GetSparePartModel;
@@ -86,8 +87,8 @@ export default function SparePartForm(props: SparePartFormProps) {
   const defaultValues: SparePartFormType = {
     id_category: sparePart?.id_category?.toString() ?? "",
     id_spare_part_brand: sparePart?.id_spare_part_brand?.toString() ?? "",
-    id_car: sparePart?.id_car?.toString() ?? "",
-    id_supplier: sparePart?.id_supplier?.toString() ?? "",
+    id_car: sparePart?.id_car?.toString(),
+    id_supplier: sparePart?.id_supplier?.toString(),
     name: sparePart?.name ?? "",
     part_no: sparePart?.part_no ?? "",
     genuine: sparePart?.genuine ?? "asli",
@@ -143,6 +144,17 @@ export default function SparePartForm(props: SparePartFormProps) {
           <Input type="text" label="Part Number" name="part_no" />
           <Input type="number" label="Harga Modal" name="capital_price" />
           <Input type="check-box" label="Barang Dijual?" name="is_available" />
+          <SupplierSelect
+            name="id_supplier"
+            label="Supplier"
+            disabled={!!sparePart ? true : false}
+          />
+          <Input
+            type="date"
+            label="Tanggal Supply"
+            name="supply_date"
+            disabled={!!sparePart ? true : false}
+          />
         </Flex>
         <Flex
           direction={"column"}
@@ -150,7 +162,6 @@ export default function SparePartForm(props: SparePartFormProps) {
           style={{ margin: "20px 10px 20px 0px" }}
         >
           <Input type="text" label="Nama Barang" name="name" />
-          <Input type="date" label="Tanggal Supply" name="supply_date" />
           <Input type="text-area" label="Deskripsi Barang" name="description" />
           <SparePartBrandSelect
             label="Merk Barang"
