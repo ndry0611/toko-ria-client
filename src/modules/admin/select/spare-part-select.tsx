@@ -9,7 +9,7 @@ type SparePartOption = ComboboxItem & { item: SparePartModel };
 interface SparePartSelectProps
   extends Omit<SelectInputFieldProps, "data" | "type" | "onAfterChange"> {
   filtering?: SparePartsFilter;
-  onAfterChange?: (value: SparePartOption) => void;
+  onAfterChange?: (value: SparePartOption | null) => void;
 }
 
 export function sparePartTransfomer(value: SparePartModel): SparePartOption {

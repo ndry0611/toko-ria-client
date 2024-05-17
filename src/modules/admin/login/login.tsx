@@ -18,6 +18,7 @@ import { NavigationRoutes } from "../../../common/constants/route";
 import notification from "../../../component/notification";
 
 function LoginForm() {
+  const [isLoading, setLoading] = React.useState(false)
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const { handleToken } = useToken();
@@ -25,6 +26,7 @@ function LoginForm() {
 
   const loginHandler = async () => {
     try {
+      setLoading(true)
       const result = await callApi({
         url: "/user/login",
         method: "POST",
@@ -38,6 +40,8 @@ function LoginForm() {
         title: e.error,
         message: e.message,
       });
+    }finally{ 
+      setLoading(false)
     }
   };
 
@@ -72,7 +76,7 @@ function LoginForm() {
                 onChange={(e) => setPassword(e.target.value)}
               />
               <Center>
-                <Button size="md" w={120} bg={"#FB7800"} onClick={loginHandler}>
+                <Button size="md" loading={isLoading} w={120} bg={"#FB7800"} onClick={loginHandler}>
                   Login
                 </Button>
               </Center>

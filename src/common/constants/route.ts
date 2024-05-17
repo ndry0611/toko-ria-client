@@ -11,6 +11,8 @@ export enum NavigationRoutes {
   category = "/admin/category",
   sparePart = "/admin/spare-part",
   stockAdjustment = "/admin/stock-adjustment",
+  sales = '/admin/sales',
+  purchase = '/admin/purchase',
 
   login = "/login"
 }

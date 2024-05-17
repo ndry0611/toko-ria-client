@@ -37,6 +37,7 @@ export default function NumberInputField(props: NumberInputFieldProps) {
       inputWrapperOrder={["label", "input", "description", "error"]}
       onChange={(val) => {
         field.onChange(val);
+        onAfterChange?.(val);
       }}
     />
   );

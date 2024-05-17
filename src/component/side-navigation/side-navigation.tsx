@@ -26,8 +26,8 @@ const data = [
     label: "Barang",
     icon: BookOpenText,
   },
-  { link: "", label: "Pembelian", icon: Handshake },
-  { link: "", label: "Penjualan", icon: HandCoins },
+  { link: `${NavigationRoutes.purchase}`, label: "Pembelian", icon: Handshake },
+  { link: `${NavigationRoutes.sales}`, label: "Penjualan", icon: HandCoins },
   {
     link: `${NavigationRoutes.stockAdjustment}`,
     label: "Penyesuaian Barang",
