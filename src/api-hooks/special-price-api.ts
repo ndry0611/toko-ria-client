@@ -2,10 +2,23 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { callApi } from "../utils/api";
 import {
   GetSpecialPriceModel,
+  SpecialPriceFilter,
   SpecialPriceFormType,
 } from "../modules/admin/special-price/component/type";
 
-export function useGetSpecialPrices(id: string) {
+export function useGetSpecialPrices(params?: SpecialPriceFilter) {
+  return useQuery({
+    queryKey: ["get-special-price", params],
+    queryFn: async () =>
+      await callApi<GetSpecialPriceModel[]>({
+        url: "/special-price/",
+        method: "GET",
+        params,
+      }),
+  });
+}
+
+export function useGetSpecialPricesByIdSparePart(id: string) {
   return useQuery({
     queryKey: ["get-special-price", id],
     queryFn: async () =>

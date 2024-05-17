@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import {
   useCreateSpecialPrice,
   useDeleteSpecialPrice,
-  useGetSpecialPrices,
+  useGetSpecialPricesByIdSparePart,
 } from "../../../api-hooks/special-price-api";
 import LoaderView from "../component/loader-view";
 import TableList from "../component/table-list";
@@ -27,7 +27,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { SpecialPriceFormSchema, SpecialPriceFormType } from "./component/type";
 import UserSelect from "../select/user-select";
 import React from "react";
-import { GetUserModel } from "../user/component/user-type";
 import Input from "../../../component/input";
 import FormActionComponent from "../component/form-action-component";
 
@@ -38,7 +37,7 @@ export default function SpecialPricePage() {
   const querySparePart = useGetSparePart(idSparePart);
   const { data: sparePart } = querySparePart;
 
-  const querySpecialPrice = useGetSpecialPrices(idSparePart);
+  const querySpecialPrice = useGetSpecialPricesByIdSparePart(idSparePart);
   const { data: specialPriceData = [] } = querySpecialPrice;
   const { mutateAsync: deleteSpecialPrice } = useDeleteSpecialPrice();
   const { mutateAsync: createSpecialPrice } = useCreateSpecialPrice();

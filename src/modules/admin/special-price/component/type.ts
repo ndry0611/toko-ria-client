@@ -14,6 +14,11 @@ export interface GetSpecialPriceModel extends SpecialPriceModel {
   User: U;
 }
 
+export interface SpecialPriceFilter {
+  id_spare_part?: string;
+  id_user?: string;
+}
+
 interface SP {
   name: string;
   capital_price: number;
