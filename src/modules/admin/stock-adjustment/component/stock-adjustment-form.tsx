@@ -49,7 +49,7 @@ export default function StockAdjustmentForm(props: StockAdjustmentProps) {
           name="id_spare_part"
           label="Barang"
           onAfterChange={(value) => {
-            methods.setValue("old_quantity", value.item.stock);
+            methods.setValue("old_quantity", value?.item.stock ?? 0);
           }}
         />
         <Input type="text" name="code" label="Kode Faktur" />
