@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import Form from "../../../../component/form";
 import { GetSaleModel, SaleFormSchema, SaleFormType } from "./type";
 import React from "react";
-import SalesDetailField from "./sales-detail-field";
+import SalesDetailFields from "./sales-detail-fields";
 import { yupResolver } from "@hookform/resolvers/yup";
 import TitleText from "../../component/title";
 import { SimpleGrid, Space, Text } from "@mantine/core";
@@ -112,7 +112,7 @@ export default function SalesForm(props: SalesFormProps) {
           ]}
         />
       </SimpleGrid>
-      <SalesDetailField />
+      <SalesDetailFields />
       <Space h={16} />
       <FormActionComponent />
     </Form>
