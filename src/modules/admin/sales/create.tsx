@@ -11,7 +11,7 @@ export default function CreateSale() {
   const { mutateAsync } = useCreateSale();
   const { push } = useRouter();
   const onSubmit = React.useCallback(
-    async (values: SaleFormType) => {
+    async (values: SaleFormType) => { 
       try {
         const sale = await mutateAsync(values);
         notification.success({

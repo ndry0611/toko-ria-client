@@ -15,12 +15,18 @@ function SaleDetailImage({ name }: { name: string }) {
     name,
   });
 
-  return <PhotoPreview size={64} imageUrl={field.value || ""} />;
+  return (
+    <PhotoPreview
+      size={64}
+      imageUrl={
+        field.value ? `${PublicImageRoutes.spareParts}${field.value}` : ""
+      }
+    />
+  );
 }
 
 export default function SalesDetailField() {
-  const { control, setValue, getValues } =
-    useFormContext<SaleFormType>();
+  const { control, setValue, getValues } = useFormContext<SaleFormType>();
 
   const defaultSaleDetailItem: SaleDetailFormType = {
     id_spare_part: "",

@@ -22,13 +22,17 @@ export default function SalesForm(props: SalesFormProps) {
   const { sales, onSubmit } = props;
   const defaultValues: SaleFormType = {
     code: sales?.code ?? "",
-    expired_date: sales?.expired_date
-      ? new Date(sales?.expired_date)
-      : new Date(),
+    expired_date: sales
+      ? sales.expired_date
+        ? new Date(sales.expired_date)
+        : undefined
+      : undefined,
     grand_total: sales?.grand_total ?? 0,
     id_user: sales?.id_user.toString() ?? "",
-    payment_date: sales?.payment_date
-      ? new Date(sales?.payment_date)
+    payment_date: sales
+      ? sales.payment_date
+        ? new Date(sales.payment_date)
+        : undefined
       : new Date(),
     payment_method: sales?.payment_method.toString() ?? "1",
     status: sales?.status.toString() ?? "4",
@@ -60,6 +64,7 @@ export default function SalesForm(props: SalesFormProps) {
         <SpecialPriceHandler />
         <GrandTotalHandler />
         <UserSelect
+          filtering={{ id_role: "2", status: true }}
           name="id_user"
           label="Customer"
           disabled={sales ? true : false}
@@ -86,7 +91,7 @@ export default function SalesForm(props: SalesFormProps) {
           label="Status"
           type="radio"
           name="status"
-          readOnly
+          readOnly={sales ? false : true}
           data={[
             {
               value: "1",

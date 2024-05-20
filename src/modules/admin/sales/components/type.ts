@@ -74,9 +74,22 @@ export const SaleFormSchema = () =>
     sale_detail: Yup.array(SaleDetailFormSchema()).default([]),
   });
 
+export const UpdateSaleFormSchema = () =>
+  Yup.object({
+    payment_date: Yup.date().optional(),
+    expired_date: Yup.date().optional(),
+    status: Yup.string().optional(),
+  });
+
 export type SaleFormType = Yup.InferType<ReturnType<typeof SaleFormSchema>> & {
   data?: GetSaleModel;
   specialPrices: GetSpecialPriceModel[];
+};
+
+export type UpdateSaleFormType = Yup.InferType<
+  ReturnType<typeof UpdateSaleFormSchema>
+> & {
+  data?: GetSaleModel;
 };
 
 export type SaleDetailFormType = Yup.InferType<

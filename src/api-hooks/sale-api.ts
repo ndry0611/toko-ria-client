@@ -5,6 +5,7 @@ import {
   GetSalesModel,
   SaleFormType,
   SalesFilter,
+  UpdateSaleFormType,
 } from "../modules/admin/sales/components/type";
 
 export function useGetSales(params?: SalesFilter) {
@@ -38,6 +39,18 @@ export function useCreateSale() {
         url: "/sale/create",
         method: "POST",
         data: request,
+      });
+    },
+  });
+}
+
+export function useUpdateSale() {
+  return useMutation({
+    mutationFn: async (request: { id: string; body: UpdateSaleFormType }) => {
+      return await callApi({
+        url: "/sale/" + request.id,
+        method: "PUT",
+        data: request.body,
       });
     },
   });
