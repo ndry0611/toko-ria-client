@@ -12,10 +12,11 @@ import Input from "../../../../component/input";
 import SpecialPriceHandler from "./special-price-handler";
 import FormActionComponent from "../../component/form-action-component";
 import GrandTotalHandler from "./grand-total-handler";
+import { color } from "../../../../common/constants/color";
 
 interface SalesFormProps {
   sales?: GetSaleModel;
-  onSubmit: (values: any) => Promise<void>;
+  onSubmit: (values: SaleFormType) => Promise<void>;
 }
 
 export default function SalesForm(props: SalesFormProps) {
@@ -60,7 +61,10 @@ export default function SalesForm(props: SalesFormProps) {
       <Space h={"sm"} />
       <BackButton />
       <Space h={"sm"} />
-      <SimpleGrid cols={3} mb={16}>
+      <SimpleGrid cols={3} mb={16} style={{
+        paddingBottom:16,
+        borderBottom:`1px solid ${color.mainTheme}`
+      }}>
         <SpecialPriceHandler />
         <GrandTotalHandler />
         <UserSelect
@@ -88,7 +92,7 @@ export default function SalesForm(props: SalesFormProps) {
           disabled
         />
         <Input
-          label="Status"
+          label="Status Penjualan"
           type="radio"
           name="status"
           readOnly={sales ? false : true}
