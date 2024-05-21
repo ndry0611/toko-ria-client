@@ -1,8 +1,4 @@
-import {
-  useFieldArray,
-  useFormContext,
-  useWatch,
-} from "react-hook-form";
+import { useFieldArray, useFormContext, useWatch } from "react-hook-form";
 import { PurchaseDetailFormType, PurchaseFormType } from "./type";
 import { useFormState } from "../../../../component/form";
 import { ActionIcon, Button, Flex, Text } from "@mantine/core";
@@ -32,7 +28,6 @@ export function PurchasesDetailField({
     name: parentName,
   });
   const isEdit = !!getValues("data");
-  console.log(detail)
 
   const sparepartSelect = React.useMemo(() => {
     const isFirst = index === 0;
@@ -45,9 +40,7 @@ export function PurchasesDetailField({
           setValue(`${parentName}.part_no`, value?.item.part_no || "");
           setValue(
             `${parentName}.file_name`,
-            value?.item.file_name
-              ? `${PublicImageRoutes.spareParts}${value.item.file_name}`
-              : ""
+            value?.item.file_name || undefined
           );
           setValue(`${parentName}.sell_method`, value?.item.sell_method || "");
           const price = getValues(`${parentName}.price`);
@@ -64,7 +57,16 @@ export function PurchasesDetailField({
   }, [getValues, index, isEdit, parentName, setValue]);
 
   const imageComponent = React.useMemo(() => {
-    return <PhotoPreview size={64} imageUrl={detail.file_name || ""} />;
+    return (
+      <PhotoPreview
+        size={64}
+        imageUrl={
+          detail.file_name
+            ? `${PublicImageRoutes.spareParts}${detail.file_name}`
+            : ""
+        }
+      />
+    );
   }, [detail.file_name]);
 
   const partNumberInput = React.useMemo(() => {
@@ -85,7 +87,7 @@ export function PurchasesDetailField({
     return (
       <Input
         type="number"
-        miw={miw}
+        miw={95}
         label={isFirst ? "Quantity" : " "}
         name={`${parentName}.quantity`}
         rightSection={
@@ -136,7 +138,7 @@ export function PurchasesDetailField({
     return (
       <Input
         type="number"
-        miw={miw}
+        miw={95}
         label={isFirst ? "Discount" : " "}
         name={`${parentName}.discount`}
         disabled={isEdit}
@@ -175,7 +177,7 @@ export function PurchasesDetailField({
 
     return (
       <ActionIcon
-        variant="subtle"
+        variant="outline"
         onClick={remove}
         style={{
           alignSelf: "center",

@@ -44,10 +44,27 @@ export default function PurchaseList() {
         item.Supplier.company_name,
         item.purchase_date ? formatDate(item.purchase_date) : "-",
         item.grand_total ? stringToMoney(item.grand_total) : 0,
+        item.credit_duration + " Hari",
+        item.status == 1
+          ? "Aktif"
+          : item.status == 2
+          ? "Lunas"
+          : item.status == 3
+          ? "Batal"
+          : "",
+        item.payment_date ? formatDate(item.payment_date) : "-"
       ];
     },
     onGenerateHead(item) {
-      return ["Kode Bon", "Supplier", "Tanggal Bon", "Total Harga"];
+      return [
+        "Kode Bon",
+        "Supplier",
+        "Tanggal Bon",
+        "Total Harga",
+        "Lama Kredit",
+        "Status",
+        "Tanggal Pembayaran"
+      ];
     },
   });
   return (
@@ -57,11 +74,11 @@ export default function PurchaseList() {
       <Form
         methods={methods}
         onSubmit={(values) => {
-          setPurchaseFilter((prev)=>{
+          setPurchaseFilter((prev) => {
             return {
               ...prev,
               ...values,
-            }
+            };
           });
         }}
       >

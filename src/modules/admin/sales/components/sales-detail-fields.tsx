@@ -27,13 +27,13 @@ export function SalesDetailField({
   const miw = 180;
   const { disabled } = useFormState();
   const { getValues, setValue, control } = useFormContext<SaleFormType>();
-  const parentName = `${name}.${index}` as const
+  const parentName = `${name}.${index}` as const;
   const detail = useWatch({
     control,
     name: parentName,
   });
   const isEdit = !!getValues("data");
-  
+
   const sparepartSelect = React.useMemo(() => {
     const isFirst = index === 0;
     return (
@@ -45,14 +45,9 @@ export function SalesDetailField({
           setValue(`${parentName}.part_no`, value?.item.part_no || "");
           setValue(
             `${parentName}.file_name`,
-            value?.item.file_name
-              ? `${PublicImageRoutes.spareParts}${value.item.file_name}`
-              : ""
+            value?.item.file_name || undefined
           );
-          setValue(
-            `${parentName}.sell_method`,
-            value?.item.sell_method || ""
-          );
+          setValue(`${parentName}.sell_method`, value?.item.sell_method || "");
           const specialPrices = getValues("specialPrices");
           const specialPrice = specialPrices.find((sPrice) => {
             return sPrice.id_spare_part === value?.item.id;
@@ -71,7 +66,11 @@ export function SalesDetailField({
     return (
       <PhotoPreview
         size={64}
-        imageUrl={detail.file_name|| ""}
+        imageUrl={
+          detail.file_name
+            ? `${PublicImageRoutes.spareParts}${detail.file_name}`
+            : ""
+        }
       />
     );
   }, [detail.file_name]);
@@ -94,12 +93,14 @@ export function SalesDetailField({
     return (
       <Input
         type="number"
-        miw={miw}
+        miw={95}
         label={isFirst ? "Quantity" : " "}
         name={`${parentName}.quantity`}
-        rightSection={<Text c='gray' fz={12} mr={16}>
-          {detail.sell_method}
-        </Text>}
+        rightSection={
+          <Text c="gray" fz={12} mr={16}>
+            {detail.sell_method}
+          </Text>
+        }
         disabled={isEdit}
         onAfterChange={(value) => {
           if (typeof value === "number") {
@@ -152,7 +153,7 @@ export function SalesDetailField({
 
     return (
       <ActionIcon
-        variant="subtle"
+        variant="outline"
         onClick={remove}
         style={{
           alignSelf: "center",

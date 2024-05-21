@@ -52,12 +52,12 @@ export interface SalesFilter {
 export const SaleDetailFormSchema = () =>
   Yup.object({
     id_spare_part: Yup.string().default(""),
-    quantity: Yup.number().default(0),
-    price: Yup.number().default(0),
+    quantity: Yup.number().default(0).min(1, "Kuantitas tidak boleh 0!"),
+    price: Yup.number().default(0).min(1, "Harga tidak boleh 0!"),
     total_price: Yup.number().default(0),
 
     //additional information
-    file_name: Yup.string().default(""),
+    file_name: Yup.string().optional(),
     part_no: Yup.string().default(""),
     sell_method: Yup.string().default(""),
   });
