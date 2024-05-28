@@ -41,6 +41,7 @@ export function SalesDetailField({
         miw={miw}
         label={isFirst ? "Barang" : " "}
         name={`${parentName}.id_spare_part`}
+        placeholder="Pilih Barang"
         onAfterChange={(value) => {
           setValue(`${parentName}.part_no`, value?.item.part_no || "");
           setValue(

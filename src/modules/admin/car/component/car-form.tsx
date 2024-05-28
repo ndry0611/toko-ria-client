@@ -44,7 +44,7 @@ export default function CarForm(props: CarFormProps) {
         maw={"500px"}
       >
         <Input type="text" name="name" label="Nama Mobil" />
-        <CarBrandSelect name="id_car_brand" label="Merk Mobil" />
+        <CarBrandSelect name="id_car_brand" label="Merk Mobil" placeholder="Pilih Merk Mobil"/>
         <Input type="text" name="type" label="Tipe Mobil" />
         <Input type="text" name="production_year" label="Tahun Produksi" />
       </Flex>

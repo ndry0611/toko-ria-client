@@ -71,6 +71,7 @@ export default function PurchaseForm(props: PurchaseFormProps) {
           name="id_supplier"
           label="Supplier"
           disabled={purchase ? true : false}
+          placeholder="Pilih Supplier"
         />
         <Input type="text" name="code" label="Kode Bon" />
         <Input type="date" name="purchase_date" label="Tanggal Bon" />

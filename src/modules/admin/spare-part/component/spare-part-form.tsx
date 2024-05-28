@@ -140,7 +140,7 @@ export default function SparePartForm(props: SparePartFormProps) {
             files={files}
             defaultImage={defaultImage}
           />
-          <CategorySelect label="Kategori" name="id_category" />
+          <CategorySelect label="Kategori" name="id_category" placeholder="Pilih Kategori" />
           <Input type="text" label="Part Number" name="part_no" />
           <Input type="number" label="Harga Modal" name="capital_price" />
           <Input type="check-box" label="Barang Dijual?" name="is_available" />
@@ -148,6 +148,7 @@ export default function SparePartForm(props: SparePartFormProps) {
             name="id_supplier"
             label="Supplier"
             disabled={!!sparePart ? true : false}
+            placeholder="Pilih Supplier"
           />
           <Input
             type="date"
@@ -166,8 +167,9 @@ export default function SparePartForm(props: SparePartFormProps) {
           <SparePartBrandSelect
             label="Merk Barang"
             name="id_spare_part_brand"
+            placeholder="Pilih Merk Barang"
           />
-          <CarSelect label="Mobil" name="id_car" />
+          <CarSelect label="Mobil" name="id_car" placeholder="Umum" />
           <Input type="number" label="Stok" name="stock" />
           <Input type="number" label="Harga Jual" name="sale_price" />
           <Flex direction={"row"} gap={48}>
