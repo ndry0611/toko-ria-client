@@ -70,8 +70,9 @@ export default function SalesForm(props: SalesFormProps) {
         <UserSelect
           filtering={{ id_role: "2", status: true }}
           name="id_user"
-          label="Customer"
+          label="Pelanggan"
           disabled={sales ? true : false}
+          placeholder="Pilih Pelanggan"
         />
         <Input type="text" name="code" label="Kode Bon" />
         <Input

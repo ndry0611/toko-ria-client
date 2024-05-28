@@ -28,6 +28,7 @@ export default function SelectInputField(props: SelectInputFieldProps) {
 
   return (
     <Select
+    placeholder="Semua"
     {...rest}
     {...field}
     disabled={_disabled}

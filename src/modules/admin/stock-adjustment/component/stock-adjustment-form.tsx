@@ -47,6 +47,7 @@ export default function StockAdjustmentForm(props: StockAdjustmentProps) {
       <Flex direction={"column"} maw={"500px"} gap={15}>
         <SparePartSelect
           name="id_spare_part"
+          placeholder="Pilih Barang"
           label="Barang"
           onAfterChange={(value) => {
             methods.setValue("old_quantity", value?.item.stock ?? 0);
