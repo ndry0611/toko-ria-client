@@ -8,7 +8,7 @@ import { ModalsProvider } from "@mantine/modals";
 import React from "react";
 import Head from "next/head";
 import { TokenProvider } from "../hooks/use-token";
-import Layout from "../modules/admin/component/layout";
+import Layout from "../component/layout";
 import { theme } from "../../theme";
 
 import "@mantine/core/styles.css";
