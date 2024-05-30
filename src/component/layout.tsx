@@ -1,4 +1,4 @@
-import NavbarSimple from "../../../component/side-navigation/side-navigation";
+import SideNavigation from "./side-navigation/side-navigation";
 import { useRouter } from "next/router";
 
 export default function Layout({
@@ -15,7 +15,7 @@ export default function Layout({
   }
 
   if (isAdmin) {
-    return <NavbarSimple>{children}</NavbarSimple>;
+    return <SideNavigation>{children}</SideNavigation>;
   }
 
   return children;
