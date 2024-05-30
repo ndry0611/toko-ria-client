@@ -15,6 +15,10 @@ export interface UserModel {
 
 export interface GetUserModel extends Omit<UserModel, "password"> {}
 
+export interface GetMe extends Omit<UserModel, "password"> {
+  file_name?: string | null;
+}
+
 export interface UserFilter {
   name?: string;
   id_role?: string;

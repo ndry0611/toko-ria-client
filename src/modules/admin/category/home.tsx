@@ -1,6 +1,6 @@
 import React from "react";
 import { Flex, SimpleGrid } from "@mantine/core";
-import CategoryCard from "./component/card-view";
+import CategoryCard from "../../../component/category-card";
 import { useGetCategories } from "../../../api-hooks/category-api";
 import LoaderView from "../component/loader-view";
 
@@ -16,10 +16,9 @@ export default function HomePageAdmin() {
               return (
                 <CategoryCard
                   key={item.id}
-                  id={item.id}
-                  name={item.name}
-                  description={item.description}
-                  file_name={item.file_name || null}
+                  item={item}
+                  type="admin"
+                  
                 />
               );
             })}

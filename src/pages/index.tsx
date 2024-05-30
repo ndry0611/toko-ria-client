@@ -1,3 +1,3 @@
-export default function Page() {
-  return <>Test</>;
-}
+import PurchasesRecap from "../component/purchases-recap";
+
+export default PurchasesRecap;

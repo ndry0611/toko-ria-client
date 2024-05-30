@@ -1,3 +1,5 @@
+import NavigationBar from "./navigation-bar/navigation-bar";
+import PhoneLayout from "./phone-layout/phone-layout";
 import SideNavigation from "./side-navigation/side-navigation";
 import { useRouter } from "next/router";
 
@@ -8,11 +10,6 @@ export default function Layout({
 }): any {
   const { pathname } = useRouter();
   const isAdmin = pathname.includes("admin");
-  const isLogin = pathname === "/admin/login";
-
-  if (isLogin) {
-    return children;
-  }
 
   if (isAdmin) {
     return <SideNavigation>{children}</SideNavigation>;

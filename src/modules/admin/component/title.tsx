@@ -1,10 +1,8 @@
-import { Text, TextProps } from "@mantine/core";
+import { Text } from "@mantine/core";
 import React from "react";
 
-export default function TitleText({ children }: { children: React.ReactNode }) {
-  return (
-    <Text fz={26} fw={700}>
-      {children}
-    </Text>
-  );
+interface TitleTextProps extends React.ComponentProps<typeof Text<'p'>> {}
+
+export default function TitleText(props: TitleTextProps) {
+  return <Text fz={26} fw={700} {...props} />;
 }

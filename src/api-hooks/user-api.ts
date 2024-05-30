@@ -1,11 +1,16 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import {
   CreateUserFormType,
+  GetMe,
   GetUserModel,
   UpdateUserFormType,
   UserFilter,
 } from "../modules/admin/user/component/user-type";
 import { callApi } from "../utils/api";
+import {
+  LoginFormType,
+  RegisterUserFormType,
+} from "../modules/landing/component/type";
 
 export function useGetUsers(params?: UserFilter) {
   return useQuery({
@@ -16,6 +21,18 @@ export function useGetUsers(params?: UserFilter) {
         method: "GET",
         params,
       }),
+  });
+}
+
+export function useGetUser(id: string) {
+  return useQuery({
+    queryKey: ["get-user", id],
+    queryFn: async () =>
+      await callApi<GetMe>({
+        url: "/user/" + id,
+        method: "GET",
+      }),
+    enabled: !!id
   });
 }
 
@@ -49,6 +66,30 @@ export function useUpdateUser() {
         url: "/user/" + request.id,
         method: "PUT",
         data: request.body,
+      });
+    },
+  });
+}
+
+export function useLogin() {
+  return useMutation({
+    mutationFn: async (request: LoginFormType) => {
+      return await callApi({
+        url: "/user/login",
+        method: "POST",
+        data: request,
+      });
+    },
+  });
+}
+
+export function useRegisterUser() {
+  return useMutation({
+    mutationFn: async (request: RegisterUserFormType) => {
+      return await callApi({
+        url: "/user/register",
+        method: "POST",
+        data: request,
       });
     },
   });

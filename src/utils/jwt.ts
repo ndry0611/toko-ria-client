@@ -8,6 +8,10 @@ type userCredential = {
   iat: number;
 };
 
-export function tokenDecode(token: string): userCredential {
-  return jwtDecode(token);
+export function tokenDecode(token: string): userCredential | undefined {
+  try {
+    return jwtDecode(token);
+  } catch {
+    return undefined;
+  }
 }
