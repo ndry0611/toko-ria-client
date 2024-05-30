@@ -11,6 +11,7 @@ export default function BackButton() {
       justify="center"
       leftSection={<CaretLeft size={16} weight={"bold"} />}
       variant="transparent"
+      size="compact-sm"
     >
       <Text fw={500}>Kembali</Text>
     </Button>

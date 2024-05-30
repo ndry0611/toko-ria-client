@@ -15,7 +15,13 @@ export enum NavigationRoutes {
   sales = '/admin/sales',
   purchase = '/admin/purchase',
 
-  userHome = "/user"
+  userHome = "/user",
+  transaction = "/user/transaction",
+  cart = "/user/cart",
+  profile = "/user/profile",
+  profile_edit = profile + "/edit",
+  change_password = "/user/change-password",
+  complaint = "/user/complaint"
 }
 
 export enum PublicImageRoutes {

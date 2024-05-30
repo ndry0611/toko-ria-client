@@ -15,6 +15,7 @@ export const TokenContext = React.createContext({
 export const TOKEN_NAME = "token";
 
 export function getTokenStorage() {
+  if (typeof window === undefined) return undefined;
   return localStorage.getItem(TOKEN_NAME) || undefined;
 }
 
@@ -59,7 +60,9 @@ export function TokenProvider({ children }: { children: React.ReactNode }) {
     const interval = setInterval(() => {
       if (!token) return;
       const userCred = tokenDecode(token);
-      const expiredDate = new Date(userCred.exp * 1000);
+      const exp = userCred?.exp;
+      if (!exp) return;
+      const expiredDate = new Date(exp * 1000);
       if (new Date().getTime() > expiredDate.getTime()) {
         notification.error({
           title: "Logout",

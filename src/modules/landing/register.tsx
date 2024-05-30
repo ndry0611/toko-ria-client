@@ -12,20 +12,19 @@ import notification from "../../component/notification";
 import { useRouter } from "next/router";
 import { Info } from "@phosphor-icons/react";
 import { color } from "../../common/constants/color";
+import Logo from "../../component/logo";
 
 export default function RegisterPage() {
 
   const centerComponent = (
-    <Text ta={"center"} fw={700}>Registrasi</Text>
+    <Text ta={"center"} fw={700} w='100%'>Registrasi</Text>
   )
   return (
     <PhoneLayout 
     back
     centerComponent={centerComponent}
     >
-      <Center>
-        <Image src={"/logo.svg"} alt="Logo" w={180} />
-      </Center>
+      <Logo m='auto'/>
       <RegisterForm />
     </PhoneLayout>
   );
