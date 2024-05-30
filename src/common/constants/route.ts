@@ -1,12 +1,13 @@
 import { PUBLIC_URL } from "../../utils/api";
 
 export enum NavigationRoutes {
+  login = "/login",
+  register = "/register",
 
-  home = "/admin",
+  adminHome = "/admin",
   car = "/admin/car",
   user = "/admin/user",
   brand = "/admin/brand",
-  loginAdmin = "/admin/login",
   supplier = "/admin/supplier",
   category = "/admin/category",
   sparePart = "/admin/spare-part",
@@ -14,7 +15,7 @@ export enum NavigationRoutes {
   sales = '/admin/sales',
   purchase = '/admin/purchase',
 
-  login = "/login"
+  userHome = "/user"
 }
 
 export enum PublicImageRoutes {

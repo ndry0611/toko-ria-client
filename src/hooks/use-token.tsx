@@ -34,7 +34,7 @@ export function TokenProvider({ children }: { children: React.ReactNode }) {
 
   const handleLogout = useCallback(() => {
     handleToken("");
-    replace(`${NavigationRoutes.loginAdmin}`);
+    replace(`${NavigationRoutes.login}`);
   }, [replace]);
 
   //technique when use localstorage, session and cookies
@@ -49,7 +49,7 @@ export function TokenProvider({ children }: { children: React.ReactNode }) {
     return () => {};
   }, []);
 
-  React.useEffect(() => { 
+  React.useEffect(() => {
     if (!isSync) return;
     if (!token) {
       handleLogout();
