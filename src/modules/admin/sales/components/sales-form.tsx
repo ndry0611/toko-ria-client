@@ -74,7 +74,7 @@ export default function SalesForm(props: SalesFormProps) {
           disabled={sales ? true : false}
           placeholder="Pilih Pelanggan"
         />
-        <Input type="text" name="code" label="Kode Bon" />
+        <Input type="text" name="code" label="Kode Bon" disabled={sales? true : false} />
         <Input
           type="select"
           name="payment_method"
