@@ -14,6 +14,7 @@ export function formatDate(date: string) {
     const result = new Date(date);
     return format(result, "dd/MMMM/yyyy, HH:mm");
   } catch (error: any) {
+    console.log("test")
     return error.message;
   }
 }
