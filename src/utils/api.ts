@@ -67,3 +67,18 @@ export async function uploadFile<T = any>({
     .then((value: AxiosResponse<T>) => value.data)
     .catch((error) => Promise.reject(error.response.data));
 }
+
+export async function uploadUserPhoto<T = any>(files: FileWithPath[]) {
+  const token = getTokenStorage();
+  return client({
+    url: [API_URL, "file/upload/me"].join("/"),
+    method: "POST",
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Authorization: token ? `Bearer ${token}` : undefined,
+    },
+    data: files
+  })
+    .then((value: AxiosResponse<T>) => value.data)
+    .catch((error) => Promise.reject(error.response.data));
+}

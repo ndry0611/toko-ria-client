@@ -9,15 +9,12 @@ export interface UserModel {
   phone: string;
   address: string;
   status: boolean;
+  file_name?: string | null;
   created_at?: string;
   updated_at?: string;
 }
 
 export interface GetUserModel extends Omit<UserModel, "password"> {}
-
-export interface GetMe extends Omit<UserModel, "password"> {
-  file_name?: string | null;
-}
 
 export interface UserFilter {
   name?: string;

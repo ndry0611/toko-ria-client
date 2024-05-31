@@ -7,8 +7,7 @@ import {
   PublicImageRoutes,
 } from "../../../common/constants/route";
 import { useToken } from "../../../hooks/use-token";
-import { useGetUser } from "../../../api-hooks/user-api";
-import { tokenDecode } from "../../../utils/jwt";
+import { useGetMe } from "../../../api-hooks/user-api";
 import { CaretRight, User } from "@phosphor-icons/react";
 import TitleText from "../../admin/component/title";
 import LoaderView from "../../admin/component/loader-view";
@@ -27,9 +26,7 @@ export default function ProfilePage() {
 
 function ProfileContent() {
   const { handleLogout, token } = useToken();
-  const credential = tokenDecode(token || "");
-  const id = credential?.id?.toString() || "";
-  const query = useGetUser(id);
+  const query = useGetMe();
   const { push } = useRouter();
 
   const profileNav = [
