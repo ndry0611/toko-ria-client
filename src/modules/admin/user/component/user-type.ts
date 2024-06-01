@@ -22,6 +22,15 @@ export interface UserFilter {
   status?: boolean;
 }
 
+export const ChangePasswordFormSchema = () =>
+  Yup.object({
+    old_password: Yup.string().required(),
+    new_password: Yup.string().required(),
+    np_confirmation: Yup.string()
+      .oneOf([Yup.ref("new_password")], "Pastikan password sama!")
+      .required(),
+  });
+
 export const UpdateUserFormSchema = () =>
   Yup.object({
     name: Yup.string().optional(),
@@ -45,6 +54,10 @@ export type UpdateUserFormType = Yup.InferType<
 > & {
   data?: GetUserModel;
 };
+
+export type ChangePasswordFormType = Yup.InferType<
+  ReturnType<typeof ChangePasswordFormSchema>
+>;
 
 export type CreateUserFormType = Yup.InferType<
   ReturnType<typeof CreateUserFormSchema>

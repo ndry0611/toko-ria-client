@@ -1,5 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import {
+  ChangePasswordFormType,
   CreateUserFormType,
   GetUserModel,
   UpdateUserFormType,
@@ -87,6 +88,18 @@ export function useRegisterUser() {
       return await callApi({
         url: "/user/register",
         method: "POST",
+        data: request,
+      });
+    },
+  });
+}
+
+export function useChangePassword() {
+  return useMutation({
+    mutationFn: async (request: ChangePasswordFormType) => {
+      return await callApi({
+        url: "/user/change-password",
+        method: "PUT",
         data: request,
       });
     },
