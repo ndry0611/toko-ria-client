@@ -20,7 +20,8 @@ export default function UserForm(props: UserFormProps) {
     name: "",
     phone: "",
     address: "",
-    id_role: "1",
+    id_role: "2",
+    status: "ACTIVE"
   };
   const methods = useForm({
     resolver: yupResolver(CreateUserFormSchema()),
@@ -59,6 +60,16 @@ export default function UserForm(props: UserFormProps) {
             data={[
               { value: "1", label: "Admin" },
               { value: "2", label: "Customer" },
+            ]}
+          />
+          <Input
+            type="radio"
+            name="status"
+            label="Status Akun"
+            data={[
+              { value: "PENDING", label: "PENDING" },
+              { value: "ACTIVE", label: "AKTIF" },
+              { value: "INACTIVE", label: "TIDAK AKTIF" },
             ]}
           />
         </Flex>

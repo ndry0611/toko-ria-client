@@ -19,7 +19,7 @@ export default function PendingList(props: PendingListProps) {
   filter = {
     ...filter,
     id_role: "2",
-    status: false,
+    daftar: "pending",
   };
   const query = useGetUsers(filter);
   const { mutateAsync: deleteUser } = useDeleteUser();
@@ -48,7 +48,7 @@ export default function PendingList(props: PendingListProps) {
       try {
         await acceptUser({
           id: item.id.toString(),
-          body: { status: true },
+          body: { status: "ACTIVE" },
         });
         queryClient.refetchQueries({
           queryKey: ["get-users", filter],

@@ -8,7 +8,7 @@ export interface UserModel {
   name: string;
   phone: string;
   address: string;
-  status: boolean;
+  status: "ACTIVE" | "PENDING" | "INACTIVE";
   file_name?: string | null;
   created_at?: string;
   updated_at?: string;
@@ -19,7 +19,8 @@ export interface GetUserModel extends Omit<UserModel, "password"> {}
 export interface UserFilter {
   name?: string;
   id_role?: string;
-  status?: boolean;
+  status?: "ACTIVE" | "INACTIVE";
+  daftar?: "aktif" | "pending";
 }
 
 export const ChangePasswordFormSchema = () =>
@@ -36,7 +37,9 @@ export const UpdateUserFormSchema = () =>
     name: Yup.string().optional(),
     phone: Yup.string().optional(),
     address: Yup.string().optional(),
-    status: Yup.boolean().optional(),
+    status: Yup.string()
+      .oneOf(["ACTIVE", "PENDING", "INACTIVE", undefined])
+      .optional(),
   });
 
 export const CreateUserFormSchema = () =>
@@ -47,6 +50,9 @@ export const CreateUserFormSchema = () =>
     password: Yup.string().required(),
     phone: Yup.string().required(),
     address: Yup.string().required(),
+    status: Yup.string()
+      .oneOf(["ACTIVE", "PENDING", "INACTIVE", undefined])
+      .optional(),
   });
 
 export type UpdateUserFormType = Yup.InferType<
