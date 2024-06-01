@@ -1,11 +1,12 @@
 import React from "react";
-import { useChangePassword, useGetMe } from "../../../api-hooks/user-api";
-import { ChangePasswordFormType } from "../../admin/user/component/user-type";
-import notification from "../../../component/notification";
-import { useToken } from "../../../hooks/use-token";
-import PhoneLayout from "../../../component/phone-layout/phone-layout";
-import LoaderView from "../../admin/component/loader-view";
+import { useChangePassword, useGetMe } from "../../api-hooks/user-api";
+import { ChangePasswordFormType } from "../admin/user/component/user-type";
+import notification from "../../component/notification";
+import { useToken } from "../../hooks/use-token";
+import PhoneLayout from "../../component/phone-layout/phone-layout";
+import LoaderView from "../admin/component/loader-view";
 import ChangePasswordForm from "./component/change-password-form";
+import { Text } from "@mantine/core";
 
 export default function ChangePasswordPage() {
   const query = useGetMe();
@@ -31,7 +32,7 @@ export default function ChangePasswordPage() {
     [handleLogout, mutateAsync]
   );
   return (
-    <PhoneLayout>
+    <PhoneLayout back centerComponent={<Text fw={700}>Ubah Password</Text>}>
       <LoaderView query={query}>
         {(data) => <ChangePasswordForm user={data} onSubmit={onSubmit} />}
       </LoaderView>

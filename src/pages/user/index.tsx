@@ -1,3 +1,3 @@
-import UserHome from "../../modules/user/component/home";
+import UserHome from "../../modules/user/home";
 
 export default UserHome;

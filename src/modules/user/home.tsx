@@ -1,10 +1,10 @@
 import { Flex, SimpleGrid } from "@mantine/core";
-import { useGetCategories } from "../../../api-hooks/category-api";
-import Logo from "../../../component/logo";
-import NavigationBar from "../../../component/navigation-bar/navigation-bar";
-import PhoneLayout from "../../../component/phone-layout/phone-layout";
-import LoaderView from "../../admin/component/loader-view";
-import CategoryCard from "../../../component/category-card";
+import { useGetCategories } from "../../api-hooks/category-api";
+import Logo from "../../component/logo";
+import NavigationBar from "../../component/navigation-bar/navigation-bar";
+import PhoneLayout from "../../component/phone-layout/phone-layout";
+import LoaderView from "../admin/component/loader-view";
+import CategoryCard from "../../component/category-card";
 
 
 export default function UserHome() {

@@ -1,4 +1,5 @@
-import { useQuery } from "@tanstack/react-query";
+import * as Yup from "yup";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import {
   ComplaintFilter,
   GetComplaintsModel,
@@ -14,5 +15,25 @@ export function useGetComplaints(params?: ComplaintFilter) {
         method: "GET",
         params,
       }),
+  });
+}
+
+export const ComplaintFormSchema = () =>
+  Yup.object({
+    complaint: Yup.string().required(),
+  });
+export type ComplaintFormType = Yup.InferType<
+  ReturnType<typeof ComplaintFormSchema>
+>;
+
+export function useCreateComplaint() {
+  return useMutation({
+    mutationFn: async (request: ComplaintFormType) => {
+      return await callApi({
+        url: "/complaint",
+        method: "POST",
+        data: request,
+      });
+    },
   });
 }

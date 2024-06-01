@@ -3,16 +3,16 @@ import {
   ChangePasswordFormSchema,
   ChangePasswordFormType,
   GetUserModel,
-} from "../../../admin/user/component/user-type";
+} from "../../admin/user/component/user-type";
 import { yupResolver } from "@hookform/resolvers/yup";
-import Form from "../../../../component/form";
-import { Center, Flex, Space } from "@mantine/core";
-import { PhotoPreview } from "../../../../component/photo-input";
+import Form from "../../../component/form";
+import { Center, Flex} from "@mantine/core";
+import { PhotoPreview } from "../../../component/photo-input";
 import { User } from "@phosphor-icons/react";
-import { PublicImageRoutes } from "../../../../common/constants/route";
-import TitleText from "../../../admin/component/title";
-import Input from "../../../../component/input";
-import FormActionComponent from "../../../admin/component/form-action-component";
+import { PublicImageRoutes } from "../../../common/constants/route";
+import TitleText from "../../admin/component/title";
+import Input from "../../../component/input";
+import FormActionComponent from "../../admin/component/form-action-component";
 
 interface ChangePasswordFormProps {
   user: GetUserModel;
