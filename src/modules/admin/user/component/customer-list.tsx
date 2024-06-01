@@ -33,7 +33,16 @@ export default function CustomerList(props: CustomerListProps) {
       });
     },
     onRowCustom(item) {
-      return [item.name, item.phone, item.address, item.status];
+      return [
+        item.name,
+        item.phone,
+        item.address,
+        item.status === "ACTIVE"
+          ? "Aktif"
+          : item.status === "INACTIVE"
+          ? "Tidak Aktif"
+          : "-",
+      ];
     },
     onGenerateHead(item) {
       return ["Nama Pelanggan", "Nomor Telepon", "Alamat", "Status Akun"];

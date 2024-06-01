@@ -22,6 +22,7 @@ export default function PurchaseList() {
     status: "1",
   });
 
+
   const tabList: TabsTabProps[] = [
     { value: "1", children: "Aktif" },
     { value: "2", children: "Lunas" },
@@ -30,6 +31,12 @@ export default function PurchaseList() {
   const methods = useForm({
     defaultValues: purchaseFilter,
   });
+
+
+  React.useEffect(() => {
+    methods.reset(purchaseFilter);
+  }, [purchaseFilter, methods]);
+
   const { push } = useRouter();
   const query = useGetPurchases(purchaseFilter);
   const { data = [] } = query;
@@ -52,7 +59,7 @@ export default function PurchaseList() {
           : item.status == 3
           ? "Batal"
           : "",
-        item.payment_date ? formatDate(item.payment_date) : "-"
+        item.payment_date ? formatDate(item.payment_date) : "-",
       ];
     },
     onGenerateHead(item) {
@@ -63,7 +70,7 @@ export default function PurchaseList() {
         "Total Harga",
         "Lama Kredit",
         "Status",
-        "Tanggal Pembayaran"
+        "Tanggal Pembayaran",
       ];
     },
   });

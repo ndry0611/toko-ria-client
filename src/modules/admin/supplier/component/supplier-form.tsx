@@ -23,6 +23,7 @@ export default function SupplierForm(props: SupplierFormProps) {
     address: supplier?.address ?? "",
     bank_account: supplier?.bank_account ?? "",
     bank_account_name: supplier?.bank_account_name ?? "",
+    status: supplier?.status ?? "ACTIVE",
     data: supplier,
   };
   const methods = useForm({
@@ -65,6 +66,15 @@ export default function SupplierForm(props: SupplierFormProps) {
             placeholder="(BANK) Nomor Rekening"
           />
           <Input type="text" name="bank_account_name" label="Nama Rekening" />
+          <Input
+            type="radio"
+            name="status"
+            label="Status Supplier"
+            data={[
+              { value: "ACTIVE", label: "AKTIF" },
+              { value: "INACTIVE", label: "TIDAK AKTIF" },
+            ]}
+          />
         </Flex>
       </SimpleGrid>
       <FormActionComponent />

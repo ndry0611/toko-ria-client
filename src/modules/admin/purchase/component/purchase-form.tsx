@@ -68,6 +68,7 @@ export default function PurchaseForm(props: PurchaseFormProps) {
         }}
       >
         <SupplierSelect
+          filtering={purchase ? undefined : { status: "ACTIVE" }}
           name="id_supplier"
           label="Supplier"
           disabled={purchase ? true : false}

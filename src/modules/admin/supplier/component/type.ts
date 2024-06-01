@@ -8,6 +8,7 @@ export interface SupplierModel {
   pic_phone: string;
   bank_account: string;
   bank_account_name: string;
+  status: "ACTIVE" | "INACTIVE";
   address?: string | null;
   created_at?: string;
   updated_at?: string;
@@ -15,6 +16,7 @@ export interface SupplierModel {
 
 export interface SupplierFilter {
   name_keyword?: string;
+  status?: "ACTIVE" | "INACTIVE";
 }
 
 export const SupplierFormSchema = () =>
@@ -25,6 +27,7 @@ export const SupplierFormSchema = () =>
     pic_phone: Yup.string().required(),
     bank_account: Yup.string().required(),
     bank_account_name: Yup.string().required(),
+    status: Yup.string().required(),
     address: Yup.string().optional(),
   });
 
