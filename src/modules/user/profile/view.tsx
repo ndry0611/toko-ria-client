@@ -14,7 +14,6 @@ import { useRouter } from "next/router";
 import { NavigationRoutes } from "../../../common/constants/route";
 
 export default function ProfileDetail() {
-  const { token } = useToken();
   const { push } = useRouter();
   const query = useGetMe();
   const { data } = query;
