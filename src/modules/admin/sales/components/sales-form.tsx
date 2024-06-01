@@ -61,20 +61,31 @@ export default function SalesForm(props: SalesFormProps) {
       <Space h={"sm"} />
       <BackButton />
       <Space h={"sm"} />
-      <SimpleGrid cols={3} mb={16} style={{
-        paddingBottom:16,
-        borderBottom:`1px solid ${color.mainTheme}`
-      }}>
+      <SimpleGrid
+        cols={3}
+        mb={16}
+        style={{
+          paddingBottom: 16,
+          borderBottom: `1px solid ${color.mainTheme}`,
+        }}
+      >
         <SpecialPriceHandler />
         <GrandTotalHandler />
         <UserSelect
-          filtering={{ id_role: "2", status: true }}
+          filtering={
+            sales ? { id_role: "2" } : { id_role: "2", status: "ACTIVE" }
+          }
           name="id_user"
           label="Pelanggan"
           disabled={sales ? true : false}
           placeholder="Pilih Pelanggan"
         />
-        <Input type="text" name="code" label="Kode Bon" disabled={sales? true : false} />
+        <Input
+          type="text"
+          name="code"
+          label="Kode Bon"
+          disabled={sales ? true : false}
+        />
         <Input
           type="select"
           name="payment_method"

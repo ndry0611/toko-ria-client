@@ -63,7 +63,7 @@ function SaleFormFilter() {
       <SimpleGrid cols={3}>
         <Flex direction={"column"}>
           <UserSelect
-            filtering={{ id_role: "2", status: true }}
+            filtering={{ id_role: "2", status: "ACTIVE" }}
             name="id_user"
             label="Pelanggan"
           />
@@ -99,7 +99,7 @@ function OrderFormFilter() {
     <>
       <SimpleGrid cols={3} mb={16}>
         <UserSelect
-          filtering={{ id_role: "2", status: true }}
+          filtering={{ id_role: "2", status: "ACTIVE" }}
           name="id_user"
           label="Pelanggan"
         />

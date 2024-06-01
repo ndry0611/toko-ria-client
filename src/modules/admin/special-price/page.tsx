@@ -158,7 +158,7 @@ export default function SpecialPricePage() {
           </Flex>
           <Flex direction={"column"} gap={16} justify={"space-between"}>
             <UserSelect
-              filtering={{ id_role: "2", status: true }}
+              filtering={{ id_role: "2", status: "ACTIVE" }}
               label="Nama Pelanggan"
               name="id_user"
             />
