@@ -20,7 +20,7 @@ import {
 
 interface PurchaseRecapProps {
   purchases?: GetPurchasesModel[];
-  filter: PurchaseFilter;
+  filter?: PurchaseFilter;
 }
 
 const PurchasesRecap = forwardRef<HTMLDivElement, PurchaseRecapProps>(
@@ -85,7 +85,7 @@ const PurchasesRecap = forwardRef<HTMLDivElement, PurchaseRecapProps>(
             <Space h={"sm"} />
             <Text>
               Supplier:{" "}
-              {filter.id_supplier
+              {filter?.id_supplier
                 ? purchases
                   ? purchases[0]?.Supplier.company_name ?? "Data Kosong"
                   : "Semua"
@@ -93,11 +93,11 @@ const PurchasesRecap = forwardRef<HTMLDivElement, PurchaseRecapProps>(
             </Text>
             <Text>
               Tanggal Pembelian:{" "}
-              {filter.start_date
+              {filter?.start_date
                 ? formatDate(filter.start_date, "dd/MM/yyyy")
                 : "Awal"}{" "}
               -{" "}
-              {filter.end_date
+              {filter?.end_date
                 ? formatDate(filter.end_date, "dd/MM/yyyy")
                 : "Akhir"}
             </Text>

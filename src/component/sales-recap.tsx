@@ -91,7 +91,7 @@ const SalesRecap = forwardRef<HTMLDivElement, SaleRecapProps>(
             <Space h={"sm"} />
             <Text>
               Pelanggan:{" "}
-              {filter.id_user
+              {filter?.id_user
                 ? sales
                   ? sales[0]?.User.name ?? "Data Kosong"
                   : "Semua"
@@ -99,11 +99,11 @@ const SalesRecap = forwardRef<HTMLDivElement, SaleRecapProps>(
             </Text>
             <Text>
               Tanggal Penjualan:{" "}
-              {filter.start_date
+              {filter?.start_date
                 ? formatDate(filter.start_date, "dd/MM/yyyy")
                 : "Awal"}{" "}
               -{" "}
-              {filter.end_date
+              {filter?.end_date
                 ? formatDate(filter.end_date, "dd/MM/yyyy")
                 : "Akhir"}
             </Text>
