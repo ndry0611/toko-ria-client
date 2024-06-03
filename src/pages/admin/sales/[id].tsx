@@ -1,3 +1,3 @@
-import UpdateSale from "../../../modules/admin/sales/components/view";
+import UpdateSale from "../../../modules/admin/sales/view";
 
 export default UpdateSale;

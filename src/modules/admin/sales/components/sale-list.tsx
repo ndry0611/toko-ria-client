@@ -7,6 +7,10 @@ import { formatDate, stringToMoney } from "../../../../utils/string";
 import { SaleListProps } from "../list";
 import LoaderView from "../../component/loader-view";
 import TableList from "../../component/table-list";
+import { useReactToPrint } from "react-to-print";
+import PrintButton from "../../component/print-button";
+import SalesRecap from "../../../../component/sales-recap";
+import { Space } from "@mantine/core";
 
 export default function SaleList(props: SaleListProps) {
   let { filter } = props;
@@ -17,6 +21,10 @@ export default function SaleList(props: SaleListProps) {
   const { push } = useRouter();
   const query = useGetSales(filter);
   const { data = [] } = query;
+
+  const componentRef = React.useRef<HTMLDivElement>(null);
+  const handlePrint = useReactToPrint({ content: () => componentRef.current });
+
   const table = useTableDataGenerator({
     data,
     onClickDetail(item) {
@@ -49,12 +57,30 @@ export default function SaleList(props: SaleListProps) {
       ];
     },
     onGenerateHead(item) {
-      return ["Kode Bon", "Pelanggan", "Tanggal Bon", "Total Harga", "Metode Belanja", "Tanggal Pembayaran", "Status", "Tanggal Update"];
+      return [
+        "Kode Bon",
+        "Pelanggan",
+        "Tanggal Bon",
+        "Total Harga",
+        "Metode Belanja",
+        "Tanggal Pembayaran",
+        "Status",
+        "Tanggal Update",
+      ];
     },
   });
   return (
     <LoaderView query={query}>
-      {(data) => <TableList data={table} />}
+      {(data) => (
+        <>
+          <PrintButton
+            component={<SalesRecap ref={componentRef} sales={data} />}
+            onPrint={handlePrint}
+          />
+          <Space h={"sm"} />
+          <TableList data={table} />
+        </>
+      )}
     </LoaderView>
   );
 }

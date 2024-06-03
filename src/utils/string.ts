@@ -11,7 +11,7 @@ export function stringToMoney(input: string | number): string {
   }).format(value);
 }
 
-export function formatDate(date: string) {
+export function formatDate(date: string | Date) {
   try {
     const result = new Date(date);
     return format(result, "dd/MMMM/yyyy, HH:mm");
