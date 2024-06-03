@@ -16,12 +16,14 @@ import LoaderView from "../component/loader-view";
 import { NavigationRoutes } from "../../../common/constants/route";
 import { formatDate, stringToMoney } from "../../../utils/string";
 import { useRouter } from "next/router";
+import PrintButton from "../component/print-button";
+import { useReactToPrint } from "react-to-print";
+import PurchasesRecap from "../../../pages";
 
 export default function PurchaseList() {
   const [purchaseFilter, setPurchaseFilter] = React.useState<PurchaseFilter>({
     status: "1",
   });
-
 
   const tabList: TabsTabProps[] = [
     { value: "1", children: "Aktif" },
@@ -32,7 +34,6 @@ export default function PurchaseList() {
     defaultValues: purchaseFilter,
   });
 
-
   React.useEffect(() => {
     methods.reset(purchaseFilter);
   }, [purchaseFilter, methods]);
@@ -40,6 +41,10 @@ export default function PurchaseList() {
   const { push } = useRouter();
   const query = useGetPurchases(purchaseFilter);
   const { data = [] } = query;
+
+  const componentRef = React.useRef<HTMLDivElement>(null);
+  const handlePrint = useReactToPrint({ content: () => componentRef.current });
+
   const table = useTableDataGenerator({
     data,
     onClickDetail(item) {
@@ -118,7 +123,22 @@ export default function PurchaseList() {
           mb={16}
         />
         <LoaderView query={query}>
-          {(data) => <TableList data={table} />}
+          {(data) => (
+            <>
+              <PrintButton
+                component={
+                  <PurchasesRecap
+                    ref={componentRef}
+                    purchases={data}
+                    filter={purchaseFilter}
+                  />
+                }
+                onPrint={handlePrint}
+              />
+              <Space h={"sm"} />
+              <TableList data={table} />
+            </>
+          )}
         </LoaderView>
       </Form>
     </>

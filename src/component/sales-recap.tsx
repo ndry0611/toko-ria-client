@@ -18,7 +18,7 @@ import {
 } from "../modules/admin/sales/components/type";
 
 interface SaleRecapProps {
-  sales: GetSalesModel[];
+  sales?: GetSalesModel[];
   filter: SalesFilter;
 }
 
@@ -27,13 +27,13 @@ const SalesRecap = forwardRef<HTMLDivElement, SaleRecapProps>(
     const { sales, filter } = props;
     const [grandTotal, setGrandTotal] = React.useState(0);
     React.useEffect(() => {
-      const tempTotal = sales.reduce((total, item) => {
+      const tempTotal = sales!.reduce((total, item) => {
         return total + item.grand_total;
       }, 0);
       setGrandTotal(tempTotal);
     }, [sales]);
     const table = useTableDataGenerator({
-      data: sales,
+      data: sales ?? [],
       onRowCustom(item) {
         return [
           item.code,
@@ -89,11 +89,23 @@ const SalesRecap = forwardRef<HTMLDivElement, SaleRecapProps>(
               </Text>
             </SimpleGrid>
             <Space h={"sm"} />
-            <Text>Pelanggan: {(filter.id_user ? sales[0].User.name : "Semua")}</Text>
+            <Text>
+              Pelanggan:{" "}
+              {filter.id_user
+                ? sales
+                  ? sales[0]?.User.name ?? "Data Kosong"
+                  : "Semua"
+                : "Data Kosong"}
+            </Text>
             <Text>
               Tanggal Penjualan:{" "}
-              {filter.start_date ? formatDate(filter.start_date, "dd/MM/yyyy") : "Dahulu"} -{" "}
-              {filter.end_date ? formatDate(filter.end_date, "dd/MM/yyyy") : "Sekarang"}
+              {filter.start_date
+                ? formatDate(filter.start_date, "dd/MM/yyyy")
+                : "Awal"}{" "}
+              -{" "}
+              {filter.end_date
+                ? formatDate(filter.end_date, "dd/MM/yyyy")
+                : "Akhir"}
             </Text>
             <Text>Tanggal Cetak: {formatDate(new Date())}</Text>
             <Space h={"sm"} />
