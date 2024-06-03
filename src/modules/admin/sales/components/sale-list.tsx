@@ -74,7 +74,7 @@ export default function SaleList(props: SaleListProps) {
       {(data) => (
         <>
           <PrintButton
-            component={<SalesRecap ref={componentRef} sales={data} />}
+            component={<SalesRecap ref={componentRef} sales={data} filter={filter} />}
             onPrint={handlePrint}
           />
           <Space h={"sm"} />

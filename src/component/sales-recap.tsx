@@ -19,11 +19,12 @@ import {
 
 interface SaleRecapProps {
   sales: GetSalesModel[];
+  filter: SalesFilter;
 }
 
 const SalesRecap = forwardRef<HTMLDivElement, SaleRecapProps>(
   (props, ref: ForwardedRef<HTMLDivElement>) => {
-    const { sales } = props;
+    const { sales, filter } = props;
     const [grandTotal, setGrandTotal] = React.useState(0);
     React.useEffect(() => {
       const tempTotal = sales.reduce((total, item) => {
@@ -88,6 +89,12 @@ const SalesRecap = forwardRef<HTMLDivElement, SaleRecapProps>(
               </Text>
             </SimpleGrid>
             <Space h={"sm"} />
+            <Text>Pelanggan: {(filter.id_user ? sales[0].User.name : "Semua")}</Text>
+            <Text>
+              Tanggal Penjualan:{" "}
+              {filter.start_date ? formatDate(filter.start_date, "dd/MM/yyyy") : "Dahulu"} -{" "}
+              {filter.end_date ? formatDate(filter.end_date, "dd/MM/yyyy") : "Sekarang"}
+            </Text>
             <Text>Tanggal Cetak: {formatDate(new Date())}</Text>
             <Space h={"sm"} />
             <Table data={table} styles={{ th: { border: "1px solid" } }} />
