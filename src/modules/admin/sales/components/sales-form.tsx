@@ -5,7 +5,7 @@ import React from "react";
 import SalesDetailFields from "./sales-detail-fields";
 import { yupResolver } from "@hookform/resolvers/yup";
 import TitleText from "../../component/title";
-import { SimpleGrid, Space, Text } from "@mantine/core";
+import { SimpleGrid, Space } from "@mantine/core";
 import BackButton from "../../component/back-button";
 import UserSelect from "../../select/user-select";
 import Input from "../../../../component/input";
@@ -13,6 +13,7 @@ import SpecialPriceHandler from "./special-price-handler";
 import FormActionComponent from "../../component/form-action-component";
 import GrandTotalHandler from "./grand-total-handler";
 import { color } from "../../../../common/constants/color";
+import { generateCode } from "../../../../utils/string";
 
 interface SalesFormProps {
   sales?: GetSaleModel;
@@ -22,7 +23,7 @@ interface SalesFormProps {
 export default function SalesForm(props: SalesFormProps) {
   const { sales, onSubmit } = props;
   const defaultValues: SaleFormType = {
-    code: sales?.code ?? "",
+    code: sales?.code ?? generateCode(),
     expired_date: sales
       ? sales.expired_date
         ? new Date(sales.expired_date)
@@ -84,7 +85,7 @@ export default function SalesForm(props: SalesFormProps) {
           type="text"
           name="code"
           label="Kode Bon"
-          disabled={sales ? true : false}
+          disabled
         />
         <Input
           type="select"
