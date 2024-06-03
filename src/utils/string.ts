@@ -11,10 +11,10 @@ export function stringToMoney(input: string | number): string {
   }).format(value);
 }
 
-export function formatDate(date: string | Date) {
+export function formatDate(date: string | Date, stringFormat?: string) {
   try {
     const result = new Date(date);
-    return format(result, "dd/MMMM/yyyy, HH:mm");
+    return format(result, (stringFormat ?? "dd/MMMM/yyyy, HH:mm"));
   } catch (error: any) {
     return error.message;
   }
