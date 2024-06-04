@@ -30,8 +30,8 @@ function ProfileContent() {
   const { push } = useRouter();
 
   const profileNav = [
-    { title: "Edit Profil", link: `${NavigationRoutes.profile_edit}` },
-    { title: "Ubah Password", link: `${NavigationRoutes.change_password}` },
+    { title: "Edit Profil", link: `${NavigationRoutes.profileEdit}` },
+    { title: "Ubah Password", link: `${NavigationRoutes.changePassword}` },
     { title: "Ajukan Keluhan", link: `${NavigationRoutes.complaint}` },
   ];
 

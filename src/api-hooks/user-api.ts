@@ -8,6 +8,7 @@ import {
 } from "../modules/admin/user/component/user-type";
 import { callApi } from "../utils/api";
 import {
+  ForgetPasswordFormType,
   LoginFormType,
   RegisterUserFormType,
 } from "../modules/landing/component/type";
@@ -99,6 +100,18 @@ export function useChangePassword() {
     mutationFn: async (request: ChangePasswordFormType) => {
       return await callApi({
         url: "/user/change-password",
+        method: "PUT",
+        data: request,
+      });
+    },
+  });
+}
+
+export function useForgetPassword() {
+  return useMutation({
+    mutationFn: async (request: ForgetPasswordFormType) => {
+      return await callApi({
+        url: "/user/forget-password",
         method: "PUT",
         data: request,
       });

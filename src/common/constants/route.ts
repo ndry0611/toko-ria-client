@@ -3,6 +3,7 @@ import { PUBLIC_URL } from "../../utils/api";
 export enum NavigationRoutes {
   login = "/login",
   register = "/register",
+  forgetPassword = "/forget-password",
 
   adminHome = "/admin",
   car = "/admin/car",
@@ -19,8 +20,8 @@ export enum NavigationRoutes {
   transaction = "/user/transaction",
   cart = "/user/cart",
   profile = "/user/profile",
-  profile_edit = profile + "/edit",
-  change_password = "/user/change-password",
+  profileEdit = profile + "/edit",
+  changePassword = "/user/change-password",
   complaint = "/user/complaint"
 }
 

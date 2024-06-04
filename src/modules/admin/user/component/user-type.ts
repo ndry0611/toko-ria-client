@@ -46,7 +46,7 @@ export const CreateUserFormSchema = () =>
   Yup.object({
     id_role: Yup.string().optional(),
     name: Yup.string().required(),
-    username: Yup.string().required(),
+    username: Yup.string().required().matches(/^\S+$/, "Username tidak boleh menggunakan spasi!"),
     password: Yup.string().required(),
     phone: Yup.string().required(),
     address: Yup.string().required(),

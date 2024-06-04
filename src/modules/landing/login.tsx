@@ -1,15 +1,5 @@
 "use client";
-import {
-  Button,
-  Card,
-  Center,
-  Container,
-  Flex,
-  Grid,
-  Paper,
-  Space,
-  Text,
-} from "@mantine/core";
+import { Button, Card, Center, Flex, Paper, Space } from "@mantine/core";
 import React from "react";
 import { useToken } from "../../hooks/use-token";
 import { useRouter } from "next/router";
@@ -22,8 +12,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useLogin } from "../../api-hooks/user-api";
 import Input from "../../component/input";
 import Form from "../../component/form";
-import Link from "next/link";
-import { color } from "../../common/constants/color";
 import Image from "next/image";
 
 export default function LoginPage() {
@@ -88,6 +76,15 @@ export default function LoginPage() {
                 placeholder="Password"
                 name="password"
               />
+              <Flex justify={"flex-end"}>
+                <Button
+                  variant="transparent"
+                  size="compact-sm"
+                  onClick={() => push(`${NavigationRoutes.forgetPassword}`)}
+                >
+                  Lupa Password
+                </Button>
+              </Flex>
               <Center>
                 <Button
                   size="md"
