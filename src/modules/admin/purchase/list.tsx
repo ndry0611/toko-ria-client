@@ -18,7 +18,7 @@ import { formatDate, stringToMoney } from "../../../utils/string";
 import { useRouter } from "next/router";
 import PrintButton from "../component/print-button";
 import { useReactToPrint } from "react-to-print";
-import PurchasesRecap from "../../../pages";
+import PurchasesRecap from "../../../component/purchases-recap";
 
 export default function PurchaseList() {
   const [purchaseFilter, setPurchaseFilter] = React.useState<PurchaseFilter>({

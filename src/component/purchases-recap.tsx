@@ -9,7 +9,6 @@ import {
   Table,
   Text,
 } from "@mantine/core";
-import { useGetPurchases } from "../api-hooks/purchase-api";
 import useTableDataGenerator from "../hooks/use-table-data-generator";
 import { formatDate } from "../utils/string";
 import React, { ForwardedRef, forwardRef } from "react";
