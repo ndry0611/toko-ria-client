@@ -17,6 +17,7 @@ export enum NavigationRoutes {
   purchase = '/admin/purchase',
 
   userHome = "/user",
+  sparePartUser = "/user/spare-part",
   transaction = "/user/transaction",
   cart = "/user/cart",
   profile = "/user/profile",

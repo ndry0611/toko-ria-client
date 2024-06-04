@@ -17,7 +17,7 @@ export default function CategoryCard(props: CategoryCardProps) {
   const href =
     type === "admin"
       ? `${NavigationRoutes.sparePart}?id_category=${item.id}`
-      : `${NavigationRoutes.adminHome}`;
+      : `${NavigationRoutes.sparePartUser}?id_category=${item.id}`;
   return (
     <Link
       href={href}

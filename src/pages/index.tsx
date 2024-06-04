@@ -1,3 +1,3 @@
-import PurchasesRecap from "../component/purchases-recap";
-
-export default PurchasesRecap;
+export default function Home() {
+  return "Test"
+}
