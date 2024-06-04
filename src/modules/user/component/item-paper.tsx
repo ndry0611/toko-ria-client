@@ -34,22 +34,22 @@ export default function ItemPaper(props: ItemPaperProps) {
             <Center>{itemImage}</Center>
           </Grid.Col>
           <Grid.Col span={6}>
-            <Text fz={12} fw={500}>
+            <Text fz={10} fw={500}>
               {item.part_no}
             </Text>
-            <Text fz={14} fw={700}>
+            <Text fz={12} fw={700}>
               {item.name}
             </Text>
             {item.Car ? (
-              <Text fz={12}>
+              <Text fz={10}>
                 {item.Car.CarBrand.name} {item.Car.name} {item.Car.type}
               </Text>
             ) : undefined}
-            <Text fz={12}>
+            <Text fz={10}>
               {item.SparePartBrand?.name}{" "}
               {item.genuine === "asli" ? "Asli" : "Replika"}
             </Text>
-            <Text fz={14} fw={500}>
+            <Text fz={12} fw={500}>
               Stok: {item.stock}
             </Text>
           </Grid.Col>
@@ -59,14 +59,14 @@ export default function ItemPaper(props: ItemPaperProps) {
                 <Text td="line-through" fz={12} ta={"right"} c={color.mainGrey}>
                   {item.sale_price ? stringToMoney(item.sale_price) : "-"}
                 </Text>
-                <Text ta={"right"} fw={700}>{stringToMoney(item.SpecialPrice[0].price)}</Text>
+                <Text ta={"right"} fz={12} fw={700}>{stringToMoney(item.SpecialPrice[0].price)}</Text>
               </>
             ) : (
-              <Text fw={700} ta={"right"}>
+              <Text fz={12} fw={700} ta={"right"}>
                 {item.sale_price ? stringToMoney(item.sale_price) : "-"}
               </Text>
             )}
-            <Text fz={14}>/{item.sell_method}</Text>
+            <Text fz={12}>/{item.sell_method}</Text>
           </Grid.Col>
         </Grid>
       </Card>
