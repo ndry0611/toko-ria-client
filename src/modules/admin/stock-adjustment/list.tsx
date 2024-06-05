@@ -2,7 +2,7 @@ import React from "react";
 import { useGetStockAdjustments } from "../../../api-hooks/stock-adjustment-api";
 import { StockAdjustmentFilter } from "./component/type";
 import { useForm } from "react-hook-form";
-import TitleText from "../component/title";
+import TitleText from "../../../component/title";
 import { Flex, SimpleGrid, Space } from "@mantine/core";
 import Form from "../../../component/form";
 import LoaderView from "../component/loader-view";

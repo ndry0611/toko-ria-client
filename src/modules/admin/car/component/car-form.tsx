@@ -3,7 +3,7 @@ import { CarFormSchema, CarFormType, GetCarModel } from "./type";
 import { useForm } from "react-hook-form";
 import React from "react";
 import Form from "../../../../component/form";
-import TitleText from "../../component/title";
+import TitleText from "../../../../component/title";
 import { Flex, Space } from "@mantine/core";
 import BackButton from "../../component/back-button";
 import Input from "../../../../component/input";

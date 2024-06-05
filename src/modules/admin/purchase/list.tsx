@@ -2,7 +2,7 @@ import { Flex, SimpleGrid, Space, Table, TabsTabProps } from "@mantine/core";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { PurchaseFilter } from "./component/type";
-import TitleText from "../component/title";
+import TitleText from "../../../component/title";
 import Form from "../../../component/form";
 import Input from "../../../component/input";
 import SupplierSelect from "../select/supplier-select";

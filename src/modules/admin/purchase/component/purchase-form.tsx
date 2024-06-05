@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { GetPurchaseModel, PurchaseFormSchema, PurchaseFormType } from "./type";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Form from "../../../../component/form";
-import TitleText from "../../component/title";
+import TitleText from "../../../../component/title";
 import { SimpleGrid, Space, Text } from "@mantine/core";
 import BackButton from "../../component/back-button";
 import GrandTotalHandler from "./grand-total-handler";

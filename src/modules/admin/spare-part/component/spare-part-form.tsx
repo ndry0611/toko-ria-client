@@ -13,7 +13,7 @@ import {
   PublicImageRoutes,
 } from "../../../../common/constants/route";
 import Form from "../../../../component/form";
-import TitleText from "../../component/title";
+import TitleText from "../../../../component/title";
 import { Text, Center, Flex, SimpleGrid, Space } from "@mantine/core";
 import BackButton from "../../component/back-button";
 import PhotoInput from "../../../../component/photo-input";

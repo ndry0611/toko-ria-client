@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import useTableDataGenerator from "../../../hooks/use-table-data-generator";
 import { NavigationRoutes } from "../../../common/constants/route";
 import { Flex, SimpleGrid, Space} from "@mantine/core";
-import TitleText from "../component/title";
+import TitleText from "../../../component/title";
 import Form from "../../../component/form";
 import Input from "../../../component/input";
 import FindButton from "../component/find-button";

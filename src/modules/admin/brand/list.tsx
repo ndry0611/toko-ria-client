@@ -1,6 +1,6 @@
 import { Flex, Space, TabsTabProps } from "@mantine/core";
 import React from "react";
-import TitleText from "../component/title";
+import TitleText from "../../../component/title";
 import Tabs from "../../../component/tabs";
 import CarBrandList from "./component/car-brand/car-brand-list";
 import SparePartBrandList from "./component/spare-part-brand/spare-part-brand-list";

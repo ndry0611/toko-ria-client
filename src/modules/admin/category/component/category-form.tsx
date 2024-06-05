@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import Form from "../../../../component/form";
-import TitleText from "../../component/title";
+import TitleText from "../../../../component/title";
 import BackButton from "../../component/back-button";
 import { Flex, Space } from "@mantine/core";
 import Input from "../../../../component/input";

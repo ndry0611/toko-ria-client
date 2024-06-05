@@ -5,7 +5,7 @@ import {
   StockAdjustmentSchema,
 } from "./type";
 import { yupResolver } from "@hookform/resolvers/yup";
-import TitleText from "../../component/title";
+import TitleText from "../../../../component/title";
 import Form from "../../../../component/form";
 import { Flex, Space } from "@mantine/core";
 import BackButton from "../../component/back-button";

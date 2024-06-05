@@ -6,7 +6,7 @@ import { modals } from "@mantine/modals";
 import { Center, Flex, SimpleGrid, Space, Text } from "@mantine/core";
 import { queryClient } from "../../../pages/_app";
 import notification from "../../../component/notification";
-import TitleText from "../component/title";
+import TitleText from "../../../component/title";
 import CreateButton from "../component/create-button";
 import LoaderView from "../component/loader-view";
 import TableList from "../component/table-list";

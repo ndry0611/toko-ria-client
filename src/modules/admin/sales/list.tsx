@@ -1,7 +1,7 @@
 import React from "react";
 import { SalesFilter } from "./components/type";
 import { useForm } from "react-hook-form";
-import TitleText from "../component/title";
+import TitleText from "../../../component/title";
 import Tabs from "../../../component/tabs";
 import { Flex, SimpleGrid, Space, TabsTabProps } from "@mantine/core";
 import Form from "../../../component/form";

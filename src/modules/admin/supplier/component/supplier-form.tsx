@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { SupplierFormSchema, SupplierFormType, SupplierModel } from "./type";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Form from "../../../../component/form";
-import TitleText from "../../component/title";
+import TitleText from "../../../../component/title";
 import { Flex, SimpleGrid, Space } from "@mantine/core";
 import BackButton from "../../component/back-button";
 import Input from "../../../../component/input";

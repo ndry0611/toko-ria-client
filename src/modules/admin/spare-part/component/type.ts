@@ -31,7 +31,7 @@ export interface SparePartsFilter {
 export interface GetSparePartModel extends SparePartModel {
   SparePartBrand: SPBrand | null;
   Car?: SPCar | null;
-  SpecialPrice?: SPrice[];
+  SpecialPrice: SPrice[];
 }
 
 interface SPrice {

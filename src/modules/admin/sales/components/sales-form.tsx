@@ -4,7 +4,7 @@ import { GetSaleModel, SaleFormSchema, SaleFormType } from "./type";
 import React from "react";
 import SalesDetailFields from "./sales-detail-fields";
 import { yupResolver } from "@hookform/resolvers/yup";
-import TitleText from "../../component/title";
+import TitleText from "../../../../component/title";
 import { SimpleGrid, Space } from "@mantine/core";
 import BackButton from "../../component/back-button";
 import UserSelect from "../../select/user-select";

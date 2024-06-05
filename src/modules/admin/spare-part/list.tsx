@@ -1,7 +1,7 @@
 import { Flex, SimpleGrid, Space } from "@mantine/core";
 import { useGetSpareParts } from "../../../api-hooks/spare-part-api";
 import ItemPaper from "./component/item-paper";
-import TitleText from "../component/title";
+import TitleText from "../../../component/title";
 import LoaderView from "../component/loader-view";
 import CreateButton from "../component/create-button";
 import FindButton from "../component/find-button";

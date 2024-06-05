@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import TableList from "../component/table-list";
 import { NavigationRoutes } from "../../../common/constants/route";
 import { Center, Flex, Space, Text } from "@mantine/core";
-import TitleText from "../component/title";
+import TitleText from "../../../component/title";
 import CreateButton from "../component/create-button";
 import {
   useDeleteCategory,

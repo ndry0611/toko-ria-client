@@ -18,7 +18,7 @@ import {
 } from "@mantine/core";
 import { queryClient } from "../../../pages/_app";
 import notification from "../../../component/notification";
-import TitleText from "../component/title";
+import TitleText from "../../../component/title";
 import { formatDate, stringToMoney } from "../../../utils/string";
 import Form from "../../../component/form";
 import { useForm } from "react-hook-form";

@@ -1,7 +1,7 @@
 import { Flex, SimpleGrid, Space, TabsTabProps } from "@mantine/core";
 import React from "react";
 import Tabs from "../../../component/tabs";
-import TitleText from "../component/title";
+import TitleText from "../../../component/title";
 import Form from "../../../component/form";
 import { useForm } from "react-hook-form";
 import { UserFilter } from "./component/user-type";
