@@ -6,11 +6,9 @@ import notification from "../../../component/notification";
 import { NavigationRoutes } from "../../../common/constants/route";
 import LoaderView from "../component/loader-view";
 import SalesForm from "./components/sales-form";
-import { Button, Space } from "@mantine/core";
-import { modals } from "@mantine/modals";
+import { Space } from "@mantine/core";
 import SalePaper from "../../../component/sales-paper";
 import { useReactToPrint } from "react-to-print";
-import { Printer } from "@phosphor-icons/react";
 import PrintButton from "../component/print-button";
 
 export default function UpdateSale() {

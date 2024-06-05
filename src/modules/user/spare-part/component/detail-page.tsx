@@ -24,27 +24,24 @@ import {
   AddCartDetailSchema,
 } from "../../cart/component/type";
 import React from "react";
+import { useAddCartDetail } from "../../../../api-hooks/cart-api";
+import notification from "../../../../component/notification";
+import { queryClient } from "../../../../pages/_app";
 
 export default function SparePartDetail() {
-  const { query } = useRouter();
+  const { query, back } = useRouter();
   const id = query.id as string;
   const querySparePart = useGetSparePart(id);
   const { data } = querySparePart;
 
   const defaultValues = React.useMemo<AddCartDetailFormType>(() => {
-    const price =
-      (data
-        ? data.SpecialPrice.length > 0
-          ? data.SpecialPrice[0].price
-          : data.sale_price
-        : 0) ?? 0;
-
     return {
       id_spare_part: "",
       quantity: 1,
-      price,
+      price: 0,
     };
-  }, [data]);
+  }, []);
+
   const methods = useForm({
     resolver: yupResolver(AddCartDetailSchema()),
     defaultValues,
@@ -52,6 +49,15 @@ export default function SparePartDetail() {
 
   const { setValue, watch } = methods;
   const quantity = watch("quantity");
+  setValue("id_spare_part", id);
+  setValue(
+    "price",
+    (data
+      ? data.SpecialPrice.length > 0
+        ? data.SpecialPrice[0].price
+        : data.sale_price
+      : 0) ?? 0
+  );
 
   const increaseQuantity = () => {
     if (data && data.stock > quantity) {
@@ -65,14 +71,33 @@ export default function SparePartDetail() {
     }
   };
 
+  const { mutateAsync } = useAddCartDetail();
+  const onSubmit = React.useCallback(
+    async (values: AddCartDetailFormType) => {
+      try {
+        await mutateAsync(values);
+        notification.success({
+          title: "Simpan Berhasil",
+          message: "Berhasil menambahkan ke Keranjang",
+        });
+        queryClient.invalidateQueries();
+        back();
+      } catch (e: any) {
+        notification.error({
+          title: "Simpan Gagal",
+          message: `${e?.message}`,
+        });
+      }
+    },
+    [back, mutateAsync]
+  );
+
   return (
-    <Form methods={methods} onSubmit={async () => {}}>
+    <Form methods={methods} onSubmit={onSubmit}>
       <LoaderView query={querySparePart}>
         {(data) => (
           <>
-            <Flex w={"100%"} pos={"relative"}>
-              <ImageComponent fileName={data.file_name} />
-            </Flex>
+            <ImageComponent fileName={data.file_name} />
             <Grid>
               <Grid.Col span={6}>
                 <Text fw={700}>{data.name}</Text>
@@ -152,7 +177,7 @@ export default function SparePartDetail() {
           >
             <Minus size={12} />
           </ActionIcon>
-          <Input type="number" name="quantity" maw={54} disabled />
+          <Input type="number" name="quantity" maw={54} readOnly />
           <ActionIcon
             variant="outline"
             style={{ alignSelf: "center" }}
@@ -174,24 +199,26 @@ function ImageComponent(props: { fileName?: string | null }) {
   const url = fileName ? `${PublicImageRoutes.spareParts}${fileName}` : "";
   if (url) {
     return (
-      <Image
-        onClick={(e) => {
-          e.stopPropagation();
-          window?.open(url, "_blank")?.focus();
-        }}
-        alt="image"
-        fill
-        src={url}
-        style={{
-          border: `1px solid ${color.mainBlack}`,
-          objectFit: "cover",
-          overflow: "hidden",
-          borderRadius: 4,
-          objectPosition: "top",
-          maxWidth: 768,
-          minHeight: 180,
-        }}
-      />
+      <Flex w={"100%"} mih={180} pos={"relative"}>
+        <Image
+          onClick={(e) => {
+            e.stopPropagation();
+            window?.open(url, "_blank")?.focus();
+          }}
+          alt="image"
+          fill
+          src={url}
+          style={{
+            border: `1px solid ${color.mainBlack}`,
+            objectFit: "cover",
+            overflow: "hidden",
+            borderRadius: 4,
+            objectPosition: "top",
+            maxWidth: 768,
+            minHeight: 180,
+          }}
+        />
+      </Flex>
     );
   } else {
     return (
