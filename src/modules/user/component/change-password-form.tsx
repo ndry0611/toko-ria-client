@@ -10,7 +10,7 @@ import { Center, Flex} from "@mantine/core";
 import { PhotoPreview } from "../../../component/photo-input";
 import { User } from "@phosphor-icons/react";
 import { PublicImageRoutes } from "../../../common/constants/route";
-import TitleText from "../../admin/component/title";
+import TitleText from "../../../component/title";
 import Input from "../../../component/input";
 import FormActionComponent from "../../admin/component/form-action-component";
 

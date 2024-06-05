@@ -9,7 +9,7 @@ import {
 import { useToken } from "../../../hooks/use-token";
 import { useGetMe } from "../../../api-hooks/user-api";
 import { CaretRight, User } from "@phosphor-icons/react";
-import TitleText from "../../admin/component/title";
+import TitleText from "../../../component/title";
 import LoaderView from "../../admin/component/loader-view";
 import { useRouter } from "next/router";
 

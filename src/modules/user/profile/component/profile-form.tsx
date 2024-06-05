@@ -11,7 +11,7 @@ import { PublicImageRoutes } from "../../../../common/constants/route";
 import Form from "../../../../component/form";
 import { Center, Flex } from "@mantine/core";
 import PhotoInput from "../../../../component/photo-input";
-import TitleText from "../../../admin/component/title";
+import TitleText from "../../../../component/title";
 import Input from "../../../../component/input";
 import FormActionComponent from "../../../admin/component/form-action-component";
 
