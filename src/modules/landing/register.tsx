@@ -6,25 +6,23 @@ import { RegisterUserFormSchema, RegisterUserFormType } from "./component/type";
 import { useRegisterUser } from "../../api-hooks/user-api";
 import Form from "../../component/form";
 import Input from "../../component/input";
-import React from "react";
 import { NavigationRoutes } from "../../common/constants/route";
 import notification from "../../component/notification";
 import { useRouter } from "next/router";
 import { Info } from "@phosphor-icons/react";
 import { color } from "../../common/constants/color";
 import Logo from "../../component/logo";
+import React from "react";
 
 export default function RegisterPage() {
-
   const centerComponent = (
-    <Text ta={"center"} fw={700} w='100%'>Registrasi</Text>
-  )
+    <Text ta={"center"} fw={700} w="100%">
+      Registrasi
+    </Text>
+  );
   return (
-    <PhoneLayout 
-    back
-    centerComponent={centerComponent}
-    >
-      <Logo m='auto'/>
+    <PhoneLayout back centerComponent={centerComponent}>
+      <Logo m="auto" />
       <RegisterForm />
     </PhoneLayout>
   );
@@ -34,14 +32,17 @@ function RegisterForm() {
   const [isLoading, setLoading] = React.useState(false);
   const { mutateAsync } = useRegisterUser();
   const { push } = useRouter();
-  const defaultValues: RegisterUserFormType = {
-    username: "",
-    password: "",
-    cPass: "",
-    name: "",
-    phone: "",
-    address: "",
-  };
+  const defaultValues = React.useMemo<RegisterUserFormType>(() => {
+    return {
+      username: "",
+      password: "",
+      cPass: "",
+      name: "",
+      phone: "",
+      address: "",
+    };
+  }, []);
+
   const methods = useForm({
     resolver: yupResolver(RegisterUserFormSchema()),
     defaultValues,
@@ -88,7 +89,9 @@ function RegisterForm() {
             digunakan, Mohon ditunggu. Terima kasih
           </Text>
         </Card>
-        <Button loading={isLoading} type="submit">Daftar</Button>
+        <Button loading={isLoading} type="submit">
+          Daftar
+        </Button>
       </Flex>
     </Form>
   );

@@ -35,13 +35,16 @@ function ForgetPasswordForm() {
   const [isLoading, setLoading] = React.useState(false);
   const { mutateAsync } = useForgetPassword();
   const { push } = useRouter();
-  const defaultValues: ForgetPasswordFormType = {
-    username: "",
-    name: "",
-    phone: "",
-    password: "",
-    cPass: "",
-  };
+  const defaultValues = React.useMemo<ForgetPasswordFormType>(() => {
+    return {
+      username: "",
+      name: "",
+      phone: "",
+      password: "",
+      cPass: "",
+    };
+  }, []);
+
   const methods = useForm({
     resolver: yupResolver(ForgetPasswordFormSchema()),
     defaultValues,

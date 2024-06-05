@@ -21,11 +21,13 @@ export default function CategoryForm(props: CategoryFormProps) {
   const { category } = props;
   const [files, setFiles] = React.useState<FileWithPath[]>([]);
 
-  const defaultValues: CategoryFormType = {
-    description: category?.description ?? "",
-    name: category?.name ?? "",
-    data: category,
-  };
+  const defaultValues = React.useMemo<CategoryFormType>(() => {
+    return {
+      description: category?.description ?? "",
+      name: category?.name ?? "",
+      data: category,
+    };
+  }, [category]);
 
   const methods = useForm({
     resolver: yupResolver(CategoryFormSchema()),
@@ -39,25 +41,37 @@ export default function CategoryForm(props: CategoryFormProps) {
     [files, props]
   );
 
-  const defaultImage = category?.file_name ? `${PublicImageRoutes.categories}${category.file_name}` : undefined
+  const defaultImage = category?.file_name
+    ? `${PublicImageRoutes.categories}${category.file_name}`
+    : undefined;
 
   return (
-      <Form methods={methods} onSubmit={onSubmit} defaultEditable={!category}>
-        <TitleText>{category ? "Edit" : "Tambah"} Kategori</TitleText>
-        <Space h={"sm"} />
-        <BackButton />
-        <Space h={"sm"} />
-        <PhotoInput label="Gambar" onDrop={setFiles} files={files} defaultImage={defaultImage}/>
-        <Flex direction={"column"} gap={20} style={{ margin: "20px 0px" }} maw={"500px"}>
-          <Input type="text" name="name" label="Nama Kategori" required />
-          <Input
-            type="text"
-            name="description"
-            label="Deskripsi Kategori"
-            required
-          />
-        </Flex>
-        <FormActionComponent />
-      </Form>
+    <Form methods={methods} onSubmit={onSubmit} defaultEditable={!category}>
+      <TitleText>{category ? "Edit" : "Tambah"} Kategori</TitleText>
+      <Space h={"sm"} />
+      <BackButton />
+      <Space h={"sm"} />
+      <PhotoInput
+        label="Gambar"
+        onDrop={setFiles}
+        files={files}
+        defaultImage={defaultImage}
+      />
+      <Flex
+        direction={"column"}
+        gap={20}
+        style={{ margin: "20px 0px" }}
+        maw={"500px"}
+      >
+        <Input type="text" name="name" label="Nama Kategori" required />
+        <Input
+          type="text"
+          name="description"
+          label="Deskripsi Kategori"
+          required
+        />
+      </Flex>
+      <FormActionComponent />
+    </Form>
   );
 }

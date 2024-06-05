@@ -11,6 +11,7 @@ import Input from "../../../component/input";
 import { color } from "../../../common/constants/color";
 import { Info } from "@phosphor-icons/react";
 import FormActionComponent from "../../admin/component/form-action-component";
+import React from "react";
 
 interface ComplaintFormProps {
   user: GetUserModel;
@@ -19,9 +20,12 @@ interface ComplaintFormProps {
 
 export default function ComplaintForm(props: ComplaintFormProps) {
   const { user, onSubmit } = props;
-  const defaultValues: ComplaintFormType = {
-    complaint: "",
-  };
+  const defaultValues = React.useMemo<ComplaintFormType>(() => {
+    return {
+      complaint: "",
+    };
+  }, []);
+
   const methods = useForm({
     resolver: yupResolver(ComplaintFormSchema()),
     defaultValues,

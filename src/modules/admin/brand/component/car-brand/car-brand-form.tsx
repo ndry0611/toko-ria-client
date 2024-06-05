@@ -9,6 +9,7 @@ import Form from "../../../../../component/form";
 import Input from "../../../../../component/input";
 import FormActionComponent from "../../../component/form-action-component";
 import { Space } from "@mantine/core";
+import React from "react";
 
 interface CarBrandFormProps {
   carBrand?: CarBrandModel;
@@ -17,11 +18,13 @@ interface CarBrandFormProps {
 
 export default function CarBrandForm(props: CarBrandFormProps) {
   const { carBrand, onSubmit } = props;
-  const defaultValues: CarBrandFormType = {
-    name: carBrand?.name ?? "",
-    manufacture: carBrand?.manufacture ?? "",
-    data: carBrand,
-  };
+  const defaultValues = React.useMemo<CarBrandFormType>(() => {
+    return {
+      name: carBrand?.name ?? "",
+      manufacture: carBrand?.manufacture ?? "",
+      data: carBrand,
+    };
+  }, [carBrand]);
   const methods = useForm({
     resolver: yupResolver(CarBrandFormSchema()),
     defaultValues,

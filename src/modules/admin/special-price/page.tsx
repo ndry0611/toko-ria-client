@@ -42,11 +42,13 @@ export default function SpecialPricePage() {
   const { mutateAsync: deleteSpecialPrice } = useDeleteSpecialPrice();
   const { mutateAsync: createSpecialPrice } = useCreateSpecialPrice();
 
-  const defaultValues: SpecialPriceFormType = {
-    id_spare_part: idSparePart,
-    id_user: "",
-    price: 0,
-  };
+  const defaultValues = React.useMemo<SpecialPriceFormType>(() => {
+    return {
+      id_spare_part: idSparePart,
+      id_user: "",
+      price: 0,
+    };
+  }, [idSparePart]);
 
   const methods = useForm({
     resolver: yupResolver(SpecialPriceFormSchema()),

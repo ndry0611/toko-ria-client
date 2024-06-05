@@ -26,12 +26,15 @@ interface ProfileFormProps {
 export default function ProfileForm(props: ProfileFormProps) {
   const { user } = props;
   const [files, setFiles] = React.useState<FileWithPath[]>([]);
-  const defaultValues: UpdateUserFormType = {
-    name: user.name,
-    phone: user.phone,
-    address: user.address,
-    data: user,
-  };
+  const defaultValues = React.useMemo<UpdateUserFormType>(() => {
+    return {
+      name: user.name,
+      phone: user.phone,
+      address: user.address,
+      data: user,
+    };
+  }, [user]);
+
   const methods = useForm({
     resolver: yupResolver(UpdateUserFormSchema()),
     defaultValues,

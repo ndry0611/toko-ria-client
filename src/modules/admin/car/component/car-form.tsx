@@ -18,13 +18,15 @@ interface CarFormProps {
 export default function CarForm(props: CarFormProps) {
   const { car, onSubmit } = props;
 
-  const defaultValues: CarFormType = {
-    id_car_brand: car?.id_car_brand?.toString() ?? "",
-    name: car?.name ?? "",
-    production_year: car?.production_year ?? "",
-    type: car?.type ?? "",
-    data: car,
-  };
+  const defaultValues = React.useMemo<CarFormType>(() => {
+    return {
+      id_car_brand: car?.id_car_brand?.toString() ?? "",
+      name: car?.name ?? "",
+      production_year: car?.production_year ?? "",
+      type: car?.type ?? "",
+      data: car,
+    };
+  }, [car]);
 
   const methods = useForm({
     resolver: yupResolver(CarFormSchema()),
@@ -44,7 +46,11 @@ export default function CarForm(props: CarFormProps) {
         maw={"500px"}
       >
         <Input type="text" name="name" label="Nama Mobil" />
-        <CarBrandSelect name="id_car_brand" label="Merk Mobil" placeholder="Pilih Merk Mobil"/>
+        <CarBrandSelect
+          name="id_car_brand"
+          label="Merk Mobil"
+          placeholder="Pilih Merk Mobil"
+        />
         <Input type="text" name="type" label="Tipe Mobil" />
         <Input type="text" name="production_year" label="Tahun Produksi" />
       </Flex>

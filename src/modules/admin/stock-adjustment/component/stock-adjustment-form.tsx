@@ -12,6 +12,7 @@ import BackButton from "../../component/back-button";
 import SparePartSelect from "../../select/spare-part-select";
 import Input from "../../../../component/input";
 import FormActionComponent from "../../component/form-action-component";
+import React from "react";
 
 interface StockAdjustmentProps {
   stockAdjustment?: GetStockAdjustmentModel;
@@ -21,14 +22,17 @@ interface StockAdjustmentProps {
 export default function StockAdjustmentForm(props: StockAdjustmentProps) {
   const { stockAdjustment, onSubmit } = props;
 
-  const defaultValues: StockAdjustmentFormType = {
-    id_spare_part: stockAdjustment?.id_spare_part?.toString() ?? "",
-    code: stockAdjustment?.code ?? "",
-    old_quantity: stockAdjustment?.old_quantity ?? 0,
-    new_quantity: stockAdjustment?.new_quantity ?? 0,
-    description: stockAdjustment?.description ?? "",
-    data: stockAdjustment,
-  };
+  const defaultValues = React.useMemo<StockAdjustmentFormType>(() => {
+    return {
+      id_spare_part: stockAdjustment?.id_spare_part?.toString() ?? "",
+      code: stockAdjustment?.code ?? "",
+      old_quantity: stockAdjustment?.old_quantity ?? 0,
+      new_quantity: stockAdjustment?.new_quantity ?? 0,
+      description: stockAdjustment?.description ?? "",
+      data: stockAdjustment,
+    };
+  }, [stockAdjustment]);
+  
   const methods = useForm({
     resolver: yupResolver(StockAdjustmentSchema()),
     defaultValues,

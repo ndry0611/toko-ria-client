@@ -6,13 +6,14 @@ import {
 } from "../../admin/user/component/user-type";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Form from "../../../component/form";
-import { Center, Flex} from "@mantine/core";
+import { Center, Flex } from "@mantine/core";
 import { PhotoPreview } from "../../../component/photo-input";
 import { User } from "@phosphor-icons/react";
 import { PublicImageRoutes } from "../../../common/constants/route";
 import TitleText from "../../../component/title";
 import Input from "../../../component/input";
 import FormActionComponent from "../../admin/component/form-action-component";
+import React from "react";
 
 interface ChangePasswordFormProps {
   user: GetUserModel;
@@ -21,11 +22,14 @@ interface ChangePasswordFormProps {
 
 export default function ChangePasswordForm(props: ChangePasswordFormProps) {
   const { user, onSubmit } = props;
-  const defaultValues: ChangePasswordFormType = {
-    old_password: "",
-    new_password: "",
-    np_confirmation: "",
-  };
+  const defaultValues = React.useMemo<ChangePasswordFormType>(() => {
+    return {
+      old_password: "",
+      new_password: "",
+      np_confirmation: "",
+    };
+  }, []);
+
   const methods = useForm({
     resolver: yupResolver(ChangePasswordFormSchema()),
     defaultValues,

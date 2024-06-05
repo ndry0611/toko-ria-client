@@ -22,35 +22,37 @@ interface SalesFormProps {
 
 export default function SalesForm(props: SalesFormProps) {
   const { sales, onSubmit } = props;
-  const defaultValues: SaleFormType = {
-    code: sales?.code ?? generateCode(),
-    expired_date: sales
-      ? sales.expired_date
-        ? new Date(sales.expired_date)
-        : undefined
-      : undefined,
-    grand_total: sales?.grand_total ?? 0,
-    id_user: sales?.id_user.toString() ?? "",
-    payment_date: sales
-      ? sales.payment_date
-        ? new Date(sales.payment_date)
-        : undefined
-      : new Date(),
-    payment_method: sales?.payment_method.toString() ?? "1",
-    status: sales?.status.toString() ?? "4",
-    sale_detail:
-      sales?.SaleDetail.map((item) => ({
-        id_spare_part: item.id_spare_part.toString(),
-        quantity: item.quantity,
-        price: item.price,
-        total_price: item.total_price,
-        file_name: item.SparePart.file_name ?? "",
-        part_no: item.SparePart.part_no,
-        sell_method: item.SparePart.sell_method ?? "",
-      })) ?? [],
-    specialPrices: [],
-    data: sales,
-  };
+  const defaultValues = React.useMemo<SaleFormType>(() => {
+    return {
+      code: sales?.code ?? generateCode(),
+      expired_date: sales
+        ? sales.expired_date
+          ? new Date(sales.expired_date)
+          : undefined
+        : undefined,
+      grand_total: sales?.grand_total ?? 0,
+      id_user: sales?.id_user.toString() ?? "",
+      payment_date: sales
+        ? sales.payment_date
+          ? new Date(sales.payment_date)
+          : undefined
+        : new Date(),
+      payment_method: sales?.payment_method.toString() ?? "1",
+      status: sales?.status.toString() ?? "4",
+      sale_detail:
+        sales?.SaleDetail.map((item) => ({
+          id_spare_part: item.id_spare_part.toString(),
+          quantity: item.quantity,
+          price: item.price,
+          total_price: item.total_price,
+          file_name: item.SparePart.file_name ?? "",
+          part_no: item.SparePart.part_no,
+          sell_method: item.SparePart.sell_method ?? "",
+        })) ?? [],
+      specialPrices: [],
+      data: sales,
+    };
+  }, [sales]);
 
   const methods = useForm({
     defaultValues,
@@ -81,12 +83,7 @@ export default function SalesForm(props: SalesFormProps) {
           disabled={sales ? true : false}
           placeholder="Pilih Pelanggan"
         />
-        <Input
-          type="text"
-          name="code"
-          label="Kode Bon"
-          disabled
-        />
+        <Input type="text" name="code" label="Kode Bon" disabled />
         <Input
           type="select"
           name="payment_method"

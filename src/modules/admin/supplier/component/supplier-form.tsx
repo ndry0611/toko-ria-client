@@ -7,6 +7,7 @@ import { Flex, SimpleGrid, Space } from "@mantine/core";
 import BackButton from "../../component/back-button";
 import Input from "../../../../component/input";
 import FormActionComponent from "../../component/form-action-component";
+import React from "react";
 
 interface SupplierFormProps {
   supplier?: SupplierModel;
@@ -15,17 +16,21 @@ interface SupplierFormProps {
 
 export default function SupplierForm(props: SupplierFormProps) {
   const { supplier, onSubmit } = props;
-  const defaultValues: SupplierFormType = {
-    company_name: supplier?.company_name ?? "",
-    company_phone: supplier?.company_phone ?? "",
-    pic_name: supplier?.pic_name ?? "",
-    pic_phone: supplier?.pic_phone ?? "",
-    address: supplier?.address ?? "",
-    bank_account: supplier?.bank_account ?? "",
-    bank_account_name: supplier?.bank_account_name ?? "",
-    status: supplier?.status ?? "ACTIVE",
-    data: supplier,
-  };
+
+  const defaultValues = React.useMemo<SupplierFormType>(() => {
+    return {
+      company_name: supplier?.company_name ?? "",
+      company_phone: supplier?.company_phone ?? "",
+      pic_name: supplier?.pic_name ?? "",
+      pic_phone: supplier?.pic_phone ?? "",
+      address: supplier?.address ?? "",
+      bank_account: supplier?.bank_account ?? "",
+      bank_account_name: supplier?.bank_account_name ?? "",
+      status: supplier?.status ?? "ACTIVE",
+      data: supplier,
+    };
+  }, [supplier]);
+
   const methods = useForm({
     resolver: yupResolver(SupplierFormSchema()),
     defaultValues,

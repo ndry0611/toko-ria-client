@@ -19,10 +19,13 @@ export default function LoginPage() {
   const { handleToken } = useToken();
   const { replace, push } = useRouter();
   const { mutateAsync } = useLogin();
-  const defaultValues: LoginFormType = {
-    username: "",
-    password: "",
-  };
+  const defaultValues = React.useMemo<LoginFormType>(() => {
+    return {
+      username: "",
+      password: "",
+    };
+  }, []);
+
   const methods = useForm({
     resolver: yupResolver(LoginFormSchema()),
     defaultValues,

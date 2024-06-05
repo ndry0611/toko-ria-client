@@ -7,6 +7,7 @@ import { Flex, SimpleGrid, Space } from "@mantine/core";
 import BackButton from "../../component/back-button";
 import Input from "../../../../component/input";
 import FormActionComponent from "../../component/form-action-component";
+import React from "react";
 
 interface UserFormProps {
   onSubmit: (values: CreateUserFormType) => Promise<void>;
@@ -14,15 +15,18 @@ interface UserFormProps {
 export default function UserForm(props: UserFormProps) {
   const { onSubmit } = props;
 
-  const defaultValues: CreateUserFormType = {
-    username: "",
-    password: "",
-    name: "",
-    phone: "",
-    address: "",
-    id_role: "2",
-    status: "ACTIVE"
-  };
+  const defaultValues = React.useMemo<CreateUserFormType>(() => {
+    return {
+      username: "",
+      password: "",
+      name: "",
+      phone: "",
+      address: "",
+      id_role: "2",
+      status: "ACTIVE",
+    };
+  }, []);
+
   const methods = useForm({
     resolver: yupResolver(CreateUserFormSchema()),
     defaultValues,

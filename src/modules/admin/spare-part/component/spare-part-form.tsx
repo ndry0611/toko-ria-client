@@ -84,25 +84,27 @@ export default function SparePartForm(props: SparePartFormProps) {
   const { sparePart } = props;
   const [files, setFiles] = React.useState<FileWithPath[]>([]);
 
-  const defaultValues: SparePartFormType = {
-    id_category: sparePart?.id_category?.toString() ?? "",
-    id_spare_part_brand: sparePart?.id_spare_part_brand?.toString() ?? "",
-    id_car: sparePart?.id_car?.toString(),
-    id_supplier: sparePart?.id_supplier?.toString(),
-    name: sparePart?.name ?? "",
-    part_no: sparePart?.part_no ?? "",
-    genuine: sparePart?.genuine ?? "asli",
-    stock: sparePart?.stock ?? 0,
-    capital_price: sparePart?.capital_price ?? 0,
-    sell_method: sparePart?.sell_method ?? "pcs",
-    is_available: sparePart?.is_available ?? false,
-    sale_price: sparePart?.sale_price ?? 0,
-    description: sparePart?.description ?? "",
-    supply_date: sparePart?.supply_date
-      ? new Date(sparePart?.supply_date)
-      : new Date(),
-    data: sparePart,
-  };
+  const defaultValues = React.useMemo<SparePartFormType>(() => {
+    return {
+      id_category: sparePart?.id_category?.toString() ?? "",
+      id_spare_part_brand: sparePart?.id_spare_part_brand?.toString() ?? "",
+      id_car: sparePart?.id_car?.toString(),
+      id_supplier: sparePart?.id_supplier?.toString(),
+      name: sparePart?.name ?? "",
+      part_no: sparePart?.part_no ?? "",
+      genuine: sparePart?.genuine ?? "asli",
+      stock: sparePart?.stock ?? 0,
+      capital_price: sparePart?.capital_price ?? 0,
+      sell_method: sparePart?.sell_method ?? "pcs",
+      is_available: sparePart?.is_available ?? false,
+      sale_price: sparePart?.sale_price ?? 0,
+      description: sparePart?.description ?? "",
+      supply_date: sparePart?.supply_date
+        ? new Date(sparePart?.supply_date)
+        : new Date(),
+      data: sparePart,
+    };
+  }, [sparePart]);
 
   const methods = useForm({
     resolver: yupResolver(SparePartFormSchema()),
@@ -140,7 +142,11 @@ export default function SparePartForm(props: SparePartFormProps) {
             files={files}
             defaultImage={defaultImage}
           />
-          <CategorySelect label="Kategori" name="id_category" placeholder="Pilih Kategori" />
+          <CategorySelect
+            label="Kategori"
+            name="id_category"
+            placeholder="Pilih Kategori"
+          />
           <Input type="text" label="Part Number" name="part_no" />
           <Input type="number" label="Harga Modal" name="capital_price" />
           <Input type="check-box" label="Barang Dijual?" name="is_available" />

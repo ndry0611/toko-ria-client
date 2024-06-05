@@ -9,6 +9,7 @@ import Form from "../../../../../component/form";
 import Input from "../../../../../component/input";
 import FormActionComponent from "../../../component/form-action-component";
 import { Space } from "@mantine/core";
+import React from "react";
 
 interface SparePartBrandFormProps {
   sparePartBrand?: SparePartBrandModel;
@@ -17,11 +18,13 @@ interface SparePartBrandFormProps {
 
 export default function SparePartBrandForm(props: SparePartBrandFormProps) {
   const { sparePartBrand, onSubmit } = props;
-  const defaultValues: SparePartBrandFormType = {
-    name: sparePartBrand?.name ?? "",
-    manufacture: sparePartBrand?.manufacture ?? "",
-    data: sparePartBrand,
-  };
+  const defaultValues = React.useMemo<SparePartBrandFormType>(() => {
+    return {
+      name: sparePartBrand?.name ?? "",
+      manufacture: sparePartBrand?.manufacture ?? "",
+      data: sparePartBrand,
+    };
+  }, [sparePartBrand]);
   const methods = useForm({
     resolver: yupResolver(SparePartBrandFormSchema()),
     defaultValues,

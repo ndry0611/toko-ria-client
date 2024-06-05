@@ -11,6 +11,7 @@ import Input from "../../../../component/input";
 import { color } from "../../../../common/constants/color";
 import PurchasesDetailFields from "./purchase-detail-fields";
 import FormActionComponent from "../../component/form-action-component";
+import React from "react";
 
 interface PurchaseFormProps {
   purchase?: GetPurchaseModel;
@@ -19,34 +20,36 @@ interface PurchaseFormProps {
 
 export default function PurchaseForm(props: PurchaseFormProps) {
   const { purchase, onSubmit } = props;
-  const defaultValues: PurchaseFormType = {
-    id_supplier: purchase?.id_supplier.toString() ?? "",
-    code: purchase?.code ?? "",
-    purchase_date: purchase?.purchase_date
-      ? new Date(purchase.purchase_date)
-      : new Date(),
-    credit_duration: purchase?.credit_duration ?? 0,
-    grand_total: purchase?.grand_total ?? 0,
-    status: purchase?.status.toString() ?? "",
-    payment_date: purchase
-      ? purchase.payment_date
-        ? new Date(purchase.payment_date)
-        : undefined
-      : undefined,
-    purchase_detail:
-      purchase?.PurchaseDetail.map((item) => ({
-        id_spare_part: item.id_spare_part.toString(),
-        quantity: item.quantity,
-        price: item.price,
-        total_price: item.total_price,
-        file_name: item.SparePart.file_name ?? "",
-        part_no: item.SparePart.part_no,
-        discount: item.discount,
-        sell_method: item.SparePart.sell_method ?? "",
-      })) ?? [],
-    data: purchase,
-    specialPrices: [],
-  };
+  const defaultValues = React.useMemo<PurchaseFormType>(() => {
+    return {
+      id_supplier: purchase?.id_supplier.toString() ?? "",
+      code: purchase?.code ?? "",
+      purchase_date: purchase?.purchase_date
+        ? new Date(purchase.purchase_date)
+        : new Date(),
+      credit_duration: purchase?.credit_duration ?? 0,
+      grand_total: purchase?.grand_total ?? 0,
+      status: purchase?.status.toString() ?? "",
+      payment_date: purchase
+        ? purchase.payment_date
+          ? new Date(purchase.payment_date)
+          : undefined
+        : undefined,
+      purchase_detail:
+        purchase?.PurchaseDetail.map((item) => ({
+          id_spare_part: item.id_spare_part.toString(),
+          quantity: item.quantity,
+          price: item.price,
+          total_price: item.total_price,
+          file_name: item.SparePart.file_name ?? "",
+          part_no: item.SparePart.part_no,
+          discount: item.discount,
+          sell_method: item.SparePart.sell_method ?? "",
+        })) ?? [],
+      data: purchase,
+      specialPrices: [],
+    };
+  }, [purchase]);
 
   const methods = useForm({
     defaultValues,
