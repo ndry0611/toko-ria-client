@@ -39,12 +39,12 @@ interface SPrice {
   price: number;
 }
 
-interface SPBrand {
+export interface SPBrand {
   name: string;
   manufacture: string;
 }
 
-interface SPCar {
+export interface SPCar {
   id_car_brand: number;
   CarBrand: SPCBrand;
   name: string;
@@ -52,7 +52,7 @@ interface SPCar {
   type: string;
 }
 
-interface SPCBrand {
+export interface SPCBrand {
   name: string;
 }
 
