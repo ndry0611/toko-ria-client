@@ -1,21 +1,17 @@
-import { ImageSquare, Trash } from "@phosphor-icons/react";
-import { PublicImageRoutes } from "../../../../common/constants/route";
-import { PhotoPreview } from "../../../../component/photo-input";
-import { CartDetailModel } from "./type";
-import { color } from "../../../../common/constants/color";
-import { ActionIcon, Card, Center, Grid, Text } from "@mantine/core";
+import { Card, Center, Grid, Text } from "@mantine/core";
+import { GetSaleModel, SaleDetailsModel } from "../../../admin/sales/components/type";
 import { stringToMoney } from "../../../../utils/string";
-import React from "react";
-import { useDeleteCartDetail } from "../../../../api-hooks/cart-api";
-import { queryClient } from "../../../../pages/_app";
-import notification from "../../../../component/notification";
+import { PhotoPreview } from "../../../../component/photo-input";
+import { ImageSquare } from "@phosphor-icons/react";
+import { color } from "../../../../common/constants/color";
+import { PublicImageRoutes } from "../../../../common/constants/route";
 
-interface CartDetailProps {
-  item: CartDetailModel;
+interface TransactionItemProps {
+  item: SaleDetailsModel;
 }
 
-export default function CartDetail(props: CartDetailProps) {
-  const { item } = props;
+export default function TransactionItemProps(props: TransactionItemProps) {
+  const {item} = props;
   const itemImage = item.SparePart.file_name ? (
     <PhotoPreview
       size={70}
@@ -27,28 +23,8 @@ export default function CartDetail(props: CartDetailProps) {
       style={{ backgroundColor: color.mainTheme, borderRadius: 4 }}
     />
   );
-  const { mutateAsync } = useDeleteCartDetail();
-  const cartDelete = React.useCallback(
-    async (id: string) => {
-      try {
-        await mutateAsync(id);
-        queryClient.refetchQueries({ queryKey: ["get-cart"] });
-        notification.success({
-          title: "Success",
-          message: "Berhasil memperbaharui keranjang belanja",
-        });
-      } catch (e: any) {
-        notification.error({
-          title: e?.error,
-          message: e?.message,
-        });
-      }
-    },
-    [mutateAsync]
-  );
-
   return (
-    <Card radius={"md"} withBorder py={8} px={0} mx={0}>
+    <Card radius={"md"} withBorder p={8}>
       <Grid m={8}>
         <Grid.Col span={3}>
           <Center>{itemImage}</Center>
@@ -78,22 +54,14 @@ export default function CartDetail(props: CartDetailProps) {
           </Text>
         </Grid.Col>
         <Grid.Col span={3}>
-          <Text fz={12} fw={700} ta={"right"}>
+          <Text fz={10} fw={700} ta={"right"}>
             x{item.quantity} {item.SparePart.sell_method}
           </Text>
-          <Text fz={12} fw={700} ta={"right"}>
+          <Text fz={10} fw={700} ta={"right"}>
             {stringToMoney(item.total_price)}
           </Text>
-          <Center my={8}>
-            <ActionIcon
-              bg={"red"}
-              onClick={() => cartDelete(item.id.toString())}
-            >
-              <Trash size={24} />
-            </ActionIcon>
-          </Center>
         </Grid.Col>
       </Grid>
     </Card>
-  );
+  )
 }

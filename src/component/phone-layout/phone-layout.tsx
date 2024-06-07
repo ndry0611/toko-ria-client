@@ -50,7 +50,9 @@ export default function PhoneLayout(props: PhoneLayoutProps) {
           style={{
             margin: "0px auto",
             width: "100%",
+            minHeight:`calc(${h} - 32px)`,
             maxWidth: 768,
+            position:'relative'
           }}
         >
           {children}

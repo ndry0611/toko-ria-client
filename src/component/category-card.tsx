@@ -28,8 +28,9 @@ export default function CategoryCard(props: CategoryCardProps) {
         withBorder
         padding={"xs"}
         radius={"sm"}
-        w={"200px"}
-        h={"250px"}
+        // w={"180"}
+        // h={"240"}
+        mih={240}
       >
         <Card.Section>
           {item.file_name ? (

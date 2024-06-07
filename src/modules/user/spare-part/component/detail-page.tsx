@@ -168,7 +168,13 @@ export default function SparePartDetail() {
           </>
         )}
       </LoaderView>
-      <Flex justify={"space-between"}>
+      <Flex
+        justify={"space-between"}
+        pos={"absolute"}
+        bottom={16}
+        left={16}
+        right={16}
+      >
         <Flex gap={"md"}>
           <ActionIcon
             variant="outline"

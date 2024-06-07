@@ -9,7 +9,6 @@ export default function Document() {
         <meta charSet="utf-8" />
         <link rel="shortcut icon" href="/logo.svg" />
         <ColorSchemeScript />
-        <style></style>
       </Head>
       <body>
         <Main />

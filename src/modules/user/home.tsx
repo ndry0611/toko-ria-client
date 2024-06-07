@@ -19,7 +19,7 @@ export default function UserHome() {
         {(data) => {
           return (
             <Flex w={"100%"} justify={"center"}>
-              <SimpleGrid cols={2}>
+              <SimpleGrid cols={2} mb={16}>
                 {data.map((item) => {
                   return (
                     <CategoryCard item={item} key={item.id} type="user"  />

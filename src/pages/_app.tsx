@@ -57,6 +57,12 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
           name="viewport"
           content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no, shrink-to-fit=no"
         />
+        <script
+          type="text/javascript"
+          src="https://app.sandbox.midtrans.com/snap/snap.js"
+          data-client-key="SB-Mid-client-tTzrWll7mHkWj92k"
+          defer
+        />
       </Head>
       <QueryClientProvider client={queryClient}>
         <MantineProvider theme={theme}>
@@ -64,6 +70,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
             <Notifications limit={5} position="top-center" />
             <TokenProvider>
               <>{getLayout(<Component {...pageProps} />)}</>
+              <div id="snap-container"></div>
             </TokenProvider>
           </ModalsProvider>
         </MantineProvider>
