@@ -8,8 +8,12 @@ export default function useSnapPay() {
   const onPay = (sale: SaleModel) => {
     (window as any).snap.pay(sale.snap_token, {
       onSuccess: function(result: any) {
-        // Create page for success payment
-        console.log(result, "masok");
+        console.log(result);
+        replace(`${NavigationRoutes.transaction}`);
+        notification.success({
+          title: "Pembayaran Berhasil",
+          message: "Terimakasih telah berbelanja di Toko Ria!"
+        });
       },
       onPending: function(result: any) {
         console.log(result);
