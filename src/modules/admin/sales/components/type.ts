@@ -11,6 +11,7 @@ export interface SaleModel {
   payment_date?: string;
   expired_date?: string;
   status: number;
+  snap_token?: string;
   created_at?: string;
   updated_at?: string;
 }

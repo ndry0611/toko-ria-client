@@ -4,6 +4,7 @@ import {
   CartModel,
 } from "../modules/user/cart/component/type";
 import { callApi } from "../utils/api";
+import { SaleModel } from "../modules/admin/sales/components/type";
 
 export function useGetCart() {
   return useQuery({
@@ -23,6 +24,17 @@ export function useAddCartDetail() {
         url: "/cart/details",
         method: "POST",
         data: request,
+      });
+    },
+  });
+}
+
+export function useCartCheckout() {
+  return useMutation({
+    mutationFn: async () => {
+      return await callApi<SaleModel>({
+        url: "/cart/checkout",
+        method: "POST",
       });
     },
   });
