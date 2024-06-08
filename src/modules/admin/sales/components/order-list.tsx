@@ -34,17 +34,7 @@ export default function OrderList(props: SaleListProps) {
           ? "Online"
           : "-",
         item.payment_date ? formatDate(item.payment_date) : "-",
-        item.status == 1 && !!item.payment_date
-          ? "Menunggu Pembayaran"
-          : item.status == 1 && item.payment_date
-          ? "Packing"
-          : item.status == 2
-          ? "Dikirim"
-          : item.status == 3
-          ? "Dibatalkan"
-          : item.status == 4
-          ? "Selesai"
-          : "-",
+        getStatus(item.status, item.payment_date),
         item.updated_at ? formatDate(item.updated_at) : "-",
       ];
     },
@@ -57,4 +47,21 @@ export default function OrderList(props: SaleListProps) {
       {(data) => <TableList data={table} />}
     </LoaderView>
   );
+}
+
+
+function getStatus(status: number, payment_date?: string) {
+  if (status === 1) {
+    return payment_date ? "Packing" : "Menunggu Pembayaran";
+  }
+  switch (status) {
+    case 2:
+      return "Dikirim";
+    case 3:
+      return "Dibatalkan";
+    case 4:
+      return "Selesai";
+    default:
+      return "-";
+  }
 }

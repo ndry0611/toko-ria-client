@@ -43,17 +43,7 @@ const SalesRecap = forwardRef<HTMLDivElement, SaleRecapProps>(
             : item.payment_method == 2
             ? "Online"
             : "-",
-          item.status == 1 && !!item.payment_date
-            ? "Menunggu Pembayaran"
-            : item.status == 1 && item.payment_date
-            ? "Packing"
-            : item.status == 2
-            ? "Dikirim"
-            : item.status == 3
-            ? "Dibatalkan"
-            : item.status == 4
-            ? "Selesai"
-            : "-",
+          getStatus(item.status, item.payment_date),
           item.created_at ? formatDate(item.created_at) : "-",
           item.payment_date ? formatDate(item.payment_date) : "-",
           <Text ta="right" key={`${item.id}-${item.User.name}`}>
@@ -131,5 +121,23 @@ const SalesRecap = forwardRef<HTMLDivElement, SaleRecapProps>(
   }
 );
 SalesRecap.displayName = "Sales Recap";
+
+
+function getStatus(status: number, payment_date?: string) {
+  console.log(status)
+  if (status === 1) {
+    return payment_date ? "Packing" : "Menunggu Pembayaran";
+  }
+  switch (status) {
+    case 2:
+      return "Dikirim";
+    case 3:
+      return "Dibatalkan";
+    case 4:
+      return "Selesai";
+    default:
+      return "-";
+  }
+}
 
 export default SalesRecap;
