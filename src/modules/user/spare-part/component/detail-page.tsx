@@ -169,10 +169,10 @@ export default function SparePartDetail() {
               justify={"space-between"}
               pos={"absolute"}
               bottom={16}
-              left={16}
-              right={16}
+              left={0}
+              right={0}
             >
-              <Flex gap={"md"}>
+              <Flex gap={"xs"}>
                 <ActionIcon
                   variant="outline"
                   style={{ alignSelf: "center" }}
@@ -190,11 +190,12 @@ export default function SparePartDetail() {
                 </ActionIcon>
               </Flex>
               <Button
-                rightSection={<ShoppingCart />}
+                rightSection={<ShoppingCart size={24}/>}
                 type="submit"
                 disabled={!data.is_available}
+                fz={12}
               >
-                Tambahkan ke Keranjang
+                Tambah ke
               </Button>
             </Flex>
           </>
