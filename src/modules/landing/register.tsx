@@ -89,7 +89,7 @@ function RegisterForm() {
             digunakan, Mohon ditunggu. Terima kasih
           </Text>
         </Card>
-        <Button loading={isLoading} type="submit">
+        <Button loading={isLoading} type="submit" my={"md"}>
           Daftar
         </Button>
       </Flex>
