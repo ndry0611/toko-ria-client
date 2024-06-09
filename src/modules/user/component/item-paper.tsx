@@ -23,12 +23,23 @@ export default function ItemPaper(props: ItemPaperProps) {
   ) : (
     <ImageSquare
       size={70}
-      style={{ backgroundColor: color.mainTheme, borderRadius: 4 }}
+      style={{
+        backgroundColor:
+          !item.is_available || item.stock < 1
+            ? color.notAvailable
+            : color.mainTheme,
+        borderRadius: 4,
+      }}
     />
   );
   return (
     <Link href={pathname + `/${item.id}`} style={{ textDecoration: "none" }}>
-      <Card radius={"md"} withBorder p={8}>
+      <Card
+        radius={"md"}
+        withBorder
+        p={8}
+        bg={!item.is_available || item.stock < 1 ? color.notAvailable : ""}
+      >
         <Grid m={8}>
           <Grid.Col span={3}>
             <Center>{itemImage}</Center>
@@ -59,7 +70,9 @@ export default function ItemPaper(props: ItemPaperProps) {
                 <Text td="line-through" fz={12} ta={"right"} c={color.mainGrey}>
                   {item.sale_price ? stringToMoney(item.sale_price) : "-"}
                 </Text>
-                <Text ta={"right"} fz={12} fw={700}>{stringToMoney(item.SpecialPrice[0].price)}</Text>
+                <Text ta={"right"} fz={12} fw={700}>
+                  {stringToMoney(item.SpecialPrice[0].price)}
+                </Text>
               </>
             ) : (
               <Text fz={12} fw={700} ta={"right"}>

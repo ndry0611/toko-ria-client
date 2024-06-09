@@ -165,37 +165,41 @@ export default function SparePartDetail() {
             </Paper>
             <hr />
             <Space h={"lg"} />
+            <Flex
+              justify={"space-between"}
+              pos={"absolute"}
+              bottom={16}
+              left={16}
+              right={16}
+            >
+              <Flex gap={"md"}>
+                <ActionIcon
+                  variant="outline"
+                  style={{ alignSelf: "center" }}
+                  onClick={decreaseQuantity}
+                >
+                  <Minus size={12} />
+                </ActionIcon>
+                <Input type="number" name="quantity" maw={54} readOnly />
+                <ActionIcon
+                  variant="outline"
+                  style={{ alignSelf: "center" }}
+                  onClick={increaseQuantity}
+                >
+                  <Plus size={12} />
+                </ActionIcon>
+              </Flex>
+              <Button
+                rightSection={<ShoppingCart />}
+                type="submit"
+                disabled={!data.is_available}
+              >
+                Tambahkan ke Keranjang
+              </Button>
+            </Flex>
           </>
         )}
       </LoaderView>
-      <Flex
-        justify={"space-between"}
-        pos={"absolute"}
-        bottom={16}
-        left={16}
-        right={16}
-      >
-        <Flex gap={"md"}>
-          <ActionIcon
-            variant="outline"
-            style={{ alignSelf: "center" }}
-            onClick={decreaseQuantity}
-          >
-            <Minus size={12} />
-          </ActionIcon>
-          <Input type="number" name="quantity" maw={54} readOnly />
-          <ActionIcon
-            variant="outline"
-            style={{ alignSelf: "center" }}
-            onClick={increaseQuantity}
-          >
-            <Plus size={12} />
-          </ActionIcon>
-        </Flex>
-        <Button rightSection={<ShoppingCart />} type="submit">
-          Tambahkan ke Keranjang
-        </Button>
-      </Flex>
     </Form>
   );
 }

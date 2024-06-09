@@ -1,3 +1,5 @@
+import { rgba } from "@mantine/core";
+
 export const color = {
   mainTheme: "#FF852D",
   mainBlack: "#000000",
@@ -6,6 +8,8 @@ export const color = {
   mainGreen: "#00B82A",
   mainRed: "#D0312D",
   mainGrey: "#AFAFAF",
+
+  notAvailable: rgba("#EEEEEE", 0.85),
 
   sentimentPositive: '#28A745',
   sentimentWarning: '#EDC843',

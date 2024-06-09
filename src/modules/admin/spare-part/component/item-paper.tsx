@@ -17,12 +17,12 @@ export default function ItemPaper(item: GetSparePartModel) {
   ) : (
     <ImageSquare
       size={90}
-      style={{ backgroundColor: color.mainTheme, borderRadius: 4 }}
+      style={{ backgroundColor: (!item.is_available || item.stock < 1 ? color.notAvailable : color.mainTheme ), borderRadius: 4 }}
     />
   );
   return (
     <Link href={pathname + `/${item.id}`} style={{ textDecoration: "none" }}>
-      <Card radius={"md"} withBorder p={0}>
+      <Card radius={"md"} withBorder p={0} bg={(!item.is_available || item.stock < 1 ? color.notAvailable : "" )}>
         <Grid m={"sm"}>
           <Grid.Col span={2}>
             <Center>{itemImage}</Center>
