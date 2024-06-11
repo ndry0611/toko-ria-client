@@ -15,7 +15,7 @@ interface UserSelectProps
 export function userTransformer(value: GetUserModel): UserOption {
   return {
     value: value.id.toString(),
-    label: value.name,
+    label: `${value.name} (${value.username})`,
     item: value,
   };
 }
