@@ -105,10 +105,6 @@ export default function PurchaseForm(props: PurchaseFormProps) {
               value: "2",
               label: "Selesai",
             },
-            {
-              value: "3",
-              label: "Dibatalkan",
-            },
           ]}
         />
       </SimpleGrid>

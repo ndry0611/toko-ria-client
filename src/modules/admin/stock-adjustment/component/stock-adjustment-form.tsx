@@ -57,7 +57,7 @@ export default function StockAdjustmentForm(props: StockAdjustmentProps) {
             methods.setValue("old_quantity", value?.item.stock ?? 0);
           }}
         />
-        <Input type="text" name="code" label="Kode Faktur" />
+        <Input type="text" name="code" label="Kode Bon" description="Penyesuaian barang Retur dari User menggunakan bon dari Penjualan, Penyesuaian barang Rusak/Bonus menggunakan bon dari Pembelian"/>
         <Input
           type="number"
           name="old_quantity"

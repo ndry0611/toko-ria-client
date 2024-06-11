@@ -106,24 +106,33 @@ export default function SalesForm(props: SalesFormProps) {
           type="radio"
           name="status"
           readOnly={sales ? false : true}
-          data={[
-            {
-              value: "1",
-              label: "Packing",
-            },
-            {
-              value: "2",
-              label: "Dikirim",
-            },
-            {
-              value: "3",
-              label: "Dibatalkan",
-            },
-            {
-              value: "4",
-              label: "Selesai",
-            },
-          ]}
+          data={
+            sales
+              ? [
+                  {
+                    value: "1",
+                    label: "Packing",
+                  },
+                  {
+                    value: "2",
+                    label: "Dikirim",
+                  },
+                  {
+                    value: "3",
+                    label: "Dibatalkan",
+                  },
+                  {
+                    value: "4",
+                    label: "Selesai",
+                  },
+                ]
+              : [
+                  {
+                    value: "4",
+                    label: "Selesai",
+                  },
+                ]
+          }
         />
       </SimpleGrid>
       <SalesDetailFields />

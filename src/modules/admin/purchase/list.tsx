@@ -28,7 +28,6 @@ export default function PurchaseList() {
   const tabList: TabsTabProps[] = [
     { value: "1", children: "Aktif" },
     { value: "2", children: "Lunas" },
-    { value: "3", children: "Batal" },
   ];
   const methods = useForm({
     defaultValues: purchaseFilter,

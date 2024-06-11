@@ -78,7 +78,12 @@ function RegisterForm() {
         <Input type="password" name="cPass" label="Konfirmasi Password" />
         <Input type="text" name="name" label="Nama" />
         <Input type="text" name="phone" label="Nomor Handphone" />
-        <Input type="text-area" name="address" label="Alamat" />
+        <Input
+          type="text-area"
+          name="address"
+          label="Alamat"
+          description="Untuk memastikan pengiriman berjalan lancar, mohon pastikan alamat pengiriman sudah benar dan berada dalam jangkauan layanan cargo darat di Aceh."
+        />
         <Card withBorder bg={color.information1}>
           <Flex direction={"row"} gap={"md"}>
             <Info weight="bold" size={24} />
