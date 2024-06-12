@@ -31,10 +31,11 @@ export default function SparePartPage() {
 }
 
 function SparePartList() {
-  const { query } = useRouter();
+  const { query, push, pathname } = useRouter();
   const [sparepartFilter, setSparepartFilter] =
     React.useState<SparePartsFilter>({
       id_category: query.id_category as string,
+      available: "true",
     });
 
   const methods = useForm({
@@ -46,6 +47,27 @@ function SparePartList() {
     name: ["id_car_brand"],
   });
 
+  const updateQueryString = (values: SparePartsFilter) => {
+    if (!values.id_category) {
+      push(
+        {
+          pathname: pathname,
+        },
+        undefined,
+        { shallow: true }
+      );
+    } else {
+      push(
+        {
+          pathname: pathname,
+          query: { ...query, id_category: values.id_category },
+        },
+        undefined,
+        { shallow: true }
+      );
+    }
+  };
+
   const querySparePart = useGetSpareParts(sparepartFilter);
   const { data: sparePartData = [] } = querySparePart;
   return (
@@ -54,6 +76,7 @@ function SparePartList() {
         methods={methods}
         onSubmit={(values) => {
           setSparepartFilter(values);
+          updateQueryString(values);
         }}
       >
         <SimpleGrid cols={2}>
@@ -69,14 +92,16 @@ function SparePartList() {
           />
         </SimpleGrid>
         <Flex gap={16} m={"8px 0px"}>
-          <FindButton fullWidth/>
+          <FindButton fullWidth />
         </Flex>
       </Form>
       <Flex direction={"column"} gap={16} mt={8}>
         <LoaderView query={querySparePart}>
-          {(sparePartData) => sparePartData.map((item) => {
-            return <ItemPaper key={item.id} item={item} />;
-          })}
+          {(sparePartData) =>
+            sparePartData.map((item) => {
+              return <ItemPaper key={item.id} item={item} />;
+            })
+          }
         </LoaderView>
       </Flex>
     </>

@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useGetSparePart } from "../../../../api-hooks/spare-part-api";
 import LoaderView from "../../../admin/component/loader-view";
-import { PublicImageRoutes } from "../../../../common/constants/route";
+import { NavigationRoutes, PublicImageRoutes } from "../../../../common/constants/route";
 import {
   ActionIcon,
   Button,
@@ -29,7 +29,7 @@ import notification from "../../../../component/notification";
 import { queryClient } from "../../../../pages/_app";
 
 export default function SparePartDetail() {
-  const { query, back } = useRouter();
+  const { query, push } = useRouter();
   const id = query.id as string;
   const querySparePart = useGetSparePart(id);
   const { data } = querySparePart;
@@ -81,7 +81,7 @@ export default function SparePartDetail() {
           message: "Berhasil menambahkan ke Keranjang",
         });
         queryClient.invalidateQueries();
-        back();
+        push(`${NavigationRoutes.sparePartUser}`);
       } catch (e: any) {
         notification.error({
           title: "Simpan Gagal",
@@ -89,7 +89,7 @@ export default function SparePartDetail() {
         });
       }
     },
-    [back, mutateAsync]
+    [mutateAsync, push]
   );
 
   return (

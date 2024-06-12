@@ -26,6 +26,7 @@ export interface SparePartsFilter {
   id_car_brand?: string;
   id_car?: string;
   name?: string;
+  available?: "true" | "false"
 }
 
 export interface GetSparePartModel extends SparePartModel {
