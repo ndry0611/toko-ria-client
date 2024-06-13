@@ -27,9 +27,9 @@ export interface CarsFilter {
 
 export const CarFormSchema = () =>
   Yup.object({
-    id_car_brand: Yup.string().required(),
-    name: Yup.string().required(),
-    production_year: Yup.string().required(),
+    id_car_brand: Yup.string().required("Merk mobil tidak boleh kosong!"),
+    name: Yup.string().required("Nama mobil tidak boleh kosong!"),
+    production_year: Yup.string().required("Tahun mobil tidak boleh kosong!"),
     type: Yup.string().optional(),
   });
 

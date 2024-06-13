@@ -20,7 +20,7 @@ export function useGetComplaints(params?: ComplaintFilter) {
 
 export const ComplaintFormSchema = () =>
   Yup.object({
-    complaint: Yup.string().required(),
+    complaint: Yup.string().required("Komplain tidak boleh kosong!"),
   });
 export type ComplaintFormType = Yup.InferType<
   ReturnType<typeof ComplaintFormSchema>

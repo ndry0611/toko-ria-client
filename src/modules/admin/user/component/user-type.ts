@@ -25,11 +25,11 @@ export interface UserFilter {
 
 export const ChangePasswordFormSchema = () =>
   Yup.object({
-    old_password: Yup.string().required(),
-    new_password: Yup.string().required(),
+    old_password: Yup.string().required("Password Lama tidak boleh kosong!"),
+    new_password: Yup.string().required("Password Baru tidak boleh kosong!"),
     np_confirmation: Yup.string()
       .oneOf([Yup.ref("new_password")], "Pastikan password sama!")
-      .required(),
+      .required("Konfirmasi password tidak boleh kosong!"),
   });
 
 export const UpdateUserFormSchema = () =>
@@ -45,11 +45,11 @@ export const UpdateUserFormSchema = () =>
 export const CreateUserFormSchema = () =>
   Yup.object({
     id_role: Yup.string().optional(),
-    name: Yup.string().required(),
-    username: Yup.string().required().matches(/^\S+$/, "Username tidak boleh menggunakan spasi!"),
-    password: Yup.string().required(),
-    phone: Yup.string().required(),
-    address: Yup.string().required(),
+    name: Yup.string().required("Nama Pelanggan tidak boleh kosong!"),
+    username: Yup.string().required("Username tidak boleh kosong!").matches(/^\S+$/, "Username tidak boleh menggunakan spasi!"),
+    password: Yup.string().required("Password tidak boleh kosong!"),
+    phone: Yup.string().required("Nomor telepon tidak boleh kosong!"),
+    address: Yup.string().required("Alamat tidak boleh kosong!"),
     status: Yup.string()
       .oneOf(["ACTIVE", "PENDING", "INACTIVE", undefined])
       .optional(),

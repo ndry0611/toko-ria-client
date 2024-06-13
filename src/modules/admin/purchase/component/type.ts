@@ -47,7 +47,7 @@ export const PurchaseFormSchema = () =>
   Yup.object({
     id_supplier: Yup.string().default(""),
     code: Yup.string().default(""),
-    purchase_date: Yup.date().required(),
+    purchase_date: Yup.date().required("Tanggal pembelian tidak boleh kosong!"),
     grand_total: Yup.number().default(0),
     payment_date: Yup.date().optional(),
     credit_duration: Yup.number().default(0),

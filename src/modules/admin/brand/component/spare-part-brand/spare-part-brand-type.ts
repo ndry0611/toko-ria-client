@@ -10,8 +10,8 @@ export interface SparePartBrandModel {
 
 export const SparePartBrandFormSchema = () =>
   Yup.object({
-    name: Yup.string().required(),
-    manufacture: Yup.string().required(),
+    name: Yup.string().required("Nama merk barang tidak boleh kosong!"),
+    manufacture: Yup.string().required("Nama manufaktur tidak boleh kosong!"),
   });
 
 export type SparePartBrandFormType = Yup.InferType<

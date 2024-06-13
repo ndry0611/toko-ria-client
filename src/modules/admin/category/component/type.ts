@@ -11,8 +11,8 @@ export interface CategoryModel {
 
 export const CategoryFormSchema = () =>
   Yup.object({
-    name: Yup.string().required(),
-    description: Yup.string().required(),
+    name: Yup.string().required("Nama kategori tidak boleh kosong!"),
+    description: Yup.string().required("Deskripsi tidak boleh kosong!"),
   });
 
 export type CategoryFormType = Yup.InferType<

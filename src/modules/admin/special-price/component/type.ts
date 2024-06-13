@@ -33,14 +33,14 @@ interface U {
 
 export const SpecialPriceFormSchema = () =>
   Yup.object({
-    id_spare_part: Yup.string().required(),
-    id_user: Yup.string().required(),
-    price: Yup.number().required(),
+    id_spare_part: Yup.string().required("Barang tidak boleh kosong!"),
+    id_user: Yup.string().required("Pelanggan tidak boleh kosong!"),
+    price: Yup.number().required("Harga khusus tidak boleh kosong!"),
   });
 
 export const MultipleSpecialPriceFormSchema = () =>
   Yup.object({
-    id_spare_part: Yup.string().required(),
+    id_spare_part: Yup.string().required("Barang tidak boleh kosong!"),
     special_prices: Yup.array(PricesFormSchema()).default([]),
   });
 

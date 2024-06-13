@@ -59,20 +59,20 @@ export interface SPCBrand {
 
 export const SparePartFormSchema = () =>
   Yup.object({
-    id_category: Yup.string().required(),
-    id_spare_part_brand: Yup.string().required(),
+    id_category: Yup.string().required("Kategori tidak boleh kosong!"),
+    id_spare_part_brand: Yup.string().required("Merk barang tidak boleh kosong!"),
     id_car: Yup.string().optional(),
     id_supplier: Yup.string().optional(),
-    name: Yup.string().required(),
-    part_no: Yup.string().required(),
+    name: Yup.string().required("Nama barang tidak boleh kosong!"),
+    part_no: Yup.string().required("Part number tidak boleh kosong!"),
     genuine: Yup.string().oneOf(["asli", "replika"]),
     stock: Yup.number().default(0),
-    capital_price: Yup.number().required(),
+    capital_price: Yup.number().required("Harga modal tidak boleh kosong!"),
     sell_method: Yup.string().oneOf(["pcs", "set"]),
     is_available: Yup.boolean(),
-    sale_price: Yup.number().required(),
-    description: Yup.string().required(),
-    supply_date: Yup.date().required(),
+    sale_price: Yup.number().required("Harga jual tidak boleh kosong!"),
+    description: Yup.string().required("Deskripsi barang tidak boleh kosong!"),
+    supply_date: Yup.date().required("Tanggal suplai tidak boleh kosong!"),
   });
 
 export type SparePartFormType = Yup.InferType<

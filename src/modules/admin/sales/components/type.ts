@@ -71,7 +71,7 @@ export const SaleFormSchema = () =>
     grand_total: Yup.number().default(0),
     payment_date: Yup.date().optional(),
     expired_date: Yup.date().optional(),
-    status: Yup.string().default("4").required(),
+    status: Yup.string().default("4").required("Pilih status yang tersedia!"),
     sale_detail: Yup.array(SaleDetailFormSchema()).default([]),
   });
 
