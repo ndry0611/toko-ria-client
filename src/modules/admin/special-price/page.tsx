@@ -9,7 +9,9 @@ import TableList from "../component/table-list";
 import useTableDataGenerator from "../../../hooks/use-table-data-generator";
 import { modals } from "@mantine/modals";
 import {
+  ActionIcon,
   Center,
+  Drawer,
   Flex,
   SimpleGrid,
   Space,
@@ -29,6 +31,9 @@ import UserSelect from "../select/user-select";
 import React from "react";
 import Input from "../../../component/input";
 import FormActionComponent from "../component/form-action-component";
+import { useDisclosure } from "@mantine/hooks";
+import SpecialPricesForm from "./component/special-prices-form";
+import { Plus, UsersThree } from "@phosphor-icons/react";
 
 export default function SpecialPricePage() {
   const { query } = useRouter();
@@ -54,6 +59,8 @@ export default function SpecialPricePage() {
     resolver: yupResolver(SpecialPriceFormSchema()),
     defaultValues,
   });
+
+  const [opened, { open, close }] = useDisclosure(false);
 
   const onSubmit = React.useCallback(
     async (values: SpecialPriceFormType) => {
@@ -165,12 +172,25 @@ export default function SpecialPricePage() {
               name="id_user"
             />
             <Input type="number" name="price" label="Harga Khusus" />
-            <Flex>
+            <Flex gap={16}>
               <FormActionComponent />
+              <ActionIcon
+                w={"auto"}
+                variant="outline"
+                onClick={open}
+                style={{ alignSelf: "center" }}
+                size={"lg"}
+              >
+                <UsersThree size={24} />
+                <Plus size={24} />
+              </ActionIcon>
             </Flex>
           </Flex>
         </SimpleGrid>
       </Form>
+      <Drawer opened={opened} onClose={close} position="right">
+        <SpecialPricesForm closeDrawer={close}/>
+      </Drawer>
       <Space h={"sm"} />
       <LoaderView query={querySpecialPrice}>
         {(specialPrice) => <TableList data={table} />}

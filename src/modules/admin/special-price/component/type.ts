@@ -38,6 +38,24 @@ export const SpecialPriceFormSchema = () =>
     price: Yup.number().required(),
   });
 
+export const MultipleSpecialPriceFormSchema = () =>
+  Yup.object({
+    id_spare_part: Yup.string().required(),
+    special_prices: Yup.array(PricesFormSchema()).default([]),
+  });
+
+export const PricesFormSchema = () =>
+  Yup.object({
+    id_user: Yup.string().default(""),
+    price: Yup.number().default(0).min(1, "Harga tidk boleh 0!"),
+  });
+
+export type MultipleSpecialPriceFormType = Yup.InferType<
+  ReturnType<typeof MultipleSpecialPriceFormSchema>
+>;
+
+export type PricesFormType = Yup.InferType<ReturnType<typeof PricesFormSchema>>;
+
 export type SpecialPriceFormType = Yup.InferType<
   ReturnType<typeof SpecialPriceFormSchema>
 > & { data?: GetSpecialPriceModel };

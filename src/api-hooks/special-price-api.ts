@@ -2,6 +2,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { callApi } from "../utils/api";
 import {
   GetSpecialPriceModel,
+  MultipleSpecialPriceFormType,
   SpecialPriceFilter,
   SpecialPriceFormType,
 } from "../modules/admin/special-price/component/type";
@@ -35,6 +36,18 @@ export function useCreateSpecialPrice() {
     mutationFn: async (request: SpecialPriceFormType) => {
       return await callApi({
         url: "/special-price",
+        method: "POST",
+        data: request,
+      });
+    },
+  });
+}
+
+export function useCreateMultipleSpecialPrice() {
+  return useMutation({
+    mutationFn: async (request: MultipleSpecialPriceFormType) => {
+      return await callApi({
+        url: "/special-price/multiple",
         method: "POST",
         data: request,
       });
