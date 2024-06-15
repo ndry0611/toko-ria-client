@@ -10,7 +10,7 @@ import {
   Text,
 } from "@mantine/core";
 import useTableDataGenerator from "../hooks/use-table-data-generator";
-import { formatDate } from "../utils/string";
+import { calculateDayDifference, formatDate } from "../utils/string";
 import React, { ForwardedRef, forwardRef } from "react";
 import {
   GetPurchasesModel,
@@ -39,7 +39,11 @@ const PurchasesRecap = forwardRef<HTMLDivElement, PurchaseRecapProps>(
           item.code,
           item.Supplier.company_name,
           item.purchase_date ? formatDate(item.purchase_date) : "-",
-          item.credit_duration + " Hari",
+          item.payment_date
+          ? "-"
+          : item.purchase_date
+          ? calculateDayDifference(item.purchase_date, item.credit_duration)
+          : "-",
           item.payment_date ? formatDate(item.payment_date) : "-",
           item.status == 1
             ? "Aktif"
@@ -59,7 +63,7 @@ const PurchasesRecap = forwardRef<HTMLDivElement, PurchaseRecapProps>(
           "Kode Bon",
           "Supplier",
           "Tanggal Bon",
-          "Lama Kredit",
+          "Tenggang Waktu",
           "Tanggal Pembayaran",
           "Status",
           "Total",

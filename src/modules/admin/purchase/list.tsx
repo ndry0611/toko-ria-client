@@ -14,7 +14,11 @@ import useTableDataGenerator from "../../../hooks/use-table-data-generator";
 import TableList from "../component/table-list";
 import LoaderView from "../component/loader-view";
 import { NavigationRoutes } from "../../../common/constants/route";
-import { formatDate, stringToMoney } from "../../../utils/string";
+import {
+  calculateDayDifference,
+  formatDate,
+  stringToMoney,
+} from "../../../utils/string";
 import { useRouter } from "next/router";
 import PrintButton from "../component/print-button";
 import { useReactToPrint } from "react-to-print";
@@ -55,7 +59,11 @@ export default function PurchaseList() {
         item.Supplier.company_name,
         item.purchase_date ? formatDate(item.purchase_date) : "-",
         item.grand_total ? stringToMoney(item.grand_total) : 0,
-        item.credit_duration + " Hari",
+        item.payment_date
+          ? "-"
+          : item.purchase_date
+          ? calculateDayDifference(item.purchase_date, item.credit_duration)
+          : "-",
         item.status == 1
           ? "Aktif"
           : item.status == 2
@@ -72,7 +80,7 @@ export default function PurchaseList() {
         "Supplier",
         "Tanggal Bon",
         "Total Harga",
-        "Lama Kredit",
+        "Tenggang Waktu",
         "Status",
         "Tanggal Pembayaran",
       ];
