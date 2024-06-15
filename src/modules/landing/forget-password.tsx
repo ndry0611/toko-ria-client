@@ -74,7 +74,7 @@ function ForgetPasswordForm() {
   return (
     <Form methods={methods} onSubmit={onSubmit}>
       <Flex direction={"column"} gap={"lg"}>
-        <Input type="text" name="username" label="Username" />
+        <Input type="text" name="username" label="Username" description="Silahkan datang ke toko apabila lupa username!" />
         <Input type="text" name="name" label="Nama" />
         <Input type="text" name="phone" label="Nomor Handphone" />
         <Input type="password" name="password" label="Password Baru" />
