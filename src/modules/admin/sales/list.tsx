@@ -83,6 +83,15 @@ function SaleFormFilter() {
               { value: "2", label: "Online" },
             ]}
           />
+          <Input
+            type="select"
+            name="status"
+            label="Status"
+            data={[
+              { value: "4", label: "Selesai" },
+              { value: "3", label: "Dibatalkan" },
+            ]}
+          />
         </Flex>
       </SimpleGrid>
       <Space h={"sm"} />
