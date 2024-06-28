@@ -3,7 +3,7 @@ import { getTokenStorage } from "../hooks/use-token";
 import { FileWithPath } from "@mantine/dropzone";
 
 /* Production */
-export const BASE_URL = "https://toko-ria-server-production.up.railway.app"
+export const BASE_URL = "https://api.riasigli.my.id"
 
 /* Dev */
 // export const BASE_URL = "http://localhost:8080";

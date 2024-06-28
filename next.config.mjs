@@ -16,7 +16,7 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'toko-ria-server-production.up.railway.app',
+        hostname: 'api.riasigli.my.id',
         pathname: '/public/uploads/**',
       }
     ],
