@@ -5,12 +5,15 @@ import { Flex, Text } from "@mantine/core";
 import { ImageSquare } from "@phosphor-icons/react";
 import { useFormState } from "./form";
 
-export function PhotoPreview(props: { imageUrl: FileWithPath | string, size?:number }) {
+export function PhotoPreview(props: {
+  imageUrl: FileWithPath | string;
+  size?: number;
+}) {
   const { imageUrl, size = 128 } = props;
   const isUrlString = typeof imageUrl === "string";
   const url = isUrlString ? imageUrl : URL.createObjectURL(imageUrl);
   const onLoad = isUrlString ? undefined : () => URL.revokeObjectURL(url);
-  if(url){
+  if (url) {
     return (
       <Image
         onClick={(e) => {
@@ -27,19 +30,19 @@ export function PhotoPreview(props: { imageUrl: FileWithPath | string, size?:num
           overflow: "hidden",
           borderRadius: 4,
           objectPosition: "top",
-          minWidth:size,
-          minHeight:size,
+          minWidth: size,
+          minHeight: size,
         }}
         onLoad={onLoad}
       />
     );
-  }else {
+  } else {
     return (
       <ImageSquare
-      size={size}
-      style={{ backgroundColor: color.mainTheme, borderRadius: 4 }}
-    />
-    )
+        size={size}
+        style={{ backgroundColor: color.mainTheme, borderRadius: 4 }}
+      />
+    );
   }
 }
 
@@ -81,22 +84,25 @@ export default function PhotoInput(props: PhotoInputProps) {
     <>
       {labelComponent}
       {!disabled ? (
-        <Dropzone
-          accept={IMAGE_MIME_TYPE}
-          p={0}
-          onDrop={onDrop}
-          multiple={false}
-          w={128}
-          h={128}
-          style={{
-            overflow: "hidden",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          {files.length ? previews : defaultPreview}
-        </Dropzone>
+        <>
+          <Text fz={12} c={"red"}>*Ukuran gambar maksimal 5 MB</Text>
+          <Dropzone
+            accept={IMAGE_MIME_TYPE}
+            p={0}
+            onDrop={onDrop}
+            multiple={false}
+            w={128}
+            h={128}
+            style={{
+              overflow: "hidden",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            {files.length ? previews : defaultPreview}
+          </Dropzone>
+        </>
       ) : (
         defaultPreview
       )}
