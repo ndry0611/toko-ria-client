@@ -75,7 +75,7 @@ function CartList() {
     <>
       <LoaderView query={query}>
         {(data) => {
-          if (data.CartDetail.length === 0) {
+          if (!data.CartDetail || data.CartDetail.length === 0) {
             return (
               <Flex
                 w="100%"
@@ -89,29 +89,29 @@ function CartList() {
                 <Text c={color.mainGrey}>Keranjang Belanja Kosong</Text>
               </Flex>
             );
+          } else {
+            return (
+              <Flex direction="column" gap={16}>
+                <>
+                  {data.CartDetail.map((item) => {
+                    return (
+                      <>
+                        <CartDetail key={item.id} item={item} />
+                      </>
+                    );
+                  })}
+                </>
+                <Button
+                  mb={16}
+                  loading={isPending}
+                  fullWidth
+                  onClick={handleCheckout}
+                >
+                  Checkout
+                </Button>
+              </Flex>
+            );
           }
-
-          return (
-            <Flex direction="column" gap={16}>
-              <>
-                {data.CartDetail.map((item) => {
-                  return (
-                    <>
-                      <CartDetail key={item.id} item={item} />
-                    </>
-                  );
-                })}
-              </>
-              <Button
-                mb={16}
-                loading={isPending}
-                fullWidth
-                onClick={handleCheckout}
-              >
-                Checkout
-              </Button>
-            </Flex>
-          );
         }}
       </LoaderView>
     </>
