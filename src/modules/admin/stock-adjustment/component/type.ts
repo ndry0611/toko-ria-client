@@ -35,7 +35,7 @@ interface SPBModel {
 export const StockAdjustmentSchema = () =>
   Yup.object({
     id_spare_part: Yup.string().required(),
-    code: Yup.string().required(),
+    code: Yup.string().optional().default("-"),
     old_quantity: Yup.number().required(),
     new_quantity: Yup.number().required(),
     description: Yup.string().required(),
