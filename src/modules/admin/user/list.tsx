@@ -29,7 +29,7 @@ export default function UserList() {
   };
   return (
     <>
-      <TitleText>Pelanggan</TitleText>
+      <TitleText>User</TitleText>
       <Space h={"sm"} />
       <Form
         methods={methods}
@@ -38,7 +38,7 @@ export default function UserList() {
         }}
       >
         <SimpleGrid cols={3}>
-          <Input type="text" label="Nama Pelanggan" name="name" />
+          <Input type="text" label="Nama User" name="name" />
           <Flex align={"end"} gap={16}>
             <FindButton />
             {activeTab === "terdaftar" && <CreateButton />}

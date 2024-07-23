@@ -33,7 +33,7 @@ export default function UserForm(props: UserFormProps) {
   });
   return (
     <Form methods={methods} onSubmit={onSubmit}>
-      <TitleText>Tambah Pelanggan</TitleText>
+      <TitleText>Tambah User</TitleText>
       <Space h={"sm"} />
       <BackButton />
       <Space h={"sm"} />
@@ -45,9 +45,9 @@ export default function UserForm(props: UserFormProps) {
           maw={"500px"}
         >
           <Input type="text" name="username" label="Username" />
-          <Input type="text" name="name" label="Nama Pelanggan" />
+          <Input type="text" name="name" label="Nama User" />
 
-          <Input type="text" name="address" label="Alamat Pelanggan" />
+          <Input type="text" name="address" label="Alamat User" />
         </Flex>
         <Flex
           direction={"column"}
@@ -63,6 +63,7 @@ export default function UserForm(props: UserFormProps) {
             label="Posisi"
             data={[
               { value: "1", label: "Admin" },
+              { value: "3", label: "Employee" },
               { value: "2", label: "Customer" },
             ]}
           />

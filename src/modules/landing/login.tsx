@@ -38,7 +38,7 @@ export default function LoginPage() {
         const result = await mutateAsync(values);
         handleToken(result.token);
         const user = tokenDecode(result.token);
-        if (user?.id_role == 1) {
+        if (user?.id_role == 1 || user?.id_role == 3) {
           replace(`${NavigationRoutes.adminHome}`);
         } else {
           replace(`${NavigationRoutes.userHome}`);

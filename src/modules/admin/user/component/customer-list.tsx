@@ -19,7 +19,6 @@ export default function CustomerList(props: CustomerListProps) {
   let { filter } = props;
   filter = {
     ...filter,
-    id_role: "2",
     daftar: "aktif",
   };
   const query = useGetUsers(filter);
@@ -28,7 +27,7 @@ export default function CustomerList(props: CustomerListProps) {
     data,
     onClickDetail(item) {
       modals.open({
-        title: "Status Pelanggan",
+        title: "Status User",
         children: <CustomerStatusView user={item} />,
       });
     },
@@ -37,6 +36,13 @@ export default function CustomerList(props: CustomerListProps) {
         item.name,
         item.phone,
         item.address,
+        item.id_role == 1
+          ? "Admin"
+          : item.id_role == 2
+          ? "Pelanggan"
+          : item.id_role == 3
+          ? "Karyawan"
+          : "-",
         item.status === "ACTIVE"
           ? "Aktif"
           : item.status === "INACTIVE"
@@ -45,7 +51,7 @@ export default function CustomerList(props: CustomerListProps) {
       ];
     },
     onGenerateHead(item) {
-      return ["Nama Pelanggan", "Nomor Telepon", "Alamat", "Status Akun"];
+      return ["Nama User", "Nomor Telepon", "Alamat", "Peran", "Status Akun"];
     },
   });
   return (

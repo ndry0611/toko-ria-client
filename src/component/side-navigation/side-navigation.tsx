@@ -18,8 +18,10 @@ import { useToken } from "../../hooks/use-token";
 import { NavigationRoutes } from "../../common/constants/route";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useGetMe } from "../../api-hooks/user-api";
+import { tokenDecode } from "../../utils/jwt";
 
-const data = [
+const admin = [
   { link: `${NavigationRoutes.category}`, label: "Kategori", icon: Book },
   {
     link: `${NavigationRoutes.sparePart}`,
@@ -34,9 +36,19 @@ const data = [
     icon: PencilSimpleLine,
   },
   { link: `${NavigationRoutes.supplier}`, label: "Supplier", icon: Storefront },
-  { link: `${NavigationRoutes.user}`, label: "Pelanggan", icon: UserList },
+  { link: `${NavigationRoutes.user}`, label: "User", icon: UserList },
   { link: `${NavigationRoutes.car}`, label: "Mobil", icon: Car },
   { link: `${NavigationRoutes.brand}`, label: "Merk", icon: Garage },
+];
+
+const employee = [
+  {
+    link: `${NavigationRoutes.sparePart}`,
+    label: "Barang",
+    icon: BookOpenText,
+  },
+  { link: `${NavigationRoutes.purchase}`, label: "Pembelian", icon: Handshake },
+  { link: `${NavigationRoutes.sales}`, label: "Penjualan", icon: HandCoins },
 ];
 
 export default function SideNavigation({
@@ -45,9 +57,22 @@ export default function SideNavigation({
   children: React.ReactNode;
 }) {
   const { pathname } = useRouter();
-  const { handleLogout } = useToken();
+  const { token, handleLogout } = useToken();
+  const user = tokenDecode(token);
 
-  const links = data.map((item) => (
+  const adminLink = admin.map((item) => (
+    <Link
+      className={classes.link}
+      data-active={item.link === pathname || undefined}
+      href={item.link}
+      key={item.link}
+    >
+      <item.icon className={classes.linkIcon} />
+      <span>{item.label}</span>
+    </Link>
+  ));
+
+  const employeeLink = employee.map((item) => (
     <Link
       className={classes.link}
       data-active={item.link === pathname || undefined}
@@ -68,7 +93,12 @@ export default function SideNavigation({
               <Image alt="logo" src={"/logo.svg"} />
             </Link>
           </Group>
-          {links}
+          {user &&
+            (user.id_role == 1
+              ? adminLink
+              : user.id_role == 3
+              ? employeeLink
+              : null)}
         </div>
 
         <div className={classes.footer}>

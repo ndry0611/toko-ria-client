@@ -1,5 +1,3 @@
-import NavigationBar from "./navigation-bar/navigation-bar";
-import PhoneLayout from "./phone-layout/phone-layout";
 import SideNavigation from "./side-navigation/side-navigation";
 import { useRouter } from "next/router";
 
