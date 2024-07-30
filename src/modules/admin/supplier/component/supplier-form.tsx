@@ -65,10 +65,9 @@ export default function SupplierForm(props: SupplierFormProps) {
         >
           <Input type="text-area" name="address" label="Alamat" />
           <Input
-            type="text"
+            type="bank"
             name="bank_account"
             label="Rekening"
-            placeholder="(BANK) Nomor Rekening"
           />
           <Input type="text" name="bank_account_name" label="Nama Rekening" />
           <Input

@@ -15,6 +15,7 @@ import TextInputField, { TextInputFieldProps } from "./text-input-field";
 import PasswordInputField, {
   PasswordInputFieldProps,
 } from "./password-input-field";
+import BankInputField, { BankInputFieldProps } from "./bank-input-field";
 
 export type InputProps =
   | TextInputFieldProps
@@ -25,6 +26,7 @@ export type InputProps =
   | TextAreaInputFieldProps
   | CheckBoxInputFieldProps
   | DateInputFieldProps
+  | BankInputFieldProps
   | ButtonSubmitFieldProps;
 
 export default function Input(props: InputProps) {
@@ -45,6 +47,8 @@ export default function Input(props: InputProps) {
       return <DateInputField {...props} />;
     case "password":
       return <PasswordInputField {...props} />;
+    case "bank":
+      return <BankInputField {...props} />;
     case "text":
     case "email":
     default:
