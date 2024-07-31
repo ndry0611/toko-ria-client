@@ -3,10 +3,10 @@ import { getTokenStorage } from "../hooks/use-token";
 import { FileWithPath } from "@mantine/dropzone";
 
 /* Production */
-// export const BASE_URL = "https://api.riasigli.my.id"
+export const BASE_URL = "https://api.riasigli.my.id"
 
 /* Dev */
-export const BASE_URL = "http://localhost:8080";
+// export const BASE_URL = "http://localhost:8080";
 
 export const API_URL = BASE_URL + "/api/v1";
 export const PUBLIC_URL = BASE_URL + "/public";
