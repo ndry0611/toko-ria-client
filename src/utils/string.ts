@@ -19,6 +19,30 @@ export function formatDate(date: string | Date, stringFormat?: string) {
   }
 }
 
+export function formatPhone(input: string) {
+  // Remove any non-digit characters
+  const digits = input.replace(/\D/g, '');
+
+  // Slice the string into parts and join them with hyphens
+  const part1 = digits.slice(0, 4);
+  const part2 = digits.slice(4, 8);
+  const part3 = digits.slice(8, 12);
+  const part4 = digits.slice(12, 13);
+
+  let formattedNumber = part1;
+  if (part2) {
+    formattedNumber += `-${part2}`;
+  }
+  if (part3) {
+    formattedNumber += `-${part3}`;
+  }
+  if (part4) {
+    formattedNumber += `-${part4}`;
+  }
+
+  return formattedNumber;
+}
+
 export function calculateDayDifference(date: string, days: number) {
   const dueDate = new Date(date);
   dueDate.setDate(dueDate.getDate() + days);
