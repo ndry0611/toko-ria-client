@@ -15,6 +15,7 @@ import FindButton from "../component/find-button";
 import CreateButton from "../component/create-button";
 import LoaderView from "../component/loader-view";
 import TableList from "../component/table-list";
+import { formatPhone } from "../../../utils/string";
 
 export default function SupplierList() {
   const [supplierFilter, setSupplierFilter] = React.useState<SupplierFilter>(
@@ -43,9 +44,9 @@ export default function SupplierList() {
     onRowCustom(item) {
       return [
         item.company_name,
-        item.company_phone,
+        formatPhone(item.company_phone),
         item.pic_name,
-        item.pic_phone,
+        formatPhone(item.pic_phone),
         item.address ?? "-",
         (item.status === "ACTIVE" ? "Aktif" : "Tidak Aktif")
       ];

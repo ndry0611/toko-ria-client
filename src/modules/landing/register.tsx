@@ -77,7 +77,7 @@ function RegisterForm() {
         <Input type="password" name="password" label="Password" />
         <Input type="password" name="cPass" label="Konfirmasi Password" />
         <Input type="text" name="name" label="Nama" />
-        <Input type="text" name="phone" label="Nomor Handphone" />
+        <Input type="phone" name="phone" label="Nomor Handphone" />
         <Input
           type="text-area"
           name="address"

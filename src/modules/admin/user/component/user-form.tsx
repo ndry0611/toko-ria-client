@@ -56,7 +56,7 @@ export default function UserForm(props: UserFormProps) {
           maw={"500px"}
         >
           <Input type="password" name="password" label="Password" />
-          <Input type="text" name="phone" label="Nomor Telepon" />
+          <Input type="phone" name="phone" label="Nomor Telepon" />
           <Input
             type="radio"
             name="id_role"

@@ -1,6 +1,6 @@
 import { useGetComplaints } from "../../../../api-hooks/complaint-api";
 import useTableDataGenerator from "../../../../hooks/use-table-data-generator";
-import { formatDate } from "../../../../utils/string";
+import { formatDate, formatPhone } from "../../../../utils/string";
 import LoaderView from "../../component/loader-view";
 import TableList from "../../component/table-list";
 import { ComplaintFilter } from "./complaint-type";
@@ -18,7 +18,7 @@ export default function ComplaintList(props: ComplaintListProps) {
     onRowCustom(item) {
       return [
         item.User.name,
-        item.User.phone,
+        formatPhone(item.User.phone),
         item.complaint,
         item.created_at ? formatDate(item.created_at) : "-",
       ];

@@ -9,6 +9,7 @@ import { UserFilter } from "./user-type";
 import { queryClient } from "../../../../pages/_app";
 import notification from "../../../../component/notification";
 import TableList from "../../component/table-list";
+import { formatPhone } from "../../../../utils/string";
 
 interface PendingListProps {
   filter?: UserFilter;
@@ -65,7 +66,7 @@ export default function PendingList(props: PendingListProps) {
       }
     },
     onRowCustom(item) {
-      return [item.name, item.phone, item.address];
+      return [item.name, formatPhone(item.phone), item.address];
     },
     onGenerateHead(item) {
       return ["Nama Pelanggan", "Nomor Telepon", "Alamat"];

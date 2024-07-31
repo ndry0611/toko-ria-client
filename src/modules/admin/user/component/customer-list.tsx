@@ -10,6 +10,7 @@ import TableList from "../../component/table-list";
 import CustomerStatusForm from "./customer-status-form";
 import React from "react";
 import CustomerStatusView from "./customer-status-view";
+import { formatPhone } from "../../../../utils/string";
 
 interface CustomerListProps {
   filter?: UserFilter;
@@ -34,7 +35,7 @@ export default function CustomerList(props: CustomerListProps) {
     onRowCustom(item) {
       return [
         item.name,
-        item.phone,
+        formatPhone(item.phone),
         item.address,
         item.id_role == 1
           ? "Admin"
