@@ -26,7 +26,7 @@ export default function BankInputField(props: BankInputFieldProps) {
       error={error}
       placeholder="(BANK) Nomor Rekening"
       component={IMaskInput}
-      mask={"{(}[aaaaaaa]{)} 000 000 000 0"}
+      mask={"{(}[aaaaaaa]{)} [000 000 000 000]"}
       onAccept={(value, mask) => {
         const unmaskedValue = mask.unmaskedValue;
         if (unmaskedValue !== field.value) {
