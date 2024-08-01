@@ -22,9 +22,9 @@ export interface SupplierFilter {
 export const SupplierFormSchema = () =>
   Yup.object({
     company_name: Yup.string().required("Nama perusahaan tidak boleh kosong!"),
-    company_phone: Yup.string().required("Nomor telepon tidak boleh kosong!"),
-    pic_name: Yup.string().required("Nama penanggung jawab tidak boleh kosong!"),
-    pic_phone: Yup.string().required("Nomor telepon tidak boleh kosong!"),
+    company_phone: Yup.string().optional(),
+    pic_name: Yup.string().optional(),
+    pic_phone: Yup.string().optional(),
     bank_account: Yup.string().required("Informasi Bank tidak boleh kosong!"),
     bank_account_name: Yup.string().required("Nama Rekening tidak boleh kosong!"),
     status: Yup.string().required("Pilih status tersedia!"),

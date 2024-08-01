@@ -26,6 +26,7 @@ export default function PhoneInputField(props: PhoneInputFieldProps) {
       error={error}
       component={IMaskInput}
       mask={"[0000 0000 0000 00]"}
+      value={field.value || ""}
       onAccept={(value, mask) => {
         field.onChange(mask.unmaskedValue);
         if (onAfterChange) {
