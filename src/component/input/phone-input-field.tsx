@@ -28,9 +28,12 @@ export default function PhoneInputField(props: PhoneInputFieldProps) {
       mask={"[0000 0000 0000 00]"}
       value={field.value || ""}
       onAccept={(value, mask) => {
-        field.onChange(mask.unmaskedValue);
-        if (onAfterChange) {
-          onAfterChange(mask.unmaskedValue);
+        const unmaskedValue = mask.unmaskedValue;
+        if (unmaskedValue !== field.value) {
+          field.onChange(unmaskedValue);
+          if (onAfterChange) {
+            onAfterChange(unmaskedValue);
+          }
         }
       }}
     />

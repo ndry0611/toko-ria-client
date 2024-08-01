@@ -28,9 +28,12 @@ export default function BankInputField(props: BankInputFieldProps) {
       component={IMaskInput}
       mask={"{(}[aaaaaaa]{)} 000 000 000 0"}
       onAccept={(value, mask) => {
-        field.onChange(mask.unmaskedValue);
-        if (onAfterChange) {
-          onAfterChange(mask.unmaskedValue);
+        const unmaskedValue = mask.unmaskedValue;
+        if (unmaskedValue !== field.value) {
+          field.onChange(unmaskedValue);
+          if (onAfterChange) {
+            onAfterChange(unmaskedValue);
+          }
         }
       }}
     />
