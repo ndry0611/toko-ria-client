@@ -49,13 +49,12 @@ export default function SupplierForm(props: SupplierFormProps) {
           maw={"500px"}
         >
           <Input type="text" name="company_name" label="Nama Perusahaan" />
-          <Input type="phone" name="company_phone" label="Telepon Perusahaan" onAfterChange={(value) => {value.replace(/\D/g, '')}}/>
+          <Input type="phone" name="company_phone" label="Telepon Perusahaan"/>
           <Input type="text" name="pic_name" label="Nama Penanggung Jawab" />
           <Input
             type="phone"
             name="pic_phone"
             label="Telepon Penanggung Jawab"
-            onAfterChange={(value) => {value.replace(/\D/g, '')}}
           />
         </Flex>
         <Flex
